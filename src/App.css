@@ -1,0 +1,35 @@
+.page-title {
+  text-align: center;
+}
+
+.form-input {
+  border: 1px solid #92918F;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.background-image{
+  position: relative;
+  isolation: isolate;
+}
+
+.background-image::before{
+  content: "";
+  position: absolute;
+  inset:0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(180deg, rgba(6, 137, 3, 0.4) 69.71%, rgba(6, 137, 3, 0) 89.21%);
+}
+
+.background-image > img{
+  position: absolute;
+  z-index: 0;
+  inset:0;
+}
+
+.background-image .content{
+  position: relative;
+  z-index: 4;
+}
