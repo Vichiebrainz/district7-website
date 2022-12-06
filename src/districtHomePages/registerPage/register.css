@@ -1,0 +1,118 @@
+.register {
+    height: 100vh;
+}
+
+.register-left {
+    width: 55%;
+}
+
+.reg-left-inner {
+    width: 70%;
+    height: 80vh;
+}
+
+.reg-left-inner h1 {
+    font-family: Montserrat;
+    font-size: 40px;
+    font-weight: 600;
+    color: #068903;
+    margin-bottom: 20px;
+}
+
+.reg-left-inner form {
+    width: 80%;
+}
+
+.reg-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 15px;
+}
+
+.reg-form-group label {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    color: #92918F;
+}
+
+.reg-form-group input {
+    height: 40px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border: 1px solid rgba(146, 145, 143, 1);
+    border-radius: 3px;
+    transition: 0.5s all ease;
+}
+
+.reg-input-1 {
+    margin-right: 30px;
+}
+
+.reg-input-2 {
+    margin-left: 30px;
+}
+
+.reg-form-group input:focus {
+    outline: none;
+    border-color: #068903;
+}
+
+.reg-left-inner button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    margin-top: 30px;
+    background: #068903;
+    color: white;
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.reg-left-inner a {
+    color: #068903;
+}
+
+.register-right {
+    width: 45%;
+    background: linear-gradient(rgba(9, 105, 0, 0.856), rgba(224, 224, 224, 0.014)), url('../../assets/regbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.reg-right-inner {
+    width: 60%;
+    height: 80vh;
+    margin-left: 60px;
+}
+
+.reg-right-inner h1 {
+    font-family: Montserrat;
+    font-size: 38px;
+    font-weight: 600;
+    color: white;
+}
+
+.reg-right-inner a {
+    text-decoration: none;
+}
+
+.reg-right-inner img {
+    width: 70%;
+}
+
+.login-google {
+    background-color: white !important;
+    border: 1px solid rgba(146, 145, 143, 1) !important;
+    color: rgba(146, 145, 143, 1) !important;
+}
+
+.login-google img {
+    width: 6%;
+    margin-right: 10px;
+}
