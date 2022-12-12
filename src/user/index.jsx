@@ -8,12 +8,13 @@ import Settings from "./settings";
 import { MdNotifications } from "react-icons/md";
 import DashboardNavbar from "../compoents/DashboardNavbar";
 import Profile from "./profile";
+import { userSideBarRoutes } from "../routes";
 
 const UserDashboardLayout = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-full">
       <nav className="w-1/6 bg-[#068903]/20 text-white p-4 pl-0">
-        <Sidebar />
+        <Sidebar routes={userSideBarRoutes} />
       </nav>
       <div className="w-5/6 px-[60px] py-[54px]">
         <DashboardNavbar />

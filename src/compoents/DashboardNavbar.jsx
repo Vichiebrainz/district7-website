@@ -1,5 +1,6 @@
 import React from "react";
 import { IoNotifications } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const DashboardNavbar = () => {
   return (
@@ -26,11 +27,13 @@ const DashboardNavbar = () => {
           {/* Navigation links go here */}
         </div>
         <div>
-          <img
-            className="w-12 h-12 rounded-full mr-4 border-2 border-solid border-[#05C002]"
-            src="https://via.placeholder.com/150"
-            alt="User avatar"
-          />
+          <Link to="profile">
+            <img
+              className="w-12 h-12 rounded-full mr-4 border-2 border-solid border-[#05C002]"
+              src="https://via.placeholder.com/150"
+              alt="User avatar"
+            />
+          </Link>
         </div>
         <div className="cursor-pointer text-[#05C002] mx-3">
           <IoNotifications fontSize={36} />

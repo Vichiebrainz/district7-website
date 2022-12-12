@@ -5,14 +5,17 @@ import LandlordPosts from "./post";
 import LandlordOrders from "./orders";
 import LandlordSettings from "./settings";
 import LandlordDashboard from "./dash";
+import { landlordSideBarRoutes } from "../routes";
+import DashboardNavbar from "../compoents/DashboardNavbar";
 
 const LandlordDashboardLayout = () => {
   return (
     <div className="flex h-screen">
-      <nav className="w-1/6 bg-[#068903]/20 text-white p-4">
-        <Sidebar />
+      <nav className="w-1/6 bg-[#068903]/20 text-white p-4 pl-0">
+        <Sidebar routes={landlordSideBarRoutes} />
       </nav>
-      <div className="w-5/6 p-4">
+      <div className="w-5/6 px-[60px] py-[54px]">
+        <DashboardNavbar />
         <Routes>
           <Route path="/" element={<LandlordDashboard />} />
           <Route path="explore" element={<LandlordPosts />} />
