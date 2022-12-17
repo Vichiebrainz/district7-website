@@ -5,12 +5,12 @@ import logo from "../assets/brand.png";
 
 const Sidebar = ({ routes }) => {
   const activeLink =
-    "flex items-center gap-5 p-[20px] rounded-r-[5px] text-[20px] font-semibold leading-[24.38px] text-white text-white m-0 bg-[#068903] my-10";
+    "flex items-center gap-5 p-[20px] rounded-[5px] text-[20px] font-semibold leading-[24.38px] text-white text-white m-0 bg-[#068903] my-10";
   const normalLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-[20px] font-medium leading-[24.38px] text-black/60 dark:hover:text-black hover:bg-light-gray m-2 my-10";
 
   return (
-    <div className="ml-0 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 fixed top-0 font-header">
+    <div className="ml-0 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 fixed top-0 font-header bg-[#068903]/20">
       <>
         <div className="w-full p-7  ">
           <a href="/">
@@ -21,7 +21,7 @@ const Sidebar = ({ routes }) => {
             />
           </a>
         </div>
-        <div className="mt-10 ">
+        <div className="mt-10 px-6">
           {routes.slice(0, 3).map((link) => (
             <NavLink
               to={link.to}

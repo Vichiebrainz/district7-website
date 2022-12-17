@@ -9,7 +9,7 @@ function Login() {
   let navigate = useNavigate();
 
   function handleSubmit() {
-    navigate("/user");
+    navigate("/user/dashboard");
   }
 
   function handleInputChange() {}
