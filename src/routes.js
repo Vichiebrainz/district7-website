@@ -4,7 +4,7 @@ import { MdDashboard, MdTravelExplore, MdSettings } from "react-icons/md";
 export const userSideBarRoutes = [
     {
         name: "Dashboard",
-        to: "/user",
+        to: "dashboard",
         icon: MdDashboard,
     },
     {
@@ -19,7 +19,7 @@ export const userSideBarRoutes = [
     },
     {
         name: "Settings",
-        to: "settings",
+        to: "settings?tab=password",
         icon: MdSettings,
     },
 ];
