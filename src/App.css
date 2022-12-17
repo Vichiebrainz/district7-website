@@ -88,7 +88,13 @@
 
 /* .slick-slider .slick-slide.slick-current,
 .slick-slider .slick-slide.slick-center {
-  transform: scale(1.1);
+  transform: scale(1);
+  margin-right: 3%;
+  margin-left: 3%;
+}
+
+.slick-slider {
+  transform: scale(0.7);
   margin-right: 3%;
   margin-left: 3%;
 } */

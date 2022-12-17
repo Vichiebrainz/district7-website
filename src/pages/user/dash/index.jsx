@@ -17,7 +17,7 @@ const settings = {
   className: "center",
   centerMode: true,
   infinite: true,
-  centerPadding: "60px",
+  centerPadding: "30px",
   slidesToShow: 3,
   speed: 500,
   nextArrow: <BsFillArrowRightCircleFill color="#068903" size={24} />,
@@ -43,12 +43,12 @@ const UserDashboard = () => {
               <Slider {...settings} className="dashboardLikedItems">
                 {dashboardLikedApartments.map((apartment, i) => (
                   <div key={i}>
-                    <div className="h-[250px] w-[150px] rounded-[15px] bg-[#068903] cursor-pointer">
+                    <div className="h-[250px] w-[180px] rounded-[15px] bg-[#068903] cursor-pointer">
                       <div className="w-full h-3/4">
                         <img
                           src={returnRandomApartment()}
                           alt=""
-                          className="rounded-t-[15px] h-full object-cover"
+                          className="w-full rounded-t-[15px] h-full object-cover"
                         />
                       </div>
                       <div className="w-full h-1/4 px-4 py-2">
