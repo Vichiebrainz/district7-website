@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import ChangePassword from "../../../components/settings/ChangePassword";
-import LikedApartments from "../../../components/settings/LikedApartments";
-import Report from "../../../components/settings/Report";
-import ToggleNotifications from "../../../components/settings/ToggleNotifications";
+import ChangePassword from "../../../components/settings/user/ChangePassword";
+import LikedApartments from "../../../components/settings/user/LikedApartments";
+import Report from "../../../components/settings/user/Report";
+import ToggleNotifications from "../../../components/settings/user/ToggleNotifications";
 import { Tab } from "../../../components/tab/Tab";
 import { TabList } from "../../../components/tab/TabList";
 import TabTitle from "../../../components/tab/TabTitle";

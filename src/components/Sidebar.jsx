@@ -36,7 +36,7 @@ const Sidebar = ({ routes }) => {
             </NavLink>
           ))}
 
-          <div className="absolute bottom-20 w-full">
+          <div className="absolute bottom-20 w-full px-6">
             {routes.slice(3, 4).map((link) => (
               <NavLink
                 to={link.to}

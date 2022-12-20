@@ -7,6 +7,7 @@ import LandlordSettings from "./settings";
 import LandlordDashboard from "./dash";
 import { landlordSideBarRoutes } from "../../routes";
 import DashboardNavbar from "../../components/DashboardNavbar";
+import Notifications from "./Notifications";
 
 const LandlordDashboardLayout = () => {
   return (
@@ -21,6 +22,7 @@ const LandlordDashboardLayout = () => {
           <Route path="explore" element={<LandlordPosts />} />
           <Route path="connect" element={<LandlordOrders />} />
           <Route path="settings" element={<LandlordSettings />} />
+          <Route path="notifications" element={<Notifiicattions />} />
         </Routes>
       </div>
     </div>

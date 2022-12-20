@@ -1,8 +1,7 @@
 import React from "react";
-import ApartmentCard from "../cards/ApartmentCard";
-import houseA from "../../assets/house1.jpg";
-import houseB from "../../assets/house2.jpg";
-import { likedApartmentsData } from "../../data";
+import ApartmentCard from "../../cards/ApartmentCard";
+
+import { likedApartmentsData } from "../../../data";
 
 const LikedApartments = () => {
   return (
