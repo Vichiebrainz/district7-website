@@ -86,15 +86,16 @@
   z-index: 1;
 }
 
-/* .slick-slider .slick-slide.slick-current,
-.slick-slider .slick-slide.slick-center {
-  transform: scale(1);
-  margin-right: 3%;
-  margin-left: 3%;
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fafafa !important;
+  background-color: #068903 !important;
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
 }
 
-.slick-slider {
-  transform: scale(0.7);
-  margin-right: 3%;
-  margin-left: 3%;
-} */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 18px !important;
+}

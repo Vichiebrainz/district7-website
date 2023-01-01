@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { BsFillHeartFill } from "react-icons/bs";
 import Slider from "react-slick";
 import { BsFillTelephoneFill } from "react-icons/bs";
@@ -12,6 +12,19 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
+
+// import "./styles.css";
+
+// import required modules
+import { Autoplay, Navigation, EffectCoverflow } from "swiper";
 
 const settings = {
   className: "center",
@@ -31,19 +44,39 @@ const UserDashboard = () => {
     <div>
       <div className="flex flex-row gap-16 space-between">
         <div className="basis-2/3 h-[500px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5">
-          {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
-          <div className="px-8 py-5">
+          <div className="px-8 py-5 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-16 flex gap-4">
               <span>Liked Apartments</span>
               <span className="text-[#05C002] text-[28px]">
                 <BsFillHeartFill />
               </span>
             </div>
-            <div>
-              <Slider {...settings} className="dashboardLikedItems">
+            <div className="">
+              <Swiper
+                slidesPerView={3.4}
+                spaceBetween={30}
+                loop={true}
+                grabCursor={true}
+                centeredSlides={true}
+                effect={"coverflow"}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Navigation, EffectCoverflow]}
+                className="mySwiper"
+              >
                 {dashboardLikedApartments.map((apartment, i) => (
-                  <div key={i}>
-                    <div className="h-[250px] w-[180px] rounded-[15px] bg-[#068903] cursor-pointer">
+                  <SwiperSlide key={i}>
+                    <div className="h-[220px] w-[150px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
                       <div className="w-full h-3/4">
                         <img
                           src={returnRandomApartment()}
@@ -51,21 +84,21 @@ const UserDashboard = () => {
                           className="w-full rounded-t-[15px] h-full object-cover"
                         />
                       </div>
-                      <div className="w-full h-1/4 px-4 py-2">
+                      <div className="w-full h-full px-3 py-2 mb-1">
                         <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal">
                           {apartment.propertyType}
                         </p>
                         <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
                           {apartment.location}
                         </p>
-                        <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-semibold">
+                        <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
                           {apartment.price}
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </SwiperSlide>
                 ))}
-              </Slider>
+              </Swiper>
             </div>
           </div>
         </div>
