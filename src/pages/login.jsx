@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user, loading, error] = useAuthState(auth);
 
   let navigate = useNavigate();
 
   function handleSubmit() {
-    navigate("/user/dashboard");
+    logInWithEmailAndPassword(email, password);
   }
+
+  useEffect(() => {
+    if (loading) {
+      // maybe trigger a loading screen
+      return;
+    }
+    if (user) navigate("/user/dashboard");
+  }, [user, loading]);
 
   function handleInputChange() {}
   return (
@@ -20,7 +31,10 @@ function Login() {
           <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header">
             <p className="page-title">Log in</p>
           </div>
-          <div className="border border-gray-400 py-3 px-7 rounded-[5px] flex items-center gap-4 mb-4 font-body">
+          <div
+            className="border border-gray-400 py-3 px-7 rounded-[5px] flex items-center gap-4 mb-4 font-body cursor-pointer"
+            onClick={signInWithGoogle}
+          >
             <img src="/google.svg" alt="google icon" />
             <p>Log in with Google</p>
           </div>
@@ -38,7 +52,7 @@ function Login() {
               id="email"
               className="form-input py-3 px-7 mb-[30px]"
               value={email}
-              onChange={(e) => handleInputChange(e)}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="weatdistrict7@gmail.com"
             />
           </div>
@@ -53,7 +67,7 @@ function Login() {
               type="password"
               id="password"
               value={password}
-              onChange={(e) => handleInputChange(e)}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
           </div>
