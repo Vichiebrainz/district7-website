@@ -3,16 +3,19 @@ import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useToasts } from "react-toast-notifications";
+import { DotLoader } from "react-spinners";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
+  const { addToast } = useToasts();
 
   let navigate = useNavigate();
 
   function handleSubmit() {
-    logInWithEmailAndPassword(email, password);
+    logInWithEmailAndPassword(email, password, addToast);
   }
 
   useEffect(() => {
@@ -32,8 +35,8 @@ function Login() {
             <p className="page-title">Log in</p>
           </div>
           <div
-            className="border border-gray-400 py-3 px-7 rounded-[5px] flex items-center gap-4 mb-4 font-body cursor-pointer"
-            onClick={signInWithGoogle}
+            className="border border-gray-400 py-3 px-7 rounded-[5px] flex items-center gap-4 mb-4 font-header font-medium cursor-pointer"
+            onClick={() => signInWithGoogle(addToast)}
           >
             <img src="/google.svg" alt="google icon" />
             <p>Log in with Google</p>
@@ -77,18 +80,24 @@ function Login() {
               onClick={() => handleSubmit()}
               type="submit"
             >
+              {loading && <DotLoader color="#fff" fontSize={12} />}
               Proceed
             </button>
           </div>
         </div>
-        <div className="signup mt-[53px] font-body">
-          <p>
-            Don’t have an account yet?{" "}
-            <span className="px-[23px]">
-              <Link to="/signup">Sign up</Link>
-            </span>
-          </p>
-        </div>
+        <Link to="/signup">
+          <div className="signup mt-[53px] w-full text-center text-gray-700 font-header">
+            <p>
+              Don’t have an account yet?{" "}
+              <span className="px-[8px] font-bold text-black ">Sign up</span>
+            </p>
+          </div>
+        </Link>
+        <Link to="/auth/forgot-password">
+          <div className="signup mt-2 w-full text-center text-gray-500 text-[13px] font-header underline">
+            <p>Forgot password? </p>
+          </div>
+        </Link>
       </div>
       <div className="background-image h-screen">
         <img className="bg-img w-full h-full" src="/background-image.png"></img>

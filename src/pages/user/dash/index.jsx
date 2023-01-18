@@ -33,8 +33,8 @@ const settings = {
   centerPadding: "30px",
   slidesToShow: 3,
   speed: 500,
-  nextArrow: <BsFillArrowRightCircleFill color="#068903" size={24} />,
-  prevArrow: <BsFillArrowLeftCircleFill color="#068903" size={24} />,
+    // nextArrow: <BsFillArrowRightCircleFill color="#068903" size={24} />,
+    // prevArrow: <BsFillArrowLeftCircleFill color="#068903" size={24} />,
 };
 
 const UserDashboard = () => {

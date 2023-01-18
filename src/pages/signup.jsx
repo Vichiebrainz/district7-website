@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { auth, registerWithEmailAndPassword } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useToasts } from "react-toast-notifications";
 
 function Signup() {
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const [location, setlocation] = useState("");
   const [bank, setbank] = useState("");
   const [bankname, setbankname] = useState("");
 
-  function handleSubmit() {}
+  const [user, loading, error] = useAuthState(auth);
+  const { addToast } = useToasts();
 
-  function handleInputChange() {}
+  let navigate = useNavigate();
+
+  function handleSubmit() {
+    registerWithEmailAndPassword(email, password, addToast);
+  }
+
+  useEffect(() => {
+    if (loading) {
+      // maybe trigger a loading screen
+      return;
+    }
+    if (user) navigate("/user/dashboard");
+  }, [user, loading]);
   return (
     <div className="grid-container grid grid-cols-2 h-screen">
       <div className="form flex flex-col items-center justify-center">
@@ -28,10 +50,10 @@ function Signup() {
               </div>
               <input
                 type="name"
-                id="name"
+                id="firstName"
                 className="form-input py-3 px-7 mb-[30px]"
-                value={name}
-                onChange={(e) => handleInputChange(e)}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 placeholder="First name"
               />
             </div>
@@ -43,10 +65,10 @@ function Signup() {
               </div>
               <input
                 type="name"
-                id="name"
+                id="lastName"
                 className="form-input py-3 px-7 mb-[30px]"
-                value={name}
-                onChange={(e) => handleInputChange(e)}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 placeholder="Last name"
               />
             </div>
@@ -61,8 +83,8 @@ function Signup() {
               type="phone"
               id="phone"
               className="form-input py-3 px-7 mb-[30px]"
-              value={name}
-              onChange={(e) => handleInputChange(e)}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               placeholder="07012345678"
             />
           </div>
@@ -77,11 +99,11 @@ function Signup() {
               id="email"
               className="form-input py-3 px-7 mb-[30px]"
               value={email}
-              onChange={(e) => handleInputChange(e)}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="weatdistrict7@gmail.com"
             />
           </div>
-          <div className="grid grid-cols-2 gap-5">
+          {/* <div className="grid grid-cols-2 gap-5">
             <div className="bank font-body">
               <div className="label-wrapper">
                 <label className="form-label" htmlFor="bank">
@@ -118,8 +140,8 @@ function Signup() {
                 <option value="">Zenith Bank</option>
               </select>
             </div>
-          </div>
-          <div className="location font-body">
+          </div> */}
+          {/* <div className="location font-body">
             <div className="label-wrapper">
               <label className="form-label" htmlFor="location">
                 Location{" "}
@@ -133,6 +155,36 @@ function Signup() {
               onChange={(e) => handleInputChange(e)}
               placeholder=""
             />
+          </div> */}
+          <div className="password font-body">
+            <div className="label-wrapper">
+              <label className="form-label" htmlFor="password">
+                Password{" "}
+              </label>
+            </div>
+            <input
+              className="form-input py-3 px-7 mb-[30px]"
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+          </div>
+          <div className="password font-body">
+            <div className="label-wrapper">
+              <label className="form-label" htmlFor="password">
+                Confirm Password{" "}
+              </label>
+            </div>
+            <input
+              className="form-input py-3 px-7 mb-[30px]"
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm password"
+            />
           </div>
           <div>
             <button
@@ -143,6 +195,14 @@ function Signup() {
               Next
             </button>
           </div>
+          <Link to="/">
+            <div className="signup mt-[53px] w-full text-center text-gray-700 font-header">
+              <p>
+                Have an account already?{" "}
+                <span className="px-[8px] font-bold text-black ">Login</span>
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
       <div className="background-image min-h-screen">

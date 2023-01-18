@@ -6,7 +6,6 @@ import Searchbar from "./Searchbar";
 
 const DashboardNavbar = () => {
   const params = new URLSearchParams(window.location.pathname);
-  console.log(params);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-transparent mb-16">

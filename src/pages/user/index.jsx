@@ -9,15 +9,19 @@ import { MdNotifications } from "react-icons/md";
 import DashboardNavbar from "../../components/DashboardNavbar";
 import Profile from "./profile";
 import { userSideBarRoutes } from "../../routes";
+import BottomNav from "../../components/BottomNav";
 
 const UserDashboardLayout = () => {
   return (
     <div className="flex h-full">
-      <nav className="w-1/6 h-screen text-white p-4 pl-0">
+      <nav className="hidden md:block md:w-1/6 h-screen text-white p-4 pl-0">
         <Sidebar routes={userSideBarRoutes} />
       </nav>
-      <div className="w-5/6 px-[60px] py-[54px]">
+      <div className="w-full md:w-5/6 px-0 md:px-[60px] py-[54px]">
         <DashboardNavbar />
+        {/* <div className="block">
+          <BottomNav />
+        </div> */}
         <Routes>
           <Route path="dashboard" element={<UserDashboard />} />
           <Route path="explore" element={<Explore />} />

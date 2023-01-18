@@ -17,6 +17,8 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
+import { useToasts } from 'react-toast-notifications';
+
 
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -41,9 +43,10 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 // provider.setCustomParameters({ prompt: 'select_account' })
 // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-const signInWithGoogle = async () => {
+const signInWithGoogle = async (addToast) => {
     try {
         const res = await signInWithPopup(auth, provider);
+        addToast('Login Success!', { appearance: 'success', autoDismiss: true, });
         const user = res.user;
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
         const docs = await getDocs(q);
@@ -57,21 +60,25 @@ const signInWithGoogle = async () => {
         }
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        addToast(err.message, { appearance: 'error', autoDismiss: true, });
+
     }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
+const logInWithEmailAndPassword = async (email, password, addToast) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
+        addToast('Login Success!', { appearance: 'success', autoDismiss: true, });
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        addToast(err.message, { appearance: 'error', autoDismiss: true, });
     }
 };
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (email, password, addToast) => {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
+        addToast('Sign up Success!', { appearance: 'success', autoDismiss: true, });
+
         const user = res.user;
         await addDoc(collection(db, "users"), {
             uid: user.uid,
@@ -81,20 +88,21 @@ const registerWithEmailAndPassword = async (name, email, password) => {
         });
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        addToast(err.message, { appearance: 'error', autoDismiss: true, });
     }
 };
-const sendPasswordReset = async (email) => {
+const sendPasswordReset = async (email, addToast) => {
     try {
         await sendPasswordResetEmail(auth, email);
-        alert("Password reset link sent!");
+        addToast("Password reset link sent!", { appearance: 'info', autoDismiss: true, });
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        addToast(err.message, { appearance: 'error', autoDismiss: true, });
     }
 };
-const logout = () => {
+const logout = (addToast) => {
     signOut(auth);
+    addToast('Logged out!', { appearance: 'info', autoDismiss: true, });
 };
 export {
     auth,

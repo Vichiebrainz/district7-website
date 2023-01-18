@@ -59,7 +59,7 @@ const Account = () => {
             >
               Bank Name
             </label>
-            <div class="relative flex-1">
+            <div className="relative flex-1">
               <select
                 className="border border-[#92918F] border-solid form-input w-full mb-6 p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
                 id="city"

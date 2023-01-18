@@ -8,6 +8,7 @@ import ToggleNotifications from "../../../components/settings/user/ToggleNotific
 import { Tab } from "../../../components/tab/Tab";
 import { TabList } from "../../../components/tab/TabList";
 import TabTitle from "../../../components/tab/TabTitle";
+import Logout from "../../../components/settings/user/logout";
 
 const Settings = () => {
   const [currentTab, setCurrentTab] = useState("");
@@ -96,7 +97,7 @@ const Settings = () => {
 
         {currentTab === "logout" && (
           <Tab>
-            <div>Logout</div>
+            <Logout />
           </Tab>
         )}
       </TabList>
