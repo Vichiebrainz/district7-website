@@ -81,7 +81,7 @@ function Login() {
               type="submit"
             >
               {loading && <DotLoader color="#fff" fontSize={12} />}
-              Proceed
+              {!loading && "Proceed"}
             </button>
           </div>
         </div>

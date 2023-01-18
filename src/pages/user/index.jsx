@@ -19,9 +19,9 @@ const UserDashboardLayout = () => {
       </nav>
       <div className="w-full md:w-5/6 px-0 md:px-[60px] py-[54px]">
         <DashboardNavbar />
-        {/* <div className="block">
+        <div className="block md:hidden">
           <BottomNav />
-        </div> */}
+        </div>
         <Routes>
           <Route path="dashboard" element={<UserDashboard />} />
           <Route path="explore" element={<Explore />} />
