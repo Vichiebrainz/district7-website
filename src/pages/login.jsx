@@ -86,7 +86,7 @@ function Login() {
               onClick={() => handleSubmit()}
               type="submit"
             >
-              {loading && <DotLoader color="#fff" fontSize={12} />}
+              {loading && <DotLoader color="#fff" size={21} />}
               {!loading && "Proceed"}
             </button>
           </div>

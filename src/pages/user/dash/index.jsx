@@ -42,8 +42,8 @@ const UserDashboard = () => {
 
   return (
     <div>
-      <div className="flex flex-row gap-16 space-between">
-        <div className="basis-2/3 h-[500px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5">
+      <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
+        <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5">
           <div className="px-8 py-5 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-16 flex gap-4">
               <span>Liked Apartments</span>
@@ -102,7 +102,7 @@ const UserDashboard = () => {
             </div>
           </div>
         </div>
-        <div className="basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
+        <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
           {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
           <div className="px-8 py-5">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
