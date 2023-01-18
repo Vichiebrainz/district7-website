@@ -42,7 +42,7 @@ function Login() {
             <p>Log in with Google</p>
           </div>
           <div>
-            <p className="text-center mb-4">OR</p>
+            <p className="text-center mb-4 text-[12px] md:text-base">OR</p>
           </div>
           <div className="email">
             <div className="label-wrapper">
@@ -56,7 +56,7 @@ function Login() {
             <input
               type="email"
               id="email"
-              className="form-input py-3 px-7 mb-[30px]"
+              className="form-input py-3 mb-[30px]"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="weatdistrict7@gmail.com"
@@ -72,7 +72,7 @@ function Login() {
               </label>
             </div>
             <input
-              className="form-input py-3 px-7 mb-[30px]"
+              className="form-input py-3 mb-[30px]"
               type="password"
               id="password"
               value={password}

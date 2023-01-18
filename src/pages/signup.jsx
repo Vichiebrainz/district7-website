@@ -35,11 +35,11 @@ function Signup() {
     if (user) navigate("/user/dashboard");
   }, [user, loading]);
   return (
-    <div className="grid-container grid grid-cols-2 h-screen">
+    <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0">
       <div className="form flex flex-col items-center justify-center">
         <div className="form-body w-full max-w-[450px] flex flex-col justify-center pb-[75px]">
           <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header mb-[81px]">
-            <p className="page-title">Sign up</p>
+            <p className="page-title text-[#05C002]">Sign Up</p>
           </div>
           <div className="grid grid-cols-2 gap-5">
             <div className="firstname font-body">
@@ -51,7 +51,7 @@ function Signup() {
               <input
                 type="name"
                 id="firstName"
-                className="form-input py-3 px-7 mb-[30px]"
+                className="form-input py-3 mb-[30px]"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder="First name"
@@ -66,7 +66,7 @@ function Signup() {
               <input
                 type="name"
                 id="lastName"
-                className="form-input py-3 px-7 mb-[30px]"
+                className="form-input py-3 mb-[30px]"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 placeholder="Last name"
@@ -82,7 +82,7 @@ function Signup() {
             <input
               type="phone"
               id="phone"
-              className="form-input py-3 px-7 mb-[30px]"
+              className="form-input py-3 mb-[30px]"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="07012345678"
@@ -97,7 +97,7 @@ function Signup() {
             <input
               type="email"
               id="email"
-              className="form-input py-3 px-7 mb-[30px]"
+              className="form-input py-3 mb-[30px]"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="weatdistrict7@gmail.com"
@@ -163,7 +163,7 @@ function Signup() {
               </label>
             </div>
             <input
-              className="form-input py-3 px-7 mb-[30px]"
+              className="form-input py-3 mb-[30px]"
               type="password"
               id="password"
               value={password}
@@ -178,7 +178,7 @@ function Signup() {
               </label>
             </div>
             <input
-              className="form-input py-3 px-7 mb-[30px]"
+              className="form-input py-3 mb-[30px]"
               type="password"
               id="confirmPassword"
               value={confirmPassword}
@@ -188,24 +188,26 @@ function Signup() {
           </div>
           <div>
             <button
-              className="footer p-[22px] text-white bg-primary-green w-full rounded-[5px]"
+              className="footer p-[22px] text-white text-[18px] font-header font-bold  bg-[#05C002] md:bg-primary-green w-full rounded-[5px]"
               onClick={() => handleSubmit()}
               type="submit"
             >
-              Next
+              Get started
             </button>
           </div>
           <Link to="/">
-            <div className="signup mt-[53px] w-full text-center text-gray-700 font-header">
+            <div className="signup mt-[53px] w-full text-center text-[12px] md:text-base text-gray-700 font-header">
               <p>
                 Have an account already?{" "}
-                <span className="px-[8px] font-bold text-black ">Login</span>
+                <span className="px-[4px] font-bold text-[#05C002]">
+                  Login{" "}
+                </span>
               </p>
             </div>
           </Link>
         </div>
       </div>
-      <div className="background-image min-h-screen">
+      <div className="background-image min-h-screen hidden md:block">
         <img className="bg-img w-full h-full" src="/background-image.png"></img>
         <div className="content py-12 lg:py-24 px-20 flex flex-col justify-between h-full">
           <p className="font-header max-w-[418px] text-[50px] leading-[61px] text-white">

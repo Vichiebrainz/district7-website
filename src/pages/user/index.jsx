@@ -10,6 +10,7 @@ import DashboardNavbar from "../../components/DashboardNavbar";
 import Profile from "./profile";
 import { userSideBarRoutes } from "../../routes";
 import BottomNav from "../../components/BottomNav";
+import MobileNav from "../../components/MobileNav";
 
 const UserDashboardLayout = () => {
   return (
@@ -18,8 +19,11 @@ const UserDashboardLayout = () => {
         <Sidebar routes={userSideBarRoutes} />
       </nav>
       <div className="w-full md:w-5/6 px-0 md:px-[60px] py-[54px]">
-        <DashboardNavbar />
+        <div className="hidden md:block">
+          <DashboardNavbar />
+        </div>
         <div className="block md:hidden">
+          <MobileNav />
           <BottomNav />
         </div>
         <Routes>

@@ -33,8 +33,8 @@ const settings = {
   centerPadding: "30px",
   slidesToShow: 3,
   speed: 500,
-    // nextArrow: <BsFillArrowRightCircleFill color="#068903" size={24} />,
-    // prevArrow: <BsFillArrowLeftCircleFill color="#068903" size={24} />,
+  // nextArrow: <BsFillArrowRightCircleFill color="#068903" size={24} />,
+  // prevArrow: <BsFillArrowLeftCircleFill color="#068903" size={24} />,
 };
 
 const UserDashboard = () => {
@@ -151,11 +151,11 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div className="my-24">
-        <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-8 ">
+      <div className="my-24 bg-[#068903]/5 md:bg-transparent">
+        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] mb-8 ">
           Possible Connections
         </div>
-        <div>
+        <div className="hidden md:block">
           <Slider {...settings}>
             {possibleConnections.map((value, i) => (
               <div key={i}>
@@ -178,7 +178,7 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div className="my-24">
+      <div className="my-24 hidden md:block">
         <div className=" flex flex-row justify-between  items-center">
           <div>
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
