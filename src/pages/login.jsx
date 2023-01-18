@@ -28,14 +28,14 @@ function Login() {
 
   function handleInputChange() {}
   return (
-    <div className="grid-container grid grid-cols-2 h-screen">
-      <div className="form flex flex-col items-center justify-center">
+    <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0 ">
+      <div className="form flex flex-col items-center justify-center font-header">
         <div className="form-body w-full max-w-[450px] flex flex-col justify-center">
           <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header">
-            <p className="page-title">Log in</p>
+            <p className="page-title text-[#05C002]">Log in</p>
           </div>
           <div
-            className="border border-gray-400 py-3 px-7 rounded-[5px] flex items-center gap-4 mb-4 font-header font-medium cursor-pointer"
+            className="border border-black/30 py-3 px-7 rounded-[10px] flex items-center gap-4 mb-4 font-header font-medium cursor-pointer text-[#333333]"
             onClick={() => signInWithGoogle(addToast)}
           >
             <img src="/google.svg" alt="google icon" />
@@ -44,9 +44,12 @@ function Login() {
           <div>
             <p className="text-center mb-4">OR</p>
           </div>
-          <div className="email font-body">
+          <div className="email">
             <div className="label-wrapper">
-              <label className="form-label" htmlFor="email">
+              <label
+                className="form-labe text-[14px] md:text-[16px]"
+                htmlFor="email"
+              >
                 Email{" "}
               </label>
             </div>
@@ -59,9 +62,12 @@ function Login() {
               placeholder="weatdistrict7@gmail.com"
             />
           </div>
-          <div className="password font-body">
+          <div className="password ">
             <div className="label-wrapper">
-              <label className="form-label" htmlFor="password">
+              <label
+                className="form-labe text-[14px] md:text-[16px]"
+                htmlFor="password"
+              >
                 Password{" "}
               </label>
             </div>
@@ -76,7 +82,7 @@ function Login() {
           </div>
           <div>
             <button
-              className="footer p-[22px] text-white bg-primary-green w-full rounded-[5px]"
+              className="footer p-[22px] text-white font-bold bg-[#05C002] md:bg-primary-green w-full rounded-[5px]"
               onClick={() => handleSubmit()}
               type="submit"
             >
@@ -86,10 +92,10 @@ function Login() {
           </div>
         </div>
         <Link to="/signup">
-          <div className="signup mt-[53px] w-full text-center text-gray-700 font-header">
+          <div className="signup mt-[53px] w-full text-center text-[12px] md:text-base text-gray-700 font-header">
             <p>
               Don’t have an account yet?{" "}
-              <span className="px-[8px] font-bold text-black ">Sign up</span>
+              <span className="px-[4px] font-bold text-[#05C002]">Sign up</span>
             </p>
           </div>
         </Link>
@@ -99,7 +105,7 @@ function Login() {
           </div>
         </Link>
       </div>
-      <div className="background-image h-screen">
+      <div className="background-image h-screen hidden md:block">
         <img className="bg-img w-full h-full" src="/background-image.png"></img>
         <div className="content py-12 lg:py-24 px-20 flex flex-col justify-between h-full">
           <p className="font-header max-w-[418px] text-[50px] leading-[61px] text-white">
