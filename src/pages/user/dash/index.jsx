@@ -24,7 +24,7 @@ import "swiper/css/effect-coverflow";
 // import "./styles.css";
 
 // import required modules
-import { Autoplay, Navigation, EffectCoverflow } from "swiper";
+import { Autoplay, Navigation, EffectCoverflow, EffectCreative } from "swiper";
 
 const settings = {
   className: "center",
@@ -43,15 +43,15 @@ const UserDashboard = () => {
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
-        <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5">
+        <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card md:bg-[#068903]/5">
           <div className="px-8 py-5 ">
-            <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-16 flex gap-4">
+            <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Liked Apartments</span>
               <span className="text-[#05C002] text-[28px]">
                 <BsFillHeartFill />
               </span>
             </div>
-            <div className="">
+            <div className="hidden md:block">
               <Swiper
                 slidesPerView={3.4}
                 spaceBetween={30}
@@ -89,7 +89,7 @@ const UserDashboard = () => {
                           {apartment.propertyType}
                         </p>
                         <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                          {apartment.location}
+                          {apartment.propertyType}
                         </p>
                         <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
                           {apartment.price}
@@ -100,6 +100,51 @@ const UserDashboard = () => {
                 ))}
               </Swiper>
             </div>
+
+            <Swiper
+              grabCursor={true}
+              effect={"creative"}
+              creativeEffect={{
+                prev: {
+                  shadow: true,
+                  translate: [0, 0, -400],
+                },
+                next: {
+                  translate: ["100%", 0, 0],
+                },
+              }}
+              modules={[EffectCreative]}
+              className="mySwiper"
+            >
+              {dashboardLikedApartments.map((apartment, i) => (
+                <SwiperSlide key={i}>
+                  <div>
+                    <div className="w-full h-[150px] flex rounded-[5px]">
+                      <div className="w-2/3">
+                        <img
+                          src={returnRandomApartment()}
+                          alt=""
+                          className="w-full rounded-l-[5px] h-full object-cover"
+                        />
+                      </div>
+                      <div className="w-1/3 bg-[#05C002] rounded-r-[5px] relative">
+                        <div className="w-full h-full px-3 py-2 mb-1">
+                          <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
+                            {apartment.propertyType}
+                          </p>
+                          <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-normal">
+                            {apartment.price}
+                          </p>
+                          <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin absolute bottom bottom-2 underline">
+                            See more
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
         <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
