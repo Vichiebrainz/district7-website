@@ -24,7 +24,13 @@ import "swiper/css/effect-coverflow";
 // import "./styles.css";
 
 // import required modules
-import { Autoplay, Navigation, EffectCoverflow, EffectCreative } from "swiper";
+import {
+  Autoplay,
+  Navigation,
+  EffectCoverflow,
+  EffectCreative,
+  EffectCards,
+} from "swiper";
 
 const settings = {
   className: "center",
@@ -103,17 +109,19 @@ const UserDashboard = () => {
 
             <Swiper
               grabCursor={true}
-              effect={"creative"}
-              creativeEffect={{
-                prev: {
-                  shadow: true,
-                  translate: [0, 0, -400],
-                },
-                next: {
-                  translate: ["100%", 0, 0],
-                },
-              }}
-              modules={[EffectCreative]}
+              // effect={"creative"}
+              effect={"cards"}
+              // creativeEffect={{
+              //   prev: {
+              //     shadow: true,
+              //     translate: [0, 0, -400],
+              //   },
+              //   next: {
+              //     translate: ["100%", 0, 0],
+              //   },
+              // }}
+
+              modules={[EffectCards]}
               className="mySwiper"
             >
               {dashboardLikedApartments.map((apartment, i) => (
@@ -135,7 +143,7 @@ const UserDashboard = () => {
                           <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-normal">
                             {apartment.price}
                           </p>
-                          <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin absolute bottom bottom-2 underline">
+                          <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header   absolute bottom bottom-2 underline">
                             See more
                           </p>
                         </div>
