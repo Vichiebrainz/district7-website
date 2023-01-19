@@ -11,23 +11,23 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <div className="flex gap-1 items-center max-w-3xl mx-auto my-10">
+    <div className="p-6 md:p-0">
+      <div className="flex flex-col md:flex-row gap-1 items-center max-w-3xl mx-auto my-10 ">
         <div>
           <img
-            className="w-[160px] h-[160px] rounded-full mr-4 border-2 border-solid border-[#05C002]"
+            className="w-[80px] md:w-[160px] h-[80px] md:h-[160px] rounded-full mr-4 border-2 border-solid border-[#05C002]"
             src={returnRandomImage()}
             alt="User avatar"
           />
         </div>
         <div>
-          <h3 className="text-[#068903] text-[28px] leading-[34.13px] font-semibold font-header mb-2">
+          <h3 className="text-black md:text-[#068903] text-[18px] md:text-[28px] leading-[34.13px] font-semibold font-header mb-2">
             Ilegbusi Ayooluwa
           </h3>
-          <p className="text-black text-[24px] leading-[29.26px] font-normal font-header mb-2">
+          <p className="hidden md:flex text-black text-[24px] leading-[29.26px] font-normal font-header mb-0 md:mb-2">
             User
           </p>
-          <p className="text-[#92918F] text-[18px] leading-[21.94px] font-normal font-header">
+          <p className="text-[#92918F] text-[12px] md:text-[18px] leading-[21.94px] font-normal font-header underline">
             Edit Profile Picture
           </p>
         </div>
@@ -37,7 +37,7 @@ const Profile = () => {
           <form>
             <label
               htmlFor="name"
-              className="block font-normal font-header text-[#92918F] text-[16px] leading-[19.5px] mb-1"
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
             >
               First Name
             </label>
@@ -51,7 +51,7 @@ const Profile = () => {
 
             <label
               htmlFor="name"
-              className="block font-normal font-header text-[#92918F] text-[16px] leading-[19.5px] mb-1"
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
             >
               Last Name
             </label>
@@ -65,7 +65,7 @@ const Profile = () => {
 
             <label
               htmlFor="email"
-              className="block font-normal font-header text-[#92918F] text-[16px] leading-[19.5px] mb-1"
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
             >
               Email Address
             </label>
@@ -79,7 +79,7 @@ const Profile = () => {
 
             <label
               htmlFor="phone_number"
-              className="block font-normal font-header text-[#92918F] text-[16px] leading-[19.5px] mb-1"
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
             >
               Phone Number
             </label>
@@ -93,9 +93,9 @@ const Profile = () => {
 
             <button
               type="submit"
-              className="button-primary uppercase bg-[#068903] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-8"
+              className="button-primary bg-[#05C002] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-8"
             >
-              Save
+              Update profile
             </button>
           </form>
         </div>

@@ -17,22 +17,22 @@ const ChangePassword = () => {
 
   return (
     <>
-      <div className="my-16 text-black text-[24px] leading-[29.26px] font-semibold font-header">
+      <div className="my-0  md:my-16 text-black text-[24px] leading-[29.26px] font-semibold font-header text-center md:text-left">
         Change Password
       </div>
-      <div className="max-w-lg  mt-10">
+      <div className="max-w-lg  mt-10 p-6">
         <form onSubmit={handleSubmit}>
           <div className="mb-4 relative ">
             <label
               htmlFor="current-password"
-              className="block font-normal font-header text-black/60 text-[16px] leading-[19.5px] mb-3"
+              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
             >
               Current Password
             </label>
             <input
               type={showPassword.currentPassword ? "text" : "password"}
               id="current-password"
-              className="border border-[#92918F] border-solid form-input w-full mb-6 p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
+              className="border border-[#92918F] border-solid form-input w-full mb-6 p-[12px] md:p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
               value={currentPassword}
               onChange={(event) => setCurrentPassword(event.target.value)}
             />
@@ -62,14 +62,14 @@ const ChangePassword = () => {
           <div className="mb-4 relative">
             <label
               htmlFor="new-password"
-              className="block font-normal font-header text-black/60 text-[16px] leading-[19.5px] mb-3"
+              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
             >
               New Password
             </label>
             <input
               type={showPassword.newPassword ? "text" : "password"}
               id="new-password"
-              className="border border-[#92918F] border-solid form-input w-full mb-6 p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px]"
+              className="border border-[#92918F] border-solid form-input w-full mb-6 p-[12px] md:p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
               value={newPassword}
               onChange={(event) => setNewPassword(event.target.value)}
             />
@@ -99,14 +99,14 @@ const ChangePassword = () => {
           <div className="mb-4 relative">
             <label
               htmlFor="confirm-new-password"
-              className="block font-normal font-header text-black/60 text-[16px] leading-[19.5px] mb-3"
+              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
             >
               Confirm New Password
             </label>
             <input
               type={showPassword.confirmNewPassword ? "text" : "password"}
               id="confirm-new-password"
-              className="border border-[#92918F] border-solid form-input w-full mb-6 p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px]"
+              className="border border-[#92918F] border-solid form-input w-full mb-6 p-[12px] md:p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
               value={confirmNewPassword}
               onChange={(event) => setConfirmNewPassword(event.target.value)}
             />

@@ -14,7 +14,7 @@ const MobileNav = () => {
         <input />
       </div>
       <div className="flex justify-center items-center gap-4">
-        <Link to="settings?tab=password">
+        <Link to="settings">
           <div className="text-[24px] text-black/60">
             <MdSettings />
           </div>

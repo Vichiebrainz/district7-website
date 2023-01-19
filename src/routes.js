@@ -1,3 +1,6 @@
+import { BsFillHandThumbsUpFill, BsPatchExclamationFill } from "react-icons/bs";
+import { FaBell, FaUnlock } from "react-icons/fa";
+import { IoLogOut } from "react-icons/io5";
 import { MdDashboard, MdTravelExplore, MdSettings } from "react-icons/md";
 
 
@@ -67,6 +70,35 @@ export const BottomBarRoutes = [
         name: "Connect",
         to: "connect",
         icon: MdTravelExplore,
+    },
+
+];
+
+export const settingsRoutes = [
+    {
+        name: "Liked Apartments",
+        to: "liked",
+        icon: BsFillHandThumbsUpFill,
+    },
+    {
+        name: "Notification setting",
+        to: "notifications",
+        icon: FaBell,
+    },
+    {
+        name: "Password setting",
+        to: "password",
+        icon: FaUnlock,
+    },
+    {
+        name: "Report",
+        to: "report",
+        icon: BsPatchExclamationFill,
+    },
+    {
+        name: "Logout",
+        to: "logout",
+        icon: IoLogOut,
     },
 
 ];

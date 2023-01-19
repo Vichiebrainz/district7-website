@@ -9,11 +9,11 @@ const Explore = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   return (
-    <div className="mt-16">
-      <div className="flex gap-16">
+    <div className="mt-8  md:mt-16 p-6">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-16">
         <div className="relative flex-1">
           <select
-            className="block appearance-none w-full bg-white border-[1.5px] border-black/60 hover:border-black/60 px-4 py-4 pr-8 rounded shadow  focus:outline-none focus:shadow-outline font-header font-medium text-black/60 text-[18px] leading-[21.94px]"
+            className="block appearance-none w-full bg-white border-[1px] md:border-[1.5px] border-black/30 hover:border-black/60 px-4 py-4 pr-8 rounded-[5px] md:shadow  focus:outline-none focus:shadow-outline font-header font-medium text-black/60 text-[18px] leading-[21.94px]"
             id="city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -31,7 +31,7 @@ const Explore = () => {
 
         <div className="relative flex-1">
           <select
-            className="block appearance-none w-full bg-white border-[1.5px] border-black/60 hover:border-black/60 px-4 py-4 pr-8 rounded shadow  focus:outline-none focus:shadow-outline font-header font-medium text-black/60 text-[18px] leading-[21.94px]"
+            className="block appearance-none w-full bg-white border-[1px] md:border-[1.5px] border-black/30 hover:border-black/60 px-4 py-4 pr-8 rounded-[5px] md:shadow  focus:outline-none focus:shadow-outline font-header font-medium text-black/60 text-[18px] leading-[21.94px]"
             id="state"
             value={state}
             onChange={(e) => setState(e.target.value)}
@@ -49,7 +49,7 @@ const Explore = () => {
 
         <div className="relative flex-1">
           <select
-            className="block appearance-none w-full bg-white border-[1.5px] border-black/60 hover:border-black/60 px-4 py-4 pr-8 rounded shadow  focus:outline-none focus:shadow-outline font-header font-medium text-black/60 text-[18px] leading-[21.94px]"
+            className="block appearance-none w-full bg-white border-[1px] md:border-[1.5px] border-black/30 hover:border-black/60 px-4 py-4 pr-8 rounded-[5px] md:shadow  focus:outline-none focus:shadow-outline font-header font-medium text-black/60 text-[18px] leading-[21.94px]"
             id="state"
             value={state}
             onChange={(e) => setState(e.target.value)}
@@ -66,7 +66,7 @@ const Explore = () => {
         </div>
 
         <div className="relative flex-1">
-          <button className="w-full bg-[#068903] rounded-[5px] capitalize text-[18px] leading-[21.94px] font-header font-medium text-white flex justify-center items-center gap-4 p-4">
+          <button className="w-full bg-[#05C002] md:bg-[#068903] rounded-[5px] capitalize text-[18px] leading-[21.94px] font-header font-medium text-white flex justify-center items-center gap-4 p-4">
             <span>
               <BiSearch fontSize={24} />
             </span>
