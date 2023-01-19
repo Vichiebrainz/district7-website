@@ -74,7 +74,7 @@ const Settings = () => {
           />
         </div>
 
-        <div className="block md:hidden my-4 p-6">
+        <div className="block md:hidden my-4 pt-6 px-6">
           <div
             className="flex text-left gap-1 items-center text-[#333] font-header mb-4"
             onClick={() => setCurrentTab("")}
@@ -120,9 +120,9 @@ const Settings = () => {
 
           {currentTab === "notifications" && (
             <Tab>
-              <div className="px-4 py-8 w-full">
-                <ToggleNotifications />
-              </div>
+              {/* <div className="px-4 md:py-8 w-full  "> */}
+              <ToggleNotifications />
+              {/* </div> */}
             </Tab>
           )}
 

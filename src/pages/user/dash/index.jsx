@@ -153,7 +153,7 @@ const UserDashboard = () => {
             </Swiper>
           </div>
         </div>
-        <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
+        <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
           <div className="px-8 py-5">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
@@ -202,8 +202,8 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div className="my-24 bg-[#068903]/5 md:bg-transparent">
-        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] mb-8 ">
+      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent">
+        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-8 ">
           Possible Connections
         </div>
         <div className="hidden md:block">
@@ -226,6 +226,25 @@ const UserDashboard = () => {
               </div>
             ))}
           </Slider>
+        </div>
+        <div className=" md:hidden grid grid-cols-2 px-6">
+          {possibleConnections.slice(0, 8).map((value, i) => (
+            <div className="flex items-center gap-1  my-[6px] " key={i}>
+              <div>
+                <img
+                  className="w-9 h-9 rounded-full mr-1 object-cover"
+                  src={returnRandomImage()}
+                  alt="User avatar"
+                />
+              </div>
+              <div className="text-black/70 text-[12px] md:text-[16px] leading-[19.5px] font-normal font-header">
+                <p className="my-[2px]">{value.name}</p>
+                <p className="my-[2px] text-[11px] md:text-[13px] text-black/60">
+                  {value.role}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

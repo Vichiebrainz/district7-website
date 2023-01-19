@@ -17,12 +17,12 @@ const ChangePassword = () => {
 
   return (
     <>
-      <div className="my-0  md:my-16 text-black text-[24px] leading-[29.26px] font-semibold font-header text-center md:text-left">
+      <div className="my-0  md:my-16 text-black text-[18px] md:text-[24px] leading-[29.26px] font-semibold font-header text-center md:text-left">
         Change Password
       </div>
-      <div className="max-w-lg  mt-10 p-6">
+      <div className="max-w-lg  mt-10 px-6">
         <form onSubmit={handleSubmit}>
-          <div className="mb-4 relative ">
+          <div className="mb-1 md:mb-4 relative ">
             <label
               htmlFor="current-password"
               className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
@@ -59,7 +59,7 @@ const ChangePassword = () => {
               )}
             </div>
           </div>
-          <div className="mb-4 relative">
+          <div className="mb-1 md:mb-4 relative ">
             <label
               htmlFor="new-password"
               className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
@@ -96,7 +96,7 @@ const ChangePassword = () => {
               )}
             </div>
           </div>
-          <div className="mb-4 relative">
+          <div className="mb-1 md:mb-4 relative ">
             <label
               htmlFor="confirm-new-password"
               className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
@@ -142,7 +142,7 @@ const ChangePassword = () => {
           <div>
             <button
               type="submit"
-              className="button-primary uppercase bg-[#068903] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-4"
+              className="button-primary bg-[#05C002] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-4"
             >
               Change Password
             </button>
