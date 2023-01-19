@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import UserDashboardLayout from "./pages/user";
@@ -37,17 +40,18 @@ function App() {
 
   return (
     <>
-      <ToastProvider>
-        <Router>
-          <Routes>
-            <Route path="" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="auth/forgot-password" element={<ForgotPassword />} />
+      <Provider store={store}>
+        <ToastProvider>
+          <Router>
+            <Routes>
+              <Route path="" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="auth/forgot-password" element={<ForgotPassword />} />
 
-            <Route
-              path="/"
-              element={<PrivateRoute isAuthenticated={isAuthenticated} />}
-            >
+              {/* <Route
+                path="/"
+                element={<PrivateRoute isAuthenticated={isAuthenticated} />}
+              > */}
               <Route path="user/*" element={<UserDashboardLayout />}>
                 <Route path="dashboard" element={<UserDashboard />} />
                 <Route path="explore" element={<Explore />} />
@@ -55,17 +59,18 @@ function App() {
                 <Route path="settings" element={<Settings />} />
                 <Route path="profile" element={<Profile />} />
               </Route>
-            </Route>
+              {/* </Route> */}
 
-            <Route path="landlord" element={<LandlordDashboardLayout />}>
-              <Route path="/landlord" element={<LandlordDashboard />} />
-              <Route path="posts" element={<LandlordPosts />} />
-              <Route path="orders" element={<LandlordOrders />} />
-              <Route path="settings" element={<LandlordSettings />} />
-            </Route>
-          </Routes>
-        </Router>
-      </ToastProvider>
+              <Route path="landlord" element={<LandlordDashboardLayout />}>
+                <Route path="/landlord" element={<LandlordDashboard />} />
+                <Route path="posts" element={<LandlordPosts />} />
+                <Route path="orders" element={<LandlordOrders />} />
+                <Route path="settings" element={<LandlordSettings />} />
+              </Route>
+            </Routes>
+          </Router>
+        </ToastProvider>
+      </Provider>
     </>
   );
 }

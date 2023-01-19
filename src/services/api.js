@@ -1,18 +1,12 @@
 import axios from "axios";
-import Router from "next/router";
-import { makeStore } from "../store";
 
-const store = makeStore();
-const push = Router.push;
-let refreshing_token = null;
-
-const BASE_URL = "https://tangl-api.herokuapp.com/api/v1";
+const BASE_URL = "https://district7.onrender.com/api";
 
 
 const api = axios.create({
     baseURL: BASE_URL,
     headers: {
-        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
         Accept: "application/json",
     },

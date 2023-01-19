@@ -5,28 +5,43 @@ import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useToasts } from "react-toast-notifications";
 import { DotLoader } from "react-spinners";
+import { useSelector, useDispatch } from "react-redux";
+import { clearState, loginUser, userSelector } from "../store/slices/authSlice";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
-  const { addToast } = useToasts();
 
+  const { addToast } = useToasts();
+  const dispatch = useDispatch();
   let navigate = useNavigate();
 
+  const { isFetching, isSuccess, isError, errorMessage } =
+    useSelector(userSelector);
+
   function handleSubmit() {
-    logInWithEmailAndPassword(email, password, addToast);
+    dispatch(loginUser({ email, password }));
   }
 
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) navigate("/user/dashboard");
-  }, [user, loading]);
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
 
-  function handleInputChange() {}
+  useEffect(() => {
+    if (isError) {
+      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      dispatch(clearState());
+    }
+
+    if (isSuccess) {
+      dispatch(clearState());
+      navigate("/user/dashboard");
+    }
+  }, [isError, isSuccess]);
+
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0 ">
       <div className="form flex flex-col items-center justify-center font-header">
@@ -85,9 +100,10 @@ function Login() {
               className="footer p-[22px] text-white font-bold bg-[#05C002] md:bg-primary-green w-full rounded-[5px]"
               onClick={() => handleSubmit()}
               type="submit"
+              disabled={isFetching}
             >
-              {loading && <DotLoader color="#fff" size={21} />}
-              {!loading && "Proceed"}
+              {isFetching && <DotLoader color="#fff" size={21} />}
+              {!isFetching && "Proceed"}
             </button>
           </div>
         </div>
