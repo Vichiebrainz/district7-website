@@ -37,6 +37,11 @@ function Login() {
     }
 
     if (isSuccess) {
+      addToast("Logged In!", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+
       dispatch(clearState());
       navigate("/user/dashboard");
     }

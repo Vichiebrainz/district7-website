@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login_user, register_user } from "../../services/requests";
+import axios from "axios";
 
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -9,7 +10,7 @@ export const registerUser = createAsyncThunk(
     async (userRegistrationData, thunkAPI) => {
         try {
             const response = await register_user(userRegistrationData)
-            thunkAPI.dispatch(setMessage(response.data.message));
+            localStorage.setItem("user", JSON.stringify(response.data));
             return response.data;
         } catch (error) {
             const message =
@@ -29,8 +30,10 @@ export const loginUser = createAsyncThunk(
         console.log(userLogin)
         try {
             const data = await login_user(userLogin)
+            localStorage.setItem("user", JSON.stringify({ data }));
             return { user: data };
         } catch (error) {
+            console.log(error)
             const message =
                 (error.response &&
                     error.response.data &&
