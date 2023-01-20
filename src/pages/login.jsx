@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+
 import { useToasts } from "react-toast-notifications";
 import { DotLoader } from "react-spinners";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,13 +10,12 @@ import { clearState, loginUser, userSelector } from "../store/slices/authSlice";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
 
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const { isFetching, isSuccess, isError, errorMessage } =
+  const { isFetching, isSuccess, isError, errorMessage, isLoggedIn } =
     useSelector(userSelector);
 
   function handleSubmit() {
@@ -46,6 +44,10 @@ function Login() {
       navigate("/user/dashboard");
     }
   }, [isError, isSuccess]);
+
+  useEffect(() => {
+    isLoggedIn && navigate("/user/dashboard");
+  }, [isLoggedIn]);
 
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0 ">

@@ -1,15 +1,27 @@
-import React from "react";
-import { logout } from "../../../firebase";
+import React, { useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearState, logout } from "../../../store/slices/authSlice";
 
 const Logout = () => {
   let navigate = useNavigate();
   const { addToast } = useToasts();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
 
   const logoutUser = () => {
-    logout(addToast);
+    dispatch(logout());
+    addToast("Logged Out!", {
+      appearance: "info",
+      autoDismiss: true,
+    });
     navigate("/");
   };
   return (

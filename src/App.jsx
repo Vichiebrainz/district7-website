@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "./store";
 
 import Login from "./pages/login";
@@ -25,33 +25,26 @@ import PrivateRoute from "./middleware/privateRoute";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastProvider } from "react-toast-notifications";
 import ForgotPassword from "./pages/auth/forgotPassword";
+import { userSelector } from "./store/slices/authSlice";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
-  });
+  const { isLoggedIn } = useSelector(userSelector);
 
   return (
     <>
-      <Provider store={store}>
-        <ToastProvider>
-          <Router>
-            <Routes>
-              <Route path="" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="auth/forgot-password" element={<ForgotPassword />} />
+      <ToastProvider>
+        <Router>
+          <Routes>
+            <Route path="" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="auth/forgot-password" element={<ForgotPassword />} />
 
-              {/* <Route
-                path="/"
-                element={<PrivateRoute isAuthenticated={isAuthenticated} />}
-              > */}
+            <Route
+              path="/"
+              element={<PrivateRoute isAuthenticated={isLoggedIn} />}
+            >
               <Route path="user/*" element={<UserDashboardLayout />}>
                 <Route path="dashboard" element={<UserDashboard />} />
                 <Route path="explore" element={<Explore />} />
@@ -59,18 +52,17 @@ function App() {
                 <Route path="settings" element={<Settings />} />
                 <Route path="profile" element={<Profile />} />
               </Route>
-              {/* </Route> */}
+            </Route>
 
-              <Route path="landlord" element={<LandlordDashboardLayout />}>
-                <Route path="/landlord" element={<LandlordDashboard />} />
-                <Route path="posts" element={<LandlordPosts />} />
-                <Route path="orders" element={<LandlordOrders />} />
-                <Route path="settings" element={<LandlordSettings />} />
-              </Route>
-            </Routes>
-          </Router>
-        </ToastProvider>
-      </Provider>
+            <Route path="landlord" element={<LandlordDashboardLayout />}>
+              <Route path="/landlord" element={<LandlordDashboard />} />
+              <Route path="posts" element={<LandlordPosts />} />
+              <Route path="orders" element={<LandlordOrders />} />
+              <Route path="settings" element={<LandlordSettings />} />
+            </Route>
+          </Routes>
+        </Router>
+      </ToastProvider>
     </>
   );
 }

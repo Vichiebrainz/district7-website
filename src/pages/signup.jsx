@@ -1,39 +1,71 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { auth, registerWithEmailAndPassword } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useToasts } from "react-toast-notifications";
+import { DotLoader } from "react-spinners";
+
+import { useSelector, useDispatch } from "react-redux";
+import {
+  clearState,
+  registerUser,
+  userSelector,
+} from "../store/slices/authSlice";
 
 function Signup() {
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone_number, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password2, setConfirmPassword] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-  const [location, setlocation] = useState("");
-  const [bank, setbank] = useState("");
-  const [bankname, setbankname] = useState("");
-
-  const [user, loading, error] = useAuthState(auth);
   const { addToast } = useToasts();
-
+  const dispatch = useDispatch();
   let navigate = useNavigate();
 
+  const { isFetching, isSuccess, isError, errorMessage, isLoggedIn } =
+    useSelector(userSelector);
+
   function handleSubmit() {
-    registerWithEmailAndPassword(email, password, addToast);
+    dispatch(
+      registerUser({
+        email,
+        first_name,
+        last_name,
+        password,
+        password2,
+        phone_number,
+      })
+    );
   }
 
   useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isError) {
+      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      dispatch(clearState());
     }
-    if (user) navigate("/user/dashboard");
-  }, [user, loading]);
+
+    if (isSuccess) {
+      addToast("Account created successfully!", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+
+      dispatch(clearState());
+      navigate("/user/dashboard");
+    }
+  }, [isError, isSuccess]);
+
+  useEffect(() => {
+    isLoggedIn && navigate("/user/dashboard");
+  }, [isLoggedIn]);
+
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0">
       <div className="form flex flex-col items-center justify-center">
@@ -52,7 +84,7 @@ function Signup() {
                 type="name"
                 id="firstName"
                 className="form-input py-3 mb-[30px]"
-                value={firstName}
+                value={first_name}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder="First name"
               />
@@ -67,7 +99,7 @@ function Signup() {
                 type="name"
                 id="lastName"
                 className="form-input py-3 mb-[30px]"
-                value={lastName}
+                value={last_name}
                 onChange={(e) => setLastName(e.target.value)}
                 placeholder="Last name"
               />
@@ -83,7 +115,7 @@ function Signup() {
               type="phone"
               id="phone"
               className="form-input py-3 mb-[30px]"
-              value={phone}
+              value={phone_number}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="07012345678"
             />
@@ -181,7 +213,7 @@ function Signup() {
               className="form-input py-3 mb-[30px]"
               type="password"
               id="confirmPassword"
-              value={confirmPassword}
+              value={password2}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm password"
             />
@@ -192,7 +224,8 @@ function Signup() {
               onClick={() => handleSubmit()}
               type="submit"
             >
-              Get started
+              {isFetching && <DotLoader color="#fff" size={21} />}
+              {!isFetching && "Get started"}
             </button>
           </div>
           <Link to="/">
