@@ -10,7 +10,7 @@ export const registerUser = createAsyncThunk(
     async (userRegistrationData, thunkAPI) => {
         try {
             const response = await register_user(userRegistrationData)
-            localStorage.setItem("user", JSON.stringify(response.data));
+            localStorage.setItem("user", (response.data));
             return response.data;
         } catch (error) {
             const message =
@@ -30,7 +30,7 @@ export const loginUser = createAsyncThunk(
         console.log(userLogin)
         try {
             const data = await login_user(userLogin)
-            localStorage.setItem("user", JSON.stringify({ data }));
+            localStorage.setItem("user", JSON.stringify(data.data));
             return { user: data };
         } catch (error) {
             console.log(error)
