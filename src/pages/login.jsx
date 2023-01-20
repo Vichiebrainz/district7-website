@@ -56,10 +56,7 @@ function Login() {
           <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header">
             <p className="page-title text-[#05C002]">Log in</p>
           </div>
-          <div
-            className="border border-black/30 py-3 px-7 rounded-[10px] flex items-center gap-4 mb-4 font-header font-medium cursor-pointer text-[#333333]"
-            onClick={() => signInWithGoogle(addToast)}
-          >
+          <div className="border border-black/30 py-3 px-7 rounded-[10px] flex items-center gap-4 mb-4 font-header font-medium cursor-pointer text-[#333333]">
             <img src="/google.svg" alt="google icon" />
             <p>Log in with Google</p>
           </div>

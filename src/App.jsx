@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider, useSelector } from "react-redux";
-import store from "./store";
 
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -22,7 +21,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Profile from "./pages/user/profile";
 
 import PrivateRoute from "./middleware/privateRoute";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ToastProvider } from "react-toast-notifications";
 import ForgotPassword from "./pages/auth/forgotPassword";
 import { userSelector } from "./store/slices/authSlice";
