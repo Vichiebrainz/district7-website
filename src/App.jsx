@@ -51,16 +51,16 @@ function App() {
                 <Route path="profile" element={<Profile />} />
               </Route>
             </Route>
-
-            <Route path="landlord" element={<LandlordDashboardLayout />}>
-              <Route path="/landlord" element={<LandlordDashboard />} />
+            <Route path="landlord/*" element={<LandlordDashboardLayout />}>
+              <Route path="dashboard" element={<LandlordDashboard />} />
               <Route path="posts" element={<LandlordPosts />} />
               <Route path="orders" element={<LandlordOrders />} />
               <Route path="settings" element={<LandlordSettings />} />
             </Route>
-          </Routes>
-        </Router>
-      </ToastProvider>
+           </Routes>
+          </Router>
+        </ToastProvider>
+      </Provider>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { BsFillHandThumbsUpFill, BsPatchExclamationFill } from "react-icons/bs";
 import { FaBell, FaUnlock } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { MdDashboard, MdTravelExplore, MdSettings } from "react-icons/md";
+import { MdDashboard, MdTravelExplore, MdSettings, MdCreate } from "react-icons/md";
 
 
 export const userSideBarRoutes = [
@@ -30,18 +30,18 @@ export const userSideBarRoutes = [
 export const landlordSideBarRoutes = [
     {
         name: "Dashboard",
-        to: "/landlord",
+        to: "dashboard",
         icon: MdDashboard,
     },
     {
         name: "Post",
         to: "posts",
-        icon: MdTravelExplore,
+        icon: MdCreate,
     },
     {
         name: "Orders",
         to: "orders",
-        icon: MdTravelExplore,
+        icon: MdCreate,
     },
     {
         name: "Settings",
