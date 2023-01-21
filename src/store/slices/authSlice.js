@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login_user, register_user } from "../../services/requests";
+import axios from "axios";
 
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -9,7 +10,7 @@ export const registerUser = createAsyncThunk(
     async (userRegistrationData, thunkAPI) => {
         try {
             const response = await register_user(userRegistrationData)
-            thunkAPI.dispatch(setMessage(response.data.message));
+            localStorage.setItem("user", JSON.stringify(response.data));
             return response.data;
         } catch (error) {
             const message =
@@ -28,9 +29,11 @@ export const loginUser = createAsyncThunk(
     async (userLogin, thunkAPI) => {
         console.log(userLogin)
         try {
-            const data = await login_user(userLogin)
-            return { user: data };
+            const response = await login_user(userLogin)
+            localStorage.setItem("user", JSON.stringify(response.data));
+            return { user: response.data };
         } catch (error) {
+            console.log(error)
             const message =
                 (error.response &&
                     error.response.data &&
@@ -44,19 +47,22 @@ export const loginUser = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-    // await AuthService.logout();
+    console.log("logged out");
+    await localStorage.removeItem("user");
 });
 
 const initialState = user
     ? {
-        isLoggedIn: true, user,
+        isLoggedIn: true,
+        user: user.user,
         isFetching: false,
         isSuccess: false,
         isError: false,
         errorMessage: '',
     }
     : {
-        isLoggedIn: false, user: null,
+        isLoggedIn: false,
+        user: null,
         isFetching: false,
         isSuccess: false,
         isError: false,
@@ -76,11 +82,22 @@ const authSlice = createSlice({
         },
     },
     extraReducers: {
+        [registerUser.pending]: (state) => {
+            state.isFetching = true;
+        },
         [registerUser.fulfilled]: (state, action) => {
-            state.isLoggedIn = false;
+            state.isLoggedIn = true;
+            state.user = action.payload.user;
+            state.isFetching = false;
+            state.isSuccess = true;
         },
         [registerUser.rejected]: (state, action) => {
             state.isLoggedIn = false;
+            state.user = null;
+            console.log('payload', action);
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = action.payload;
         },
         [loginUser.fulfilled]: (state, action) => {
             state.isLoggedIn = true;

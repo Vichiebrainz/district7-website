@@ -3,15 +3,19 @@ import { IoNotifications } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import { returnRandomImage } from "../helper/randomizeProfilePictures";
 import Searchbar from "./Searchbar";
+import { useSelector, useDispatch } from "react-redux";
 
 const DashboardNavbar = () => {
-  const params = new URLSearchParams(window.location.pathname);
+  // const params = new URLSearchParams(window.location.pathname);
+  const { user } = useSelector((state) => state.auth);
+
+  console.log(user);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-transparent mb-16">
       <div className="flex items-center flex-shrink-0 text-black mr-6">
         <span className="font-semibold font-header leading-[34.13px] text-[28px] tracking-tight">
-          Welcome back, Khervie00
+          Welcome back, {user.first_name}
         </span>
       </div>
       <div className="block lg:hidden">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { sendPasswordReset } from "../../firebase";
 import { useToasts } from "react-toast-notifications";
 
 function ForgotPassword() {
@@ -38,7 +37,6 @@ function ForgotPassword() {
           <div>
             <button
               className="footer p-[22px] text-white bg-primary-green w-full rounded-[5px] font-header"
-              onClick={() => sendPasswordReset(email, addToast)}
               type="submit"
             >
               Send reset email
