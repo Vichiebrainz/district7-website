@@ -8,21 +8,29 @@ import LandlordDashboard from "./dash";
 import { landlordSideBarRoutes } from "../../routes";
 import DashboardNavbar from "../../components/DashboardNavbar";
 import Notifications from "./Notifications";
+import MobileNav from "../../components/MobileNav";
+import BottomNav from "../../components/BottomNav";
 
 const LandlordDashboardLayout = () => {
   return (
-    <div className="flex h-screen">
-      <nav className="w-1/6 bg-[#068903]/20 text-white p-4 pl-0">
+    <div className="flex h-full">
+      <nav className="hidden md:block md:w-1/6 h-screen text-white p-4 pl-0">
         <Sidebar routes={landlordSideBarRoutes} />
       </nav>
-      <div className="w-5/6 px-[60px] py-[54px]">
-        <DashboardNavbar />
+      <div className="w-full md:w-5/6 px-0 md:px-[60px] py-[54px]">
+        <div className="hidden md:block">
+          <DashboardNavbar />
+        </div>
+        <div className="block md:hidden">
+          <MobileNav />
+          <BottomNav />
+        </div>
         <Routes>
-          <Route path="/" element={<LandlordDashboard />} />
-          <Route path="explore" element={<LandlordPosts />} />
-          <Route path="connect" element={<LandlordOrders />} />
+          <Route path="dashboard" element={<LandlordDashboard />} />
+          <Route path="posts" element={<LandlordPosts />} />
+          <Route path="orders" element={<LandlordOrders />} />
           <Route path="settings" element={<LandlordSettings />} />
-          <Route path="notifications" element={<Notifiicattions />} />
+          <Route path="notifications" element={<Notifications />} />
         </Routes>
       </div>
     </div>
