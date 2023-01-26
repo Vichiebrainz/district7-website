@@ -4,6 +4,7 @@ import { FaCaretDown } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import mapDummy from "../../../assets/Map of Birmingham (City).png";
 import GoogleMapWrapper from "../../../components/GoogleMaps";
+import GMaps from "../../../components/maps";
 
 const Explore = () => {
   const [city, setCity] = useState("");
@@ -75,7 +76,7 @@ const Explore = () => {
         </div>
       </div>
       <div className="w-full h-[600px] mt-20">
-        {/* <GoogleMapWrapper /> */}
+        <GMaps />
         <img
           src={mapDummy}
           className="w-full h-full object-cover rounded-[8px]"
