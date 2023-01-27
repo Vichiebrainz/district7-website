@@ -1,5 +1,6 @@
 import React from "react";
 // import footerLogo from "../../../assets/footerLogo.png";
+import footerLogo from "../../../assets/footerLogo.png";
 import {
   FaFacebookF,
   FaTwitter,
@@ -29,7 +30,7 @@ function Footer() {
         </div>
         <div className="footer-top-2 d-flex align-items-center justify-content-between">
           <div className="footer-topleft">
-            <img src="/src/assets/footerlogo.png" alt="" />
+            <img src={footerLogo} alt="" />
             <h2>Weatdistrict7@gmail.com</h2>
             <h3>+2348037837313</h3>
           </div>
