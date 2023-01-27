@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login_user, register_user } from "../../services/requests";
+import { login_user, register_landlord, register_user } from "../../services/requests";
 import axios from "axios";
 
 
@@ -10,6 +10,25 @@ export const registerUser = createAsyncThunk(
     async (userRegistrationData, thunkAPI) => {
         try {
             const response = await register_user(userRegistrationData)
+            localStorage.setItem("user", JSON.stringify(response.data));
+            return response.data;
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+export const registerLandlord = createAsyncThunk(
+    "auth/register",
+    async (landlordRegistrationData, thunkAPI) => {
+        try {
+            const response = await register_landlord(landlordRegistrationData)
             localStorage.setItem("user", JSON.stringify(response.data));
             return response.data;
         } catch (error) {
@@ -59,6 +78,7 @@ const initialState = user
         isSuccess: false,
         isError: false,
         errorMessage: '',
+        registerType: ""
     }
     : {
         isLoggedIn: false,
@@ -67,6 +87,7 @@ const initialState = user
         isSuccess: false,
         isError: false,
         errorMessage: '',
+        registerType: ""
     };
 
 const authSlice = createSlice({
@@ -77,9 +98,12 @@ const authSlice = createSlice({
             state.isError = false;
             state.isSuccess = false;
             state.isFetching = false;
-
             return state;
         },
+        setRegisterType: (state, action) => {
+            state.registerType = action.payload;
+            return state;
+        }
     },
     extraReducers: {
         [registerUser.pending]: (state) => {
@@ -124,44 +148,14 @@ const authSlice = createSlice({
     },
 });
 
-export const { clearState } = authSlice.actions;
+
+export const { clearState, setRegisterType } = authSlice.actions;
 
 export const userSelector = (state) => state.auth;
-
 
 const { reducer } = authSlice;
 export default reducer;
 
 
 
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const authSlice = createSlice({
-//     name: 'auth',
-//     initialState: {
-//         user: null,
-//         isLoading: false,
-//         error: null,
-//     },
-//     reducers: {
-//         loginStart: state => {
-//             state.isLoading = true;
-//         },
-//         loginSuccess: (state, action) => {
-//             state.user = action.payload;
-//             state.isLoading = false;
-//         },
-//         loginError: (state, action) => {
-//             state.error = action.payload;
-//             state.isLoading = false;
-//         },
-//         logout: state => {
-//             state.user = null;
-//         },
-//     },
-// });
-
-// export const { loginStart, loginSuccess, loginError, logout } = authSlice.actions;
-
-// export default authSlice.reducer;
 

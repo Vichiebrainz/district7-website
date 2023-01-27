@@ -24,21 +24,30 @@ import PrivateRoute from "./middleware/privateRoute";
 import { ToastProvider } from "react-toast-notifications";
 import ForgotPassword from "./pages/auth/forgotPassword";
 import { userSelector } from "./store/slices/authSlice";
+import Home from "./pages/landingPages/homePage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const { isLoggedIn } = useSelector(userSelector);
 
+  console.log(useSelector(userSelector));
+
   return (
     <>
       <ToastProvider>
         <Router>
           <Routes>
-            <Route path="" element={<Login />} />
+            {/* HOME ROUTE */}
+            <Route path="/" element={<Home />} />
+
+            {/* AUTH ROUTES */}
+            <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="auth/forgot-password" element={<ForgotPassword />} />
 
+            {/* PRIVATE ROUTES USER AND LANDLORD */}
             <Route
               path="/"
               element={<PrivateRoute isAuthenticated={isLoggedIn} />}
@@ -57,9 +66,9 @@ function App() {
               <Route path="orders" element={<LandlordOrders />} />
               <Route path="settings" element={<LandlordSettings />} />
             </Route>
-           </Routes>
-          </Router>
-        </ToastProvider>
+          </Routes>
+        </Router>
+      </ToastProvider>
     </>
   );
 }

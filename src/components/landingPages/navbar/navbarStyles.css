@@ -1,0 +1,46 @@
+.navbar {
+  background-color: white;
+  height: 80px;
+  width: 100%;
+  position: fixed !important;
+  top: 0 !important;
+  /* box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2); */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.navbar-main {
+  width: 90%;
+}
+
+.navbar-brand img {
+  width: 80%;
+}
+
+.navbar-link ul {
+  list-style: none;
+  margin: 0;
+  margin-right: 20px;
+}
+
+.navbar-link li {
+  margin: 0px 15px;
+}
+
+.navbar-link li a {
+  font-family: Montserrat;
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.navbar-link button {
+  margin-left: 15px;
+  background-color: #05c002;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 600;
+}

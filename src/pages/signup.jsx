@@ -7,6 +7,7 @@ import { DotLoader } from "react-spinners";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearState,
+  registerLandlord,
   registerUser,
   userSelector,
 } from "../store/slices/authSlice";
@@ -23,20 +24,43 @@ function Signup() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const { isFetching, isSuccess, isError, errorMessage, isLoggedIn } =
-    useSelector(userSelector);
+  const {
+    isFetching,
+    isSuccess,
+    isError,
+    errorMessage,
+    isLoggedIn,
+    registerType,
+  } = useSelector(userSelector);
 
   function handleSubmit() {
-    dispatch(
-      registerUser({
-        email,
-        first_name,
-        last_name,
-        password,
-        password2,
-        phone_number,
-      })
-    );
+    registerType == "tenant"
+      ? dispatch(
+          registerUser({
+            email,
+            first_name,
+            last_name,
+            password,
+            password2,
+            phone_number,
+          })
+        )
+      : registerType == "landlord"
+      ? dispatch(
+          registerLandlord({
+            email,
+            first_name,
+            last_name,
+            password,
+            password2,
+            phone_number,
+          })
+        )
+      : (navigate("/"),
+        addToast("Select account type before you continue!", {
+          appearance: "error",
+          autoDismiss: true,
+        }));
   }
 
   useEffect(() => {
@@ -135,59 +159,7 @@ function Signup() {
               placeholder="weatdistrict7@gmail.com"
             />
           </div>
-          {/* <div className="grid grid-cols-2 gap-5">
-            <div className="bank font-body">
-              <div className="label-wrapper">
-                <label className="form-label" htmlFor="bank">
-                  Bank Account{" "}
-                </label>
-              </div>
-              <input
-                type="name"
-                id="name"
-                className="form-input py-3 px-7 mb-[30px]"
-                value={name}
-                onChange={(e) => handleInputChange(e)}
-                placeholder="08978976"
-              />
-            </div>
-            <div className="bankname font-body">
-              <div className="label-wrapper">
-                <label className="form-label" htmlFor="bankname">
-                  Bank name{" "}
-                </label>
-              </div>
-              <select
-                name="bankname"
-                id="bankname"
-                className="form-input py-3 px-7 mb-[30px]"
-              >
-                <option value="">First Bank</option>
-                <option value="">Union Bank</option>
-                <option value="">GTBank</option>
-                <option value="">Access Bank</option>
-                <option value="">FCMB</option>
-                <option value="">First Bank</option>
-                <option value="">UBA</option>
-                <option value="">Zenith Bank</option>
-              </select>
-            </div>
-          </div> */}
-          {/* <div className="location font-body">
-            <div className="label-wrapper">
-              <label className="form-label" htmlFor="location">
-                Location{" "}
-              </label>
-            </div>
-            <input
-              className="form-input py-3 px-7 mb-[30px]"
-              type="location"
-              id="location"
-              value={location}
-              onChange={(e) => handleInputChange(e)}
-              placeholder=""
-            />
-          </div> */}
+
           <div className="password font-body">
             <div className="label-wrapper">
               <label className="form-label" htmlFor="password">
@@ -228,7 +200,7 @@ function Signup() {
               {!isFetching && "Get started"}
             </button>
           </div>
-          <Link to="/">
+          <Link to="/login">
             <div className="signup mt-[53px] w-full text-center text-[12px] md:text-base text-gray-700 font-header">
               <p>
                 Have an account already?{" "}
