@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import navLogo from "../../../assets/logo.png";
+// import navLogo from "../../../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbarStyles.css";
 import { BsArrowRightCircleFill } from "react-icons/bs";
@@ -34,7 +34,7 @@ function Navbar() {
       <div className="navbar-main d-flex align-items-center justify-content-between">
         <div className="navbar-brand">
           <a href="#">
-            <img src={navLogo} alt="brand logo" />
+            <img src="../../../assets/logo.png" alt="brand logo" />
           </a>
         </div>
 
