@@ -34,7 +34,7 @@ function Navbar() {
       <div className="navbar-main d-flex align-items-center justify-content-between">
         <div className="navbar-brand">
           <a href="#">
-            <img src="../../../assets/logo.png" alt="brand logo" />
+            <img src="/src/assets/logo.png" alt="brand logo" />
           </a>
         </div>
 
