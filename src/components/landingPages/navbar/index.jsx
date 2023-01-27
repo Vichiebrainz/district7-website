@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import navLogo from "../../../assets/logo.png";
+import navLogo from "./logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbarStyles.css";
 import { BsArrowRightCircleFill } from "react-icons/bs";
