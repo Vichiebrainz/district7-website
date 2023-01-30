@@ -13,35 +13,22 @@
   margin-top: 70px;
 }
 
-.showcase-inner input {
+/* .showcase-inner input {
   width: 90%;
   height: 45px;
   padding: 10px 20px;
   transition: 0.5s all ease;
-}
+} */
 
-.showcase-inner input:focus {
+/* .showcase-inner input:focus {
   outline-color: #05c002;
-}
+} */
 
-.showcase-inner button {
-  padding: 0px 15px;
-  height: 45px;
-  border: none;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 27px;
-  font-weight: 600;
-  background-color: #05c002;
-}
-
-.showcase-inner .text-case {
+/* .showcase-inner .text-case {
   max-width: 80%;
-}
+} */
 
-.showcase-inner h1 {
+/* .showcase-inner h1 {
   font-family: Montserrat;
   font-size: 55px;
   font-weight: 700;
@@ -50,15 +37,15 @@
 
 .showcase-inner h1 span {
   color: #05c002;
-}
+} */
 
-.showcase-inner p {
+/* .showcase-inner p {
   font-family: Montserrat;
   font-size: 16px;
   font-weight: 400;
   color: white;
   margin-top: 30px;
-}
+} */
 
 /* Offers Section  */
 

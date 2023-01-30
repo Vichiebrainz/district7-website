@@ -10,25 +10,25 @@ import {
 import "./footerStyles.css";
 function Footer() {
   return (
-    <div className="footer d-flex flex-column align-items-center justify-content-center">
-      <div className="footer-top ">
-        <div className="footer-top-1">
-          <ul className="d-flex align-items-center justify-content-between">
-            <li>
+    <div className="bg-black w-screen flex flex-col items-center justify-center p-8">
+      <div className=" ">
+        <div className="">
+          <ul className="w-full grid grid-cols-2 md:grid-cols-6 text-center justify-start text-white font-header font-semibold">
+            <li className="my-2">
               <a href="#">About</a>
             </li>
-            <li>
+            <li className="my-2">
               <a href="#">Services</a>
             </li>
-            <li>
+            <li className="my-2">
               <a href="#">Companies</a>
             </li>
-            <li>
+            <li className="my-2">
               <a href="#">Privacy policy & Terms</a>
             </li>
           </ul>
         </div>
-        <div className="footer-top-2 d-flex align-items-center justify-content-between">
+        <div className="footer-top-2 flex flex-col md:flex-row items-center justify-between">
           <div className="footer-topleft">
             <img src={footerLogo} alt="" />
             <h2>Weatdistrict7@gmail.com</h2>
@@ -61,8 +61,10 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer-bottom d-flex align-items-center justify-content-center">
-        <h2>Copyright @ 2022. All rights reserved.</h2>
+      <div className="h-[15vh] w-full mt-[20px] border-t-[3px] border-white flex items-center justify-center">
+        <h2 className="font-header text-[15px] font-normal text-white/70">
+          Copyright @ 2022. All rights reserved.
+        </h2>
       </div>
     </div>
   );

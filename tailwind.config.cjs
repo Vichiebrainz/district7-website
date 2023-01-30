@@ -12,6 +12,10 @@ module.exports = {
       },
       boxShadow: {
         'card': '0px 4px 4px 0px #00000040'
+      },
+      backgroundImage: {
+        "best-tenants": "url(./src/assets/tenants.jpg)",
+        "header": "url(./src/assets/showcase.jpg)",
       }
     },
   },
