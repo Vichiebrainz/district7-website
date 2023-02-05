@@ -159,7 +159,7 @@ const UserDashboard = () => {
         </div>
         <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
-          <div className="md:px-8 py-5">
+          <div className="md:px-8 px-4 py-5">
             <div className="font-semibold font-header text-[16px] md:text-[20px] leading-[24.38px] mb-6 ">
               Recent Transactions
             </div>
@@ -238,7 +238,7 @@ const UserDashboard = () => {
           </Slider>
         </div>
         <div className=" md:hidden grid grid-cols-2 px-6">
-          {possibleConnections.slice(0, 8).map((value, i) => (
+          {possibleConnections.slice(0, 6).map((value, i) => (
             <div className="flex items-center gap-1  my-[6px] " key={i}>
               <div>
                 <img
