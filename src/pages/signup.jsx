@@ -45,8 +45,7 @@ function Signup() {
             phone_number,
           })
         )
-      : registerType == "landlord"
-      ? dispatch(
+      : dispatch(
           registerLandlord({
             email,
             first_name,
@@ -55,12 +54,7 @@ function Signup() {
             password2,
             phone_number,
           })
-        )
-      : (navigate("/"),
-        addToast("Select account type before you continue!", {
-          appearance: "error",
-          autoDismiss: true,
-        }));
+        );
   }
 
   useEffect(() => {

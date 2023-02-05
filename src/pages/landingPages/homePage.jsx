@@ -76,7 +76,7 @@ function Home() {
             Get Started
           </button>
           <span className="font-header text-[10px] font-normal mt-[10px]">
-            Join our waitlist to know when we go live
+            {/* Join our waitlist to know when we go live */}
           </span>
         </div>
       </div>
@@ -96,7 +96,7 @@ function Home() {
               Stay happy with your refunds
             </h1>
             <p className="text-[15px] font-header font-normal my-8 text-justify">
-              We ensure you are refunded within 4 days of request if you are not
+              We ensure you are refunded within 2 days of request if you are not
               satisfied with our houses.
             </p>
             <div className="font-header w-full ">
@@ -104,7 +104,7 @@ function Home() {
                 Get Started
               </button>
               <span className="font-header text-[10px] font-normal mt-[10px] text-center md:text-left">
-                Join our waitlist to know when we go live
+                {/* Join our waitlist to know when we go live */}
               </span>
             </div>
           </div>
@@ -134,7 +134,7 @@ function Home() {
                 Get Started
               </button>
               <span className="font-header text-[10px] font-normal text-[#e6e6e6] mt-[10px]">
-                Join our waitlist to know when we go live
+                {/* Join our waitlist to know when we go live */}
               </span>
             </div>
           </div>

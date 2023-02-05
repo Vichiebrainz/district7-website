@@ -1,14 +1,70 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import { returnRandomImage } from "../../../helper/randomizeProfilePictures";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  clearState,
+  updateUser,
+  userSelector,
+} from "../../../store/slices/authSlice";
+import { DotLoader } from "react-spinners";
+import { useToasts } from "react-toast-notifications";
 
-const Profile = () => {
-  const { register, handleSubmit, errors } = useForm();
+const Profile = ({ user }) => {
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
 
-  const onSubmit = (data) => {
-    // Submit the form data to the server
-    console.log(data);
+  const { isFetching, isSuccess, isError } = useSelector(userSelector);
+
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [phone_number, setPhone] = useState("");
+  const [avatar, setAvatar] = useState("");
+
+  useEffect(() => {
+    setFirstName(user?.first_name);
+    setLastName(user?.last_name);
+    setPhone(user?.phone_number);
+    setAvatar(user?.avatar);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isError) {
+      addToast("Something went wrong, please try again!", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      dispatch(clearState());
+    }
+
+    if (isSuccess) {
+      addToast(" Password updated successfully", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+
+      dispatch(clearState());
+    }
+  }, [isError, isSuccess]);
+
+  const updateProfile = (e) => {
+    e.preventDefault();
+
+    let formData = new FormData(); //formdata object
+
+    formData.append("first_name", first_name); //append the values with key, value pair
+    formData.append("last_name", last_name);
+    formData.append("phone_number", phone_number);
+
+    dispatch(updateUser(formData));
   };
+
+  const uploadImage = () => {};
 
   return (
     <div className="p-6 md:p-0">
@@ -16,25 +72,28 @@ const Profile = () => {
         <div>
           <img
             className="w-[80px] md:w-[160px] h-[80px] md:h-[160px] rounded-full mr-4 border-2 border-solid border-[#05C002]"
-            src={returnRandomImage()}
+            src={avatar}
             alt="User avatar"
           />
         </div>
         <div>
           <h3 className="text-black md:text-[#068903] text-[18px] md:text-[28px] leading-[34.13px] font-semibold font-header mb-2">
-            Ilegbusi Ayooluwa
+            {user.first_name + " " + user.last_name}
           </h3>
           <p className="hidden md:flex text-black text-[24px] leading-[29.26px] font-normal font-header mb-0 md:mb-2">
-            User
+            {user?.is_landlord ? "Agent" : "User"}
           </p>
-          <p className="text-[#92918F] text-[12px] md:text-[18px] leading-[21.94px] font-normal font-header underline">
+          <p
+            className="text-[#92918F] text-[12px] md:text-[18px] leading-[21.94px] font-normal font-header underline cursor-pointer"
+            onClick={uploadImage}
+          >
             Edit Profile Picture
           </p>
         </div>
       </div>
       <div>
         <div className="max-w-3xl mx-auto mt-10">
-          <form>
+          <form onSubmit={updateProfile}>
             <label
               htmlFor="name"
               className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
@@ -45,8 +104,10 @@ const Profile = () => {
               type="text"
               id="name"
               name="name"
-              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px]"
-              defaultValue={"Kwesi"}
+              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] focus:outline-[#05c002]"
+              placeholder="James"
+              defaultValue={user?.first_name}
+              onChange={(event) => setFirstName(event.target.value)}
             />
 
             <label
@@ -59,8 +120,10 @@ const Profile = () => {
               type="text"
               id="name"
               name="name"
-              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px]"
-              defaultValue={"Hervie"}
+              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] focus:outline-[#05c002]"
+              placeholder="Edwards"
+              defaultValue={user?.last_name}
+              onChange={(event) => setLastName(event.target.value)}
             />
 
             <label
@@ -73,8 +136,10 @@ const Profile = () => {
               type="email"
               id="email"
               name="email"
-              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px]"
-              defaultValue={"herviek2001@gmail.com"}
+              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] focus:outline-[#05c002]"
+              placeholder="yourmail@mail.com"
+              defaultValue={user?.email}
+              disabled
             />
 
             <label
@@ -87,15 +152,19 @@ const Profile = () => {
               type="text"
               id="phoneNumber"
               name="phoneNumber"
-              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px]"
-              defaultValue={"08180746707"}
+              className="form-input w-full mb-6 p-[20px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] focus:outline-[#05c002]"
+              placeholder="+1 123 4567 890"
+              defaultValue={user?.phone_number}
+              onChange={(event) => setPhone(event.target.value)}
             />
 
             <button
               type="submit"
               className="button-primary bg-[#05C002] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-8"
+              onClick={updateProfile}
             >
-              Update profile
+              {isFetching && <DotLoader color="#fff" size={21} />}
+              {!isFetching && "Update profile"}
             </button>
           </form>
         </div>

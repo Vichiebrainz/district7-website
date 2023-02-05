@@ -1,19 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changePassword,
+  clearState,
+  userSelector,
+} from "../../../store/slices/authSlice";
+import { DotLoader } from "react-spinners";
+import { useToasts } from "react-toast-notifications";
 
 const ChangePassword = () => {
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
+
+  const [old_password, setCurrentPassword] = useState("");
+  const [password, setNewPassword] = useState("");
+  const [password2, setConfirmNewPassword] = useState("");
   const [showPassword, setShowPassword] = useState({
     currentPassword: false,
     newPassword: false,
     confirmNewPassword: false,
   });
 
-  const handleSubmit = (event) => {
+  const { isFetching, isSuccess, isError } = useSelector(userSelector);
+
+  const handleChangePassword = () => {
     event.preventDefault();
+    dispatch(changePassword({ old_password, password, password2 }));
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isError) {
+      addToast("Something went wrong, please try again!", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      dispatch(clearState());
+    }
+
+    if (isSuccess) {
+      addToast(" Password updated successfully", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+
+      dispatch(clearState());
+    }
+  }, [isError, isSuccess]);
 
   return (
     <>
@@ -21,7 +60,7 @@ const ChangePassword = () => {
         Change Password
       </div>
       <div className="max-w-lg  mt-10 px-6">
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="mb-1 md:mb-4 relative ">
             <label
               htmlFor="current-password"
@@ -33,7 +72,7 @@ const ChangePassword = () => {
               type={showPassword.currentPassword ? "text" : "password"}
               id="current-password"
               className="border border-[#92918F] border-solid form-input w-full mb-6 p-[12px] md:p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
-              value={currentPassword}
+              value={old_password}
               onChange={(event) => setCurrentPassword(event.target.value)}
             />
 
@@ -70,7 +109,7 @@ const ChangePassword = () => {
               type={showPassword.newPassword ? "text" : "password"}
               id="new-password"
               className="border border-[#92918F] border-solid form-input w-full mb-6 p-[12px] md:p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
-              value={newPassword}
+              value={password}
               onChange={(event) => setNewPassword(event.target.value)}
             />
 
@@ -107,7 +146,7 @@ const ChangePassword = () => {
               type={showPassword.confirmNewPassword ? "text" : "password"}
               id="confirm-new-password"
               className="border border-[#92918F] border-solid form-input w-full mb-6 p-[12px] md:p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] "
-              value={confirmNewPassword}
+              value={password2}
               onChange={(event) => setConfirmNewPassword(event.target.value)}
             />
             <div className="cursor-pointer">
@@ -143,8 +182,11 @@ const ChangePassword = () => {
             <button
               type="submit"
               className="button-primary bg-[#05C002] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-4"
+              onClick={handleChangePassword}
+              disabled={!old_password || !password || !password2}
             >
-              Change Password
+              {isFetching && <DotLoader color="#fff" size={21} />}
+              {!isFetching && "Change Password"}
             </button>
           </div>
         </form>

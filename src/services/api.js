@@ -13,17 +13,18 @@ const api = axios.create({
     // withCredentials: true,
 });
 
-// api.interceptors.request.use(
-//     async (request) => {
-//         const token = localStorage.getItem("token");
-//         if (request.headers && token) {
-//             request.headers["authorization"] = `bearer ${token}`;
-//         }
-//         return request;
-//     },
-//     (error) => {
-//         return Promise.reject(error);
-//     }
-// );
+api.interceptors.request.use(
+    async (request) => {
+        const token = JSON.parse(localStorage.getItem("user"))
+        console.log(token);
+        if (request.headers && token) {
+            request.headers["authorization"] = `Token ${token.token}`;
+        }
+        return request;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 export { api };

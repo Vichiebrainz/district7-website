@@ -33,3 +33,16 @@ export const logout = () => {
     });
 };
 
+
+// User
+export const getUser = () => {
+    return api.post("/auth/user",);
+};
+
+export const update_user = (data) => {
+    return api.patch("/auth/user/update", data)
+}
+
+export const change_password = (data) => {
+    return api.put("/auth/change-password", data)
+}

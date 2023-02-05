@@ -12,6 +12,7 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
+import { IoAddSharp } from "react-icons/io5";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -158,11 +159,11 @@ const UserDashboard = () => {
         </div>
         <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
-          <div className="px-8 py-5">
-            <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
+          <div className="md:px-8 py-5">
+            <div className="font-semibold font-header text-[16px] md:text-[20px] leading-[24.38px] mb-6 ">
               Recent Transactions
             </div>
-            <div className="font-header text-black/60 mb-6">
+            {/* <div className="font-header text-black/60 mb-6">
               <div className="font-medium text-[18px] leading-[21.94px] my-2">
                 10 august, 2022
               </div>
@@ -201,6 +202,12 @@ const UserDashboard = () => {
           </div>
           <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
             See more
+          </div> */}
+
+            <div className="w-full  h-full text-center flex justify-center items-center font-header text-[12px] font-light md:text-[18px] text-black/70">
+              You have not made any transaction. Order an apartment to get
+              started.
+            </div>
           </div>
         </div>
       </div>

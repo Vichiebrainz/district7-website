@@ -2,28 +2,27 @@ import React from "react";
 import logo from "../assets/logo/logo_solid.png";
 import { MdSettings } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { returnRandomImage } from "../helper/randomizeProfilePictures";
 
-const MobileNav = () => {
+const MobileNav = ({ avatar }) => {
   return (
-    <nav className="h-16 w-full z-[999] top-0 bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] fixed px-5 flex items-center">
-      <div className="w-1/4">
-        <img src={logo} width="100%" alt="District 7" />
+    <nav className="h-16 w-full z-[999] top-0 bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)] fixed px-4 flex items-center justify-between">
+      <div className="flex w-1/3">
+        <img src={logo} alt="District 7" className="w-full object-cover" />
       </div>
-      <div className="flex flex-grow">
+      {/* <div className="flex flex-grow">
         <input />
-      </div>
-      <div className="flex justify-center items-center gap-4">
-        <Link to="settings">
-          <div className="text-[24px] text-black/60">
+      </div> */}
+      <div className="flex justify-end items-center gap-4 w-full">
+        {/* <Link to="settings">
+          <div className="text-[22px] text-black/60">
             <MdSettings />
           </div>
-        </Link>
+        </Link> */}
         <div>
           <Link to="profile">
             <img
-              className="w-9 h-9 rounded-full mr-4 border-2 border-solid border-[#05C002]"
-              src={returnRandomImage()}
+              className="w-8 h-8 rounded-full border-2 border-solid border-[#05C002] object-cover"
+              src={avatar}
               alt="User avatar"
             />
           </Link>

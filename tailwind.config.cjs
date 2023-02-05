@@ -8,7 +8,9 @@ module.exports = {
       },
       fontFamily: {
         header: "Montserrat",
-        body: "Inter"
+        body: "Inter",
+        cursive: "'Rubik Vinyl', cursive",
+        cursive2: "'Pacifico', cursive",
       },
       boxShadow: {
         'card': '0px 4px 4px 0px #00000040'

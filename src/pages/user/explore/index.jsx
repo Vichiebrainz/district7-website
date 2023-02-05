@@ -76,12 +76,9 @@ const Explore = () => {
         </div>
       </div>
       <div className="w-full h-[600px] mt-20">
-        <GMaps />
-        <img
-          src={mapDummy}
-          className="w-full h-full object-cover rounded-[8px]"
-          alt=""
-        />
+        <div className="text-black text-[20px] md:text-[28px] font-header font-semibold">
+          Featured Apartments
+        </div>
       </div>
     </div>
   );

@@ -25,14 +25,12 @@ import { ToastProvider } from "react-toast-notifications";
 import ForgotPassword from "./pages/auth/forgotPassword";
 import { userSelector } from "./store/slices/authSlice";
 import Home from "./pages/landingPages/homePage";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const { isLoggedIn } = useSelector(userSelector);
-
-  console.log(useSelector(userSelector));
 
   return (
     <>

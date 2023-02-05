@@ -1,7 +1,7 @@
 import { BsFillHandThumbsUpFill, BsPatchExclamationFill } from "react-icons/bs";
 import { FaBell, FaUnlock } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { MdDashboard, MdTravelExplore, MdSettings, MdCreate } from "react-icons/md";
+import { MdDashboard, MdTravelExplore, MdSettings, MdCreate, MdConnectWithoutContact } from "react-icons/md";
 
 
 export const userSideBarRoutes = [
@@ -18,7 +18,7 @@ export const userSideBarRoutes = [
     {
         name: "Connect",
         to: "connect",
-        icon: MdTravelExplore,
+        icon: MdConnectWithoutContact,
     },
     {
         name: "Settings",
@@ -62,16 +62,15 @@ export const BottomBarRoutes = [
         icon: MdTravelExplore,
     },
     {
-        name: "Notification",
-        to: "settings?tab=password",
-        icon: MdSettings,
-    },
-    {
         name: "Connect",
         to: "connect",
-        icon: MdTravelExplore,
+        icon: MdConnectWithoutContact,
     },
-
+    {
+        name: "Settings",
+        to: "settings",
+        icon: MdSettings,
+    },
 ];
 
 export const settingsRoutes = [

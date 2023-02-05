@@ -15,8 +15,14 @@ function Login() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const { isFetching, isSuccess, isError, errorMessage, isLoggedIn } =
-    useSelector(userSelector);
+  const {
+    isFetching,
+    isSuccess,
+    isError,
+    errorMessage,
+    isLoggedIn,
+    isLandlord,
+  } = useSelector(userSelector);
 
   function handleSubmit() {
     dispatch(loginUser({ email, password }));
@@ -41,13 +47,19 @@ function Login() {
       });
 
       dispatch(clearState());
-      navigate("/user/dashboard");
+
+      if (isLandlord) {
+        navigate("/landlord/dashboard");
+      } else {
+        navigate("/user/dashboard");
+      }
     }
-  }, [isError, isSuccess]);
+  }, [isError, isSuccess, isLandlord]);
 
   useEffect(() => {
-    isLoggedIn && navigate("/user/dashboard");
-  }, [isLoggedIn]);
+    isLoggedIn && isLandlord && navigate("/landlord/dashboard");
+    isLoggedIn && !isLandlord && navigate("/user/dashboard");
+  }, [isLoggedIn, isLandlord]);
 
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0 ">

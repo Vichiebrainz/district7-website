@@ -31,7 +31,7 @@ function Footer() {
         <div className="footer-top-2 flex flex-col md:flex-row items-center justify-between">
           <div className="footer-topleft">
             <img src={footerLogo} alt="" />
-            <h2>Weatdistrict7@gmail.com</h2>
+            <h2>support@district7.com.ng</h2>
             <h3>+2348037837313</h3>
           </div>
           <div className="footer-topright d-flex flex-column align-items-end">

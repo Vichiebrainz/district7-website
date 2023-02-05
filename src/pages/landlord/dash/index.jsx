@@ -52,7 +52,7 @@ const LandlordDashboard = () => {
         <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card md:bg-[#068903]/5">
           <div className="px-8 py-5 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
-              <span>Liked Apartments</span>
+              <span>Posted Apartments</span>
               <span className="text-[#05C002] text-[28px]">
                 <BsFillHeartFill />
               </span>
@@ -107,7 +107,7 @@ const LandlordDashboard = () => {
               </Swiper>
             </div>
 
-            <Swiper
+            {/* <Swiper
               grabCursor={true}
               effect={"creative"}
               creativeEffect={{
@@ -150,7 +150,7 @@ const LandlordDashboard = () => {
                   </div>
                 </SwiperSlide>
               ))}
-            </Swiper>
+            </Swiper> */}
           </div>
         </div>
         <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
