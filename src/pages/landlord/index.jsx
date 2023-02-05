@@ -9,9 +9,14 @@ import { landlordSideBarRoutes } from "../../routes";
 import DashboardNavbar from "../../components/DashboardNavbar";
 import Notifications from "./Notifications";
 import MobileNav from "../../components/MobileNav";
-import BottomNav from "../../components/BottomNav";
+import LandlordBottomNav from "../../components/Nav/landlordBottomNav";
+import Profile from "./profile";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../store/slices/authSlice";
 
 const LandlordDashboardLayout = () => {
+  const { isLandlord, user } = useSelector(userSelector);
+
   return (
     <div className="flex h-full">
       <nav className="hidden md:block md:w-1/6 h-screen text-white p-4 pl-0">
@@ -23,7 +28,7 @@ const LandlordDashboardLayout = () => {
         </div>
         <div className="block md:hidden">
           <MobileNav />
-          <BottomNav />
+          <LandlordBottomNav />
         </div>
         <Routes>
           <Route path="dashboard" element={<LandlordDashboard />} />
@@ -31,6 +36,7 @@ const LandlordDashboardLayout = () => {
           <Route path="orders" element={<LandlordOrders />} />
           <Route path="settings" element={<LandlordSettings />} />
           <Route path="notifications" element={<Notifications />} />
+          <Route path="profile" element={<Profile user={user} />} />
         </Routes>
       </div>
     </div>

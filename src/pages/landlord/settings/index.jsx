@@ -7,6 +7,7 @@ import ToggleNotifications from "../../../components/settings/landlord/ToggleNot
 import { Tab } from "../../../components/tab/Tab";
 import { TabList } from "../../../components/tab/TabList";
 import TabTitle from "../../../components/tab/TabTitle";
+import Logout from "../../../components/settings/landlord/logout";
 
 const Settings = () => {
   const [currentTab, setCurrentTab] = useState("");
@@ -29,7 +30,7 @@ const Settings = () => {
 
   return (
     <>
-      <div className="w-full flex flex-auto items center gap-8">
+      <div className="w-full flex flex-auto items center gap-8 px-8 box-border flex-wrap mt-8">
         <TabTitle
           title="Change Password"
           tab="password"
@@ -82,7 +83,7 @@ const Settings = () => {
 
         {currentTab === "logout" && (
           <Tab>
-            <div>Logout</div>
+            <Logout />
           </Tab>
         )}
       </TabList>

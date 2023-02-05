@@ -1,7 +1,7 @@
 import { BsFillHandThumbsUpFill, BsPatchExclamationFill } from "react-icons/bs";
 import { FaBell, FaUnlock } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5";
-import { MdDashboard, MdTravelExplore, MdSettings, MdCreate, MdConnectWithoutContact } from "react-icons/md";
+import { IoLogOut, IoCreate } from "react-icons/io5";
+import { MdDashboard, MdTravelExplore, MdSettings, MdCreate, MdConnectWithoutContact, MdInventory } from "react-icons/md";
 
 
 export const userSideBarRoutes = [
@@ -35,13 +35,36 @@ export const landlordSideBarRoutes = [
     },
     {
         name: "Post",
-        to: "posts",
-        icon: MdCreate,
+        to: "posts?tab=form",
+        icon: IoCreate,
     },
     {
         name: "Orders",
-        to: "orders",
-        icon: MdCreate,
+        to: "orders?tab=active",
+        icon: MdInventory,
+    },
+    {
+        name: "Settings",
+        to: "settings?tab=password",
+        icon: MdSettings,
+    },
+];
+
+export const BottomBarRoutes = [
+    {
+        name: "Dashboard",
+        to: "dashboard",
+        icon: MdDashboard,
+    },
+    {
+        name: "Explore",
+        to: "explore",
+        icon: MdTravelExplore,
+    },
+    {
+        name: "Connect",
+        to: "connect",
+        icon: MdConnectWithoutContact,
     },
     {
         name: "Settings",
@@ -50,7 +73,7 @@ export const landlordSideBarRoutes = [
     },
 ];
 
-export const BottomBarRoutes = [
+export const landlordBottomBarRoutes = [
     {
         name: "Dashboard",
         to: "dashboard",
