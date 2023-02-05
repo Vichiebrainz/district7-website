@@ -216,7 +216,7 @@ const UserDashboard = () => {
         <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-8 ">
           Possible Connections
         </div>
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
           <Slider {...settings}>
             {possibleConnections.map((value, i) => (
               <div key={i}>
@@ -236,7 +236,7 @@ const UserDashboard = () => {
               </div>
             ))}
           </Slider>
-        </div>
+        </div> */}
         <div className=" md:hidden grid grid-cols-2 px-6">
           {possibleConnections.slice(0, 6).map((value, i) => (
             <div className="flex items-center gap-1  my-[6px] " key={i}>
