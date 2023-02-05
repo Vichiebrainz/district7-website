@@ -237,7 +237,7 @@ const UserDashboard = () => {
             ))}
           </Slider>
         </div> */}
-        <div className=" md:hidden grid grid-cols-2 px-6">
+        {/* <div className=" md:hidden grid grid-cols-2 px-6">
           {possibleConnections.slice(0, 6).map((value, i) => (
             <div className="flex items-center gap-1  my-[6px] " key={i}>
               <div>
@@ -255,7 +255,7 @@ const UserDashboard = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <div className="my-24 hidden md:block">
