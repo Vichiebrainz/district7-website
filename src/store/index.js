@@ -4,6 +4,7 @@ import logger from 'redux-logger'
 
 // We'll use redux-logger just as an example of adding another middleware
 import authReducer from "./slices/authSlice"
+import propertyReducer from "./slices/propertySlice"
 
 // And use redux-batched-subscribe as an example of adding enhancers
 import { batchedSubscribe } from 'redux-batched-subscribe'
@@ -11,6 +12,7 @@ import { batchedSubscribe } from 'redux-batched-subscribe'
 
 const reducer = {
     auth: authReducer,
+    property: propertyReducer
 }
 
 // const debounceNotify = _.debounce(notify => notify());

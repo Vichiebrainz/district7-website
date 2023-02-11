@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { BsFillHeartFill } from "react-icons/bs";
+import { BsArrowRight, BsFillHeartFill } from "react-icons/bs";
 import Slider from "react-slick";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { RiMailSendFill } from "react-icons/ri";
@@ -25,13 +25,15 @@ import "swiper/css/effect-coverflow";
 // import "./styles.css";
 
 // import required modules
+import { Autoplay, Navigation, EffectCoverflow, EffectCreative } from "swiper";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  Autoplay,
-  Navigation,
-  EffectCoverflow,
-  EffectCreative,
-  EffectCards,
-} from "swiper";
+  getAllProperties,
+  getUserLikedProperties,
+  propertySelector,
+} from "../../../store/slices/propertySlice";
+import { useNavigate } from "react-router-dom";
 
 const settings = {
   className: "center",
@@ -40,12 +42,20 @@ const settings = {
   centerPadding: "30px",
   slidesToShow: 3,
   speed: 500,
-  // nextArrow: <BsFillArrowRightCircleFill color="#068903" size={24} />,
-  // prevArrow: <BsFillArrowLeftCircleFill color="#068903" size={24} />,
 };
 
 const UserDashboard = () => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { allProperties, userLikedProperties } = useSelector(propertySelector);
+
+  useEffect(() => {
+    dispatch(getAllProperties());
+    dispatch(getUserLikedProperties());
+  }, []);
+
+  console.log(userLikedProperties);
 
   return (
     <div>
@@ -59,57 +69,63 @@ const UserDashboard = () => {
               </span>
             </div>
             <div className="hidden md:block">
-              <Swiper
-                slidesPerView={3.4}
-                spaceBetween={30}
-                loop={true}
-                grabCursor={true}
-                centeredSlides={true}
-                effect={"coverflow"}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
-                coverflowEffect={{
-                  rotate: 50,
-                  stretch: 0,
-                  depth: 100,
-                  modifier: 1,
-                  slideShadows: true,
-                }}
-                navigation={true}
-                modules={[Autoplay, Navigation, EffectCoverflow]}
-                className="mySwiper"
-              >
-                {dashboardLikedApartments.map((apartment, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="h-[220px] w-[150px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
-                      <div className="w-full h-3/4">
-                        <img
-                          src={returnRandomApartment()}
-                          alt=""
-                          className="w-full rounded-t-[15px] h-full object-cover"
-                        />
+              {userLikedProperties?.length > 0 ? (
+                <Swiper
+                  slidesPerView={3.4}
+                  spaceBetween={30}
+                  loop={true}
+                  grabCursor={true}
+                  centeredSlides={true}
+                  effect={"coverflow"}
+                  autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
+                  coverflowEffect={{
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                  }}
+                  navigation={true}
+                  modules={[Autoplay, Navigation, EffectCoverflow]}
+                  className="mySwiper"
+                >
+                  {userLikedProperties.map((apartment, i) => (
+                    <SwiperSlide key={i}>
+                      <div className="h-[220px] w-[150px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
+                        <div className="w-full h-3/4">
+                          <img
+                            src={returnRandomApartment()}
+                            alt=""
+                            className="w-full rounded-t-[15px] h-full object-cover"
+                          />
+                        </div>
+                        <div className="w-full h-full px-3 py-2 mb-1">
+                          <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal">
+                            {apartment.propertyType}
+                          </p>
+                          <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
+                            {apartment.propertyType}
+                          </p>
+                          <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
+                            {apartment.price}
+                          </p>
+                        </div>
                       </div>
-                      <div className="w-full h-full px-3 py-2 mb-1">
-                        <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal">
-                          {apartment.propertyType}
-                        </p>
-                        <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                          {apartment.propertyType}
-                        </p>
-                        <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
-                          {apartment.price}
-                        </p>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              ) : (
+                <div className="w-full h-[300px] flex justify-center items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
+                  You have not liked any new home. Like an apartment to get
+                  started.
+                </div>
+              )}
             </div>
 
             <div className="block md:hidden">
-              {" "}
               <Swiper
                 grabCursor={true}
                 effect={"creative"}
@@ -157,7 +173,8 @@ const UserDashboard = () => {
             </div>
           </div>
         </div>
-        <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
+
+        <div className="md:basis-1/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
           <div className="md:px-8 px-4 py-5">
             <div className="font-semibold font-header text-[16px] md:text-[20px] leading-[24.38px] mb-6 ">
@@ -204,7 +221,7 @@ const UserDashboard = () => {
             See more
           </div> */}
 
-            <div className="w-full  h-full text-center flex justify-center items-center font-header text-[12px] font-light md:text-[18px] text-black/70">
+            <div className="w-full  h-full text-center flex justify-center items-center font-header text-[12px] font-light md:text-[15px] text-black/70 mt-24">
               You have not made any transaction. Order an apartment to get
               started.
             </div>
@@ -213,49 +230,45 @@ const UserDashboard = () => {
       </div>
 
       <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent">
-        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-8 ">
-          Possible Connections
+        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] mb-3">
+          Get a property
         </div>
-        {/* <div className="hidden md:block">
-          <Slider {...settings}>
-            {possibleConnections.map((value, i) => (
-              <div key={i}>
-                <div>
-                  <img
-                    className="w-24 h-24 rounded-full mr-2 object-cover"
-                    src={returnRandomImage()}
-                    alt="User avatar"
-                  />
-                  <div className="text-black/70 text-[16px] leading-[19.5px] font-normal font-header">
-                    <p className="my-1">{value.name}</p>
-                    <p className="my-1 text-[13px] text-black/60">
-                      {value.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div> */}
-        {/* <div className=" md:hidden grid grid-cols-2 px-6">
-          {possibleConnections.slice(0, 6).map((value, i) => (
-            <div className="flex items-center gap-1  my-[6px] " key={i}>
-              <div>
+        <div className="md:mb-8  font-header text-black/60 text-[12px]">
+          Browse through our gallery of apartments to get one suitable for you
+        </div>
+        <div>
+          {allProperties?.map((property, index) => (
+            <div
+              className="w-[550px] h-[250px] bg-[#068903]/5 shadow-card rounded-[20px] flex"
+              key={index}
+            >
+              <div className="w-2/5 bg-red-500 rounded-l-[20px]">
                 <img
-                  className="w-9 h-9 rounded-full mr-1 object-cover"
-                  src={returnRandomImage()}
-                  alt="User avatar"
+                  src={property.images[0].media}
+                  className="h-full object-cover rounded-l-[20px]"
                 />
-              </div>
-              <div className="text-black/70 text-[12px] md:text-[16px] leading-[19.5px] font-normal font-header">
-                <p className="my-[2px]">{value.name}</p>
-                <p className="my-[2px] text-[11px] md:text-[13px] text-black/60">
-                  {value.role}
-                </p>
               </div>
             </div>
           ))}
-        </div> */}
+        </div>
+      </div>
+
+      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent">
+        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-4 ">
+          Possible Connections
+        </div>
+        <div>
+          <div className=" font-header text-black/60 text-[15px]">
+            See possible connections on District connect{" "}
+          </div>
+          <button
+            className="text-white font-header font-semibold flex items-center gap-3 bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg"
+            onClick={() => navigate("/user/connect")}
+          >
+            <span>Go to district connect</span>
+            <BsArrowRight />
+          </button>
+        </div>
       </div>
 
       <div className="my-24 hidden md:block">

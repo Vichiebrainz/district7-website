@@ -26,6 +26,10 @@ export const login_landlord = (data) => {
     return api.post("/auth/login/landlord", data);
 };
 
+export const change_password = (data) => {
+    return api.post("/auth/login/landlord", data);
+};
+
 
 export const logout = () => {
     return api.post("/auth/logout", {
@@ -35,14 +39,29 @@ export const logout = () => {
 
 
 // User
-export const getUser = () => {
+export const get_user = () => {
     return api.post("/auth/user",);
 };
 
 export const update_user = (data) => {
-    return api.patch("/auth/user/update", data)
+    return api.patch("/auth/user/update/", data)
 }
 
-export const change_password = (data) => {
-    return api.put("/auth/change-password", data)
+export const like_apartment = (data) => {
+    return api.post("allproperty/1/like/", data)
+}
+
+export const get_users_liked_apartmemts = () => {
+    return api.get("/likedproperty/")
+}
+
+
+
+// Property
+export const add_property = (data) => {
+    return api.post("/property/", data)
+}
+
+export const get_all_properties = () => {
+    return api.get("/allproperty/")
 }

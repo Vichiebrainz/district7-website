@@ -28,7 +28,7 @@ const UserDashboardLayout = () => {
           <DashboardNavbar />
         </div>
         <div className="block md:hidden">
-          <MobileNav avatar={user.avatar} />
+          <MobileNav avatar={user?.avatar} />
           <BottomNav />
         </div>
         <Routes>

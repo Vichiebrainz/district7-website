@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import GoogleMapReact from "google-map-react";
 import { FaCaretDown } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-import mapDummy from "../../../assets/Map of Birmingham (City).png";
-import GoogleMapWrapper from "../../../components/GoogleMaps";
-import GMaps from "../../../components/maps";
 
 const Explore = () => {
   const [city, setCity] = useState("");
@@ -78,6 +74,37 @@ const Explore = () => {
       <div className="w-full h-[600px] mt-20">
         <div className="text-black text-[20px] md:text-[28px] font-header font-semibold">
           Featured Apartments
+        </div>
+        <div className="w-full grid grid-cols-3 my-4">
+          <div className="h-[300px] rounded-[5px] bg-[#D4EFD7] shadow-card">
+            <div className="h-1/2"></div>
+            <div className="h-1/2 w-full p-4">
+              <div className="flex flex-row gap-4 items-start my-3">
+                <div className="w-1/4 text-black/70 font-header font-semibold text-[12px] leading-[14.63px]">
+                  Description:
+                </div>
+                <div className="w-3/4 font-header text-[10px] font-normal text-black/70 leading-[12.19px]">
+                  Hiiiiiii Thsndasubh
+                </div>
+              </div>
+              <div className="flex flex-row gap-4 items-start my-3">
+                <div className="w-1/4 text-black/70 font-header font-semibold text-[12px] leading-[14.63px]">
+                  Price:
+                </div>
+                <div className="w-3/4 font-header text-[10px] font-normal text-black/70 leading-[12.19px]">
+                  Hiiiiiii Thsndasubh
+                </div>
+              </div>
+              <div className="flex flex-row gap-4 items-start my-3">
+                <div className="w-1/4 text-black/70 font-header font-semibold text-[12px] leading-[14.63px]">
+                  Location:
+                </div>
+                <div className="w-3/4 font-header text-[10px] font-normal text-black/70 leading-[12.19px]">
+                  Hiiiiiii Thsndasubh
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

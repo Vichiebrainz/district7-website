@@ -15,7 +15,7 @@ const DashboardNavbar = () => {
       <>
         <div className="flex items-center flex-shrink-0 text-black mr-6">
           <span className="font-semibold font-header leading-[34.13px] text-[28px] tracking-tight">
-            Welcome back, {user.first_name}
+            Welcome back, {user?.first_name}
           </span>
         </div>
         {location.pathname === "/user/dashboard" && (
@@ -47,7 +47,7 @@ const DashboardNavbar = () => {
           <Link to="profile">
             <img
               className="w-12 h-12 rounded-full mr-4 border-2 border-solid border-[#05C002]"
-              src={user.avatar}
+              src={user?.avatar}
               alt="User avatar"
             />
           </Link>

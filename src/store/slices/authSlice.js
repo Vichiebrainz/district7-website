@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { change_password, login_user, register_landlord, register_user, update_user } from "../../services/requests";
+import { change_password, get_user, login_user, register_landlord, register_user, update_user } from "../../services/requests";
 import axios from "axios";
 
 
@@ -73,17 +73,12 @@ export const logout = createAsyncThunk("auth/logout", async () => {
     await localStorage.removeItem("user");
 });
 
-export const updateUser = createAsyncThunk(
-    "auth/user/update",
+export const getUser = createAsyncThunk(
+    "auth/user",
     async (details, thunkAPI) => {
-        console.log(user)
         try {
-            const response = await update_user(details)
-            user.first_name = response.data.first_name;
-            user.last_name = response.data.last_name;
-            user.avatar = response.data.avatar;
-            user.phone_number = response.phone_number;
-
+            const response = await get_user()
+            user.user = response.data;
             localStorage.setItem('user', JSON.stringify(user));
             return response.data;
         } catch (error) {
@@ -99,6 +94,31 @@ export const updateUser = createAsyncThunk(
         }
     }
 );
+
+export const updateUser = createAsyncThunk(
+    "auth/user/update",
+    async (details, thunkAPI) => {
+        console.log(user)
+        try {
+            const response = await update_user(details)
+            user.user = response.data;
+            localStorage.setItem('user', JSON.stringify(user));
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.response.data.detail ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+
 
 export const changePassword = createAsyncThunk("auth/change-password", async (password, thunkAPI) => {
     try {

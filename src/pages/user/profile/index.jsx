@@ -20,6 +20,9 @@ const Profile = ({ user }) => {
   const [phone_number, setPhone] = useState("");
   const [avatar, setAvatar] = useState("");
 
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
   useEffect(() => {
     setFirstName(user?.first_name);
     setLastName(user?.last_name);
@@ -60,11 +63,30 @@ const Profile = ({ user }) => {
     formData.append("first_name", first_name); //append the values with key, value pair
     formData.append("last_name", last_name);
     formData.append("phone_number", phone_number);
+    formData.append("avatar", file);
 
     dispatch(updateUser(formData));
   };
 
-  const uploadImage = () => {};
+  const handleClick = () => {
+    document.getElementById("fileInput").click();
+  };
+
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+
+    console.log(selectedFile);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewUrl(reader.result);
+      setAvatar(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
+  };
+
+  console.log(file);
 
   return (
     <div className="p-6 md:p-0">
@@ -78,15 +100,21 @@ const Profile = ({ user }) => {
         </div>
         <div>
           <h3 className="text-black md:text-[#068903] text-[18px] md:text-[28px] leading-[34.13px] font-semibold font-header mb-2">
-            {user.first_name + " " + user.last_name}
+            {user?.first_name + " " + user?.last_name}
           </h3>
           <p className="hidden md:flex text-black text-[24px] leading-[29.26px] font-normal font-header mb-0 md:mb-2">
             {user?.is_landlord ? "Agent" : "User"}
           </p>
           <p
             className="text-[#92918F] text-[12px] md:text-[18px] leading-[21.94px] font-normal font-header underline cursor-pointer"
-            onClick={uploadImage}
+            onClick={handleClick}
           >
+            <input
+              type="file"
+              id="fileInput"
+              style={{ display: "none" }}
+              onChange={handleChange}
+            />
             Edit Profile Picture
           </p>
         </div>
