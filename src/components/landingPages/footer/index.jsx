@@ -7,13 +7,13 @@ import {
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa";
-import "./footerStyles.css";
+
 function Footer() {
   return (
     <div className="bg-black w-screen flex flex-col items-center justify-center p-8">
       <div className=" ">
         <div className="">
-          <ul className="w-full grid grid-cols-2 md:grid-cols-6 text-center justify-start text-white font-header font-semibold">
+          <ul className="w-full grid grid-cols-2 md:grid-cols-4 justify-start items-center md:text-center text-white text-[18px] md:text-[21px] font-header font-semibold md:divide-x-2 my-8">
             <li className="my-2">
               <a href="#">About</a>
             </li>
@@ -23,19 +23,28 @@ function Footer() {
             <li className="my-2">
               <a href="#">Companies</a>
             </li>
-            <li className="my-2">
-              <a href="#">Privacy policy & Terms</a>
+            <li className="my-2 md:px-8 ">
+              <a href="#" className="flex gap-2">
+                Privacy policy <span className="hidden md:flex">& Terms</span>
+              </a>
             </li>
           </ul>
         </div>
-        <div className="footer-top-2 flex flex-col md:flex-row items-center justify-between">
-          <div className="footer-topleft">
-            <img src={footerLogo} alt="" />
-            <h2>support@district7.com.ng</h2>
-            <h3>+2348037837313</h3>
+        <div className="mt-[80px] flex flex-col md:flex-row md:items-center justify-between">
+          <div className="">
+            <img src={footerLogo} alt="" className="w-[90%]" />
+            <h2 className="font-header text-base font-normal my-[10px] text-[#ffffffb2]">
+              support@district7.com.ng
+            </h2>
+            <h3 className="font-header text-base font-normal text-[#ffffffb2]">
+              +2348037837313
+            </h3>
           </div>
-          <div className="footer-topright d-flex flex-column align-items-end">
-            <ul className="footerIcons d-flex align-items-center justify-content-between">
+          <div className="flex flex-col md:items-end">
+            <h2 className="font-header text-[20px] font-semibold my-[24px] md:my-[10px] text-white">
+              Follow us
+            </h2>
+            <ul className="flex items-center gap-3 text-[#05C002]">
               <li>
                 <a href="#">
                   <FaFacebookF />
@@ -57,7 +66,6 @@ function Footer() {
                 </a>
               </li>
             </ul>
-            <h2>Follow us</h2>
           </div>
         </div>
       </div>

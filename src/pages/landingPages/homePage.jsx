@@ -5,7 +5,11 @@ import { BiSearch } from "react-icons/bi";
 // import Navbar from "../../components/landingPages/navbar";
 import "./homePage.css";
 import Navbar from "../../components/landingPages/navbar/nav2";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../store/slices/authSlice";
 function Home() {
+  const { isLandlord, isLoggedIn } = useSelector(userSelector);
+
   return (
     <div>
       {/* Navbar  */}
@@ -40,35 +44,49 @@ function Home() {
         <h1 className="font-header text-[30px] md:text-[40px] font-semibold">
           What we offer
         </h1>
-        <div className="offer-inner d-flex align-items-center justify-content-center flex-wrap">
-          <div className="offer-item">
-            <h3>Stress free</h3>
-            <p>
+        <div className="flex-wrap w-[80%] my-8 flex items-center justify-center">
+          <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
+            <h3 className="text-[#05d901] font-semibold text-[20px] ">
+              Stress free
+            </h3>
+            <p className="text-[15px] font-normal text-[#ffffffb2]">
               We make search for houses easy as this could be done from the
               comfort of your homes.
             </p>
           </div>
-          <div className="offer-item">
-            <h3>Cheap rate</h3>
-            <p>
+          <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
+            <h3 className="text-[#05d901] font-semibold text-[20px] ">
+              Cheap rate
+            </h3>
+            <p className="text-[15px] font-normal text-[#ffffffb2]">
               We offer the cheapest apartments for rent by eliminating the cost
               of middle man.
             </p>
           </div>
-          <div className="offer-item">
-            <h3>High Quality</h3>
-            <p>We recommend the best type of houses for rent.</p>
+          <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
+            <h3 className="text-[#05d901] font-semibold text-[20px] ">
+              High Quality
+            </h3>
+            <p className="text-[15px] font-normal text-[#ffffffb2]">
+              We recommend the best type of houses for rent.
+            </p>
           </div>
-          <div className="offer-item">
-            <h3>Secured Transaction</h3>
-            <p>
+          <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
+            <h3 className="text-[#05d901] font-semibold text-[20px] ">
+              Secured Transaction
+            </h3>
+            <p className="text-[15px] font-normal text-[#ffffffb2]">
               We strictly monitor all payments and ensure all transactions are
               secured.
             </p>
           </div>
-          <div className="offer-item">
-            <h3>Comfortability</h3>
-            <p>We help you create a comfortable space for yourself & family.</p>
+          <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
+            <h3 className="text-[#05d901] font-semibold text-[20px] ">
+              Comfortability
+            </h3>
+            <p className="text-[15px] font-normal text-[#ffffffb2]">
+              We help you create a comfortable space for yourself & family.
+            </p>
           </div>
         </div>
         <div className="w-full flex flex-col items-center justify-center px-12">
@@ -112,19 +130,19 @@ function Home() {
       </div>
 
       {/* Find the best tenants Section  */}
-      <div className="h-[90vh] md:h-screen w-full bg-no-repeat bg-cover bg-center bg-best-tenants flex flex-col items-center box-border">
+      <div className="h-[90vh]  w-full bg-no-repeat bg-cover bg-center bg-best-tenants flex flex-col items-center box-border">
         <div className="w-[80%] mt-[50px] mb-[30px]">
-          <h2 className="font-header text-[22px] font-semibold text-[#05c002]">
+          <h2 className="font-header text-[28px] font-semibold text-[#05c002] leading-[34.13px]">
             For Agents & Landlords
           </h2>
         </div>
         <div className="min-h-[70vh] !w-full flex items-center justify-center">
-          <div className="w-[80%] md:w-[55%] flex flex-column justify-center align-center">
-            <h1 className="font-header text-[35px] md:text-[50px] font-bold text-center text-white">
+          <div className="w-[80%] md:w-[55%] flex flex-col justify-center align-center">
+            <h1 className="font-header text-[42px] md:text-[64px] md:leading-[78.02px] font-bold text-center text-white">
               Find the best <span className="text-[#05c002]">Tenants</span> for
               Your Houses listed
             </h1>
-            <p className="font-header text-[12px] md:text-[15px] font-normal text-[#e6e6e6] my-[14px] text-center">
+            <p className="font-header text-[12px] md:text-[18px] font-normal text-[#e6e6e6] my-[14px] text-center">
               We provide access to thousands of tenants listings for any of your
               houses. The best stress free way of securing potential responsible
               customers.
