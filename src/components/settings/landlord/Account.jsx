@@ -19,7 +19,7 @@ const Account = () => {
         <div className="font-header font-semibold text-[18px] leading-[21.94px] text-black mb-7">
           Recipient Account
         </div>
-        <div className="grid grid-cols-2 gap-8 items-center w-full md:w-2/3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-8 items-center w-full md:w-2/3">
           <div className="relative">
             <label
               htmlFor="current-password"

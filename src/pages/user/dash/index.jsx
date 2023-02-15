@@ -38,6 +38,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProperties,
   getUserLikedProperties,
+  likeProperty,
   propertySelector,
 } from "../../../store/slices/propertySlice";
 import { useNavigate } from "react-router-dom";
@@ -45,6 +46,7 @@ import {
   getUserOrders,
   ordersSelector,
 } from "../../../store/slices/ordersSlice";
+import { DotLoader } from "react-spinners";
 
 const settings = {
   className: "center",
@@ -59,7 +61,14 @@ const UserDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { allProperties, userLikedProperties } = useSelector(propertySelector);
+  const {
+    allProperties,
+    userLikedProperties,
+    isFetching,
+    isSuccess,
+    isError,
+    errorMessage,
+  } = useSelector(propertySelector);
   const { userOrders } = useSelector(ordersSelector);
 
   useEffect(() => {
@@ -70,11 +79,15 @@ const UserDashboard = () => {
 
   console.log(userLikedProperties);
 
+  const likeProps = (id) => {
+    dispatch(likeProperty(id));
+  };
+
   return (
-    <div>
+    <div className="px-6 md:px-0">
       <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
         <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card md:bg-[#068903]/5">
-          <div className="px-8 py-5 ">
+          <div className="px-0 py-5 mb-4 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Liked Apartments</span>
               <span className="text-[#05C002] text-[28px]">
@@ -200,83 +213,75 @@ const UserDashboard = () => {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="md:basis-1/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
-          {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
-          <div className="md:px-8 px-4 py-5">
-            <div className="font-semibold font-header text-[16px] md:text-[20px] leading-[24.38px] mb-6 ">
-              Recent Transactions
-            </div>
-            {userOrders?.length > 0 ? (
-              <>
-                <div className="font-header text-black/60 mb-6">
-                  <div className="font-medium text-[18px] leading-[21.94px] my-2">
-                    10 august, 2022
-                  </div>
-                  <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
-                    <span>$2000</span>
-                    <span>Duplex</span>
-                  </div>
-                  <p className="text-[16px] leading-[19.5px] font-normal my-2">
-                    1 year duration
-                  </p>
-                </div>
-                <div className="font-header text-black/60 mb-6">
-                  <div className="font-medium text-[18px] leading-[21.94px] my-2">
-                    10 august, 2022
-                  </div>
-                  <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
-                    <span>$2000</span>
-                    <span>Duplex</span>
-                  </div>
-                  <p className="text-[16px] leading-[19.5px] font-normal my-2">
-                    1 year duration
-                  </p>
-                </div>
-                <div className="font-header text-black/60 mb-6">
-                  <div className="font-medium text-[18px] leading-[21.94px] my-2">
-                    10 august, 2022
-                  </div>
-                  <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
-                    <span>$2000</span>
-                    <span>Duplex</span>
-                  </div>
-                  <p className="text-[16px] leading-[19.5px] font-normal my-2">
-                    1 year duration
-                  </p>
-                </div>
-
-                <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
-                  See more
-                </div>
-              </>
-            ) : (
-              <div className="w-full  h-[150px] text-center flex justify-center items-center font-header text-[12px] font-light md:text-[14px] text-black/70  mt-34">
-                You have not made any transaction. Order an apartment to get
-                started.
-              </div>
-            )}
+      <div className="md:basis-1/3 md:h-[500px] h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
+        <div className="px-8 py-5">
+          <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
+            Recent Transactions
           </div>
+          {/* <div className="font-header text-black/60 mb-6">
+              <div className="font-medium text-[18px] leading-[21.94px] my-2">
+                10 august, 2022
+              </div>
+              <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
+                <span>$2000</span>
+                <span>Duplex</span>
+              </div>
+              <p className="text-[16px] leading-[19.5px] font-normal my-2">
+                1 year duration
+              </p>
+            </div>
+            <div className="font-header text-black/60 mb-6">
+              <div className="font-medium text-[18px] leading-[21.94px] my-2">
+                10 august, 2022
+              </div>
+              <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
+                <span>$2000</span>
+                <span>Duplex</span>
+              </div>
+              <p className="text-[16px] leading-[19.5px] font-normal my-2">
+                1 year duration
+              </p>
+            </div>
+            <div className="font-header text-black/60 mb-6">
+              <div className="font-medium text-[18px] leading-[21.94px] my-2">
+                10 august, 2022
+              </div>
+              <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
+                <span>$2000</span>
+                <span>Duplex</span>
+              </div>
+              <p className="text-[16px] leading-[19.5px] font-normal my-2">
+                1 year duration
+              </p>
+            </div> */}
+          {/* <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
+            See more
+          </div> */}
+        </div>
+        <div className="w-full h-[150px] p-8 flex text-center justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-[#068903]">
+          You have not made any transactions yet!
         </div>
       </div>
 
-      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent">
-        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] mb-3">
+      <div className="md:my-24 my-8  bg-transparent">
+        <div className="font-semibold font-header text-[18px] my-8 p-0 md:p-0 md:text-[20px] leading-[24.38px] mb-3">
           Get a property
         </div>
-        <div className="md:mb-8  font-header text-black/60 text-[12px]">
+        <div className="md:mb-8  font-header text-black/60 text-[12px] mb-6">
           Browse through our gallery of apartments to get one suitable for you
         </div>
         <div>
           {allProperties?.map((property, index) => (
             <div
-              className="w-[550px] h-[250px] bg-[#068903]/5 shadow-card rounded-[20px] flex"
+              className="md:w-[550px] w-full h-full md:h-[250px] bg-[#068903]/5 shadow-card rounded-[20px] flex flex-col md:flex-row  "
               key={index}
             >
-              <div className="w-2/5 bg-red-500 rounded-l-[20px]">
+              <div className="md:w-2/5 w-full rounded-[20px] md:rounded-l-[20px]">
                 <img
                   src={property.images[0].media}
-                  className="h-full object-cover rounded-l-[20px]"
+                  className="h-full object-cover rounded-[20px] md:rounded-l-[20px]"
                 />
               </div>
               <div className="w-full md:w-3/5 p-6 relative">
@@ -311,10 +316,10 @@ const UserDashboard = () => {
                   <div className="w-full flex justify-center gap-4 items-center">
                     <div
                       className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
-                      // onClick={() => likeProps(property?.id)}
+                      onClick={() => likeProps(property?.id)}
                     >
-                      {/* {isFetching && <DotLoader color="#000" size={21} />}
-                      {!isFetching && "Like"} */}
+                      {isFetching && <DotLoader color="#000" size={21} />}
+                      {!isFetching && "Like"}
                     </div>
                     <div className="border-[1.5px] border-none bg-[#068903] rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer">
                       Purchase
@@ -327,12 +332,12 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent">
-        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-4 ">
+      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent p-4 ">
+        <div className="font-semibold font-header text-[18px] md:p-0 md:text-[20px] leading-[24.38px] md:mb-4 ">
           Possible Connections
         </div>
         <div>
-          <div className=" font-header text-black/60 text-[15px]">
+          <div className=" font-header text-black/60 md:text-[15px] text-[12px]  my-6">
             See possible connections on District connect{" "}
           </div>
           <button
