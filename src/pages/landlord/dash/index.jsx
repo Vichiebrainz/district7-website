@@ -153,7 +153,7 @@ const LandlordDashboard = () => {
             </Swiper> */}
           </div>
         </div>
-        <div className="md:basis-1/3 h-[5  00px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
+        <div className="md:basis-1/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
           <div className="px-8 py-5">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
@@ -204,48 +204,27 @@ const LandlordDashboard = () => {
 
       <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent">
         <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-8 ">
-          Possible Connections
+          List of Orders
         </div>
-        <div className="hidden md:block">
-          <Slider {...settings}>
-            {possibleConnections.map((value, i) => (
-              <div key={i}>
-                <div>
-                  <img
-                    className="w-24 h-24 rounded-full mr-2 object-cover"
-                    src={returnRandomImage()}
-                    alt="User avatar"
-                  />
-                  <div className="text-black/70 text-[16px] leading-[19.5px] font-normal font-header">
-                    <p className="my-1">{value.name}</p>
-                    <p className="my-1 text-[13px] text-black/60">
-                      {value.role}
-                    </p>
-                  </div>
-                </div>
+        <div className="hidden md:flex w-full">
+          <div className="w-fit h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative px-[33px] py-[24px]">
+            <div className="font-medium text-[18px] text-[#05C002] leading-[21.78px] mb-[24px]">
+              1 Flat, No 13, Orogun Ibadan.
+            </div>
+            <div className="font-normal text-[16px] text-[#252320] leading-[19.36px] mb-4">
+              15, Sept. 2022
+            </div>
+            <div className="flex justify-between items-center gap-8">
+              <div className="font-normal text-[16px] text-[#252320] leading-[19.36px] mb-4">
+                By Adeola Ademokun
               </div>
-            ))}
-          </Slider>
-        </div>
-        <div className=" md:hidden grid grid-cols-2 px-6">
-          {possibleConnections.slice(0, 8).map((value, i) => (
-            <div className="flex items-center gap-1  my-[6px] " key={i}>
-              <div>
-                <img
-                  className="w-9 h-9 rounded-full mr-1 object-cover"
-                  src={returnRandomImage()}
-                  alt="User avatar"
-                />
-              </div>
-              <div className="text-black/70 text-[12px] md:text-[16px] leading-[19.5px] font-normal font-header">
-                <p className="my-[2px]">{value.name}</p>
-                <p className="my-[2px] text-[11px] md:text-[13px] text-black/60">
-                  {value.role}
-                </p>
+              <div className="bg-[#068903] text-white font-medium px-[18px] py-[10px] rounded-[5px]">
+                Details
               </div>
             </div>
-          ))}
+          </div>
         </div>
+        <div className="md:hidden grid grid-cols-2 px-6">Details</div>
       </div>
     </div>
   );

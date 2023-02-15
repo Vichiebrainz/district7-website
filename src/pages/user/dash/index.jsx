@@ -21,11 +21,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
+import "swiper/css/effect-cube";
 
 // import "./styles.css";
 
 // import required modules
-import { Autoplay, Navigation, EffectCoverflow, EffectCreative } from "swiper";
+import {
+  Autoplay,
+  Navigation,
+  EffectCoverflow,
+  EffectCube,
+  EffectCreative,
+} from "swiper";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -34,6 +41,10 @@ import {
   propertySelector,
 } from "../../../store/slices/propertySlice";
 import { useNavigate } from "react-router-dom";
+import {
+  getUserOrders,
+  ordersSelector,
+} from "../../../store/slices/ordersSlice";
 
 const settings = {
   className: "center",
@@ -49,10 +60,12 @@ const UserDashboard = () => {
   const navigate = useNavigate();
 
   const { allProperties, userLikedProperties } = useSelector(propertySelector);
+  const { userOrders } = useSelector(ordersSelector);
 
   useEffect(() => {
     dispatch(getAllProperties());
     dispatch(getUserLikedProperties());
+    dispatch(getUserOrders());
   }, []);
 
   console.log(userLikedProperties);
@@ -70,47 +83,61 @@ const UserDashboard = () => {
             </div>
             <div className="hidden md:block">
               {userLikedProperties?.length > 0 ? (
+                // <Swiper
+                //   slidesPerView={1}
+                //   spaceBetween={30}
+                //   loop={true}
+                //   centeredSlides={true}
+                //   autoplay={{
+                //     delay: 2500,
+                //     disableOnInteraction: false,
+                //   }}
+                //   effect={"cube"}
+                //   grabCursor={true}
+                //   cubeEffect={{
+                //     shadow: true,
+                //     slideShadows: true,
+                //     shadowOffset: 20,
+                //     shadowScale: 0.94,
+                //   }}
+                //   navigation={true}
+                //   modules={[Autoplay, Navigation, EffectCube]}
+                //   className="mySwiper"
+                // >
                 <Swiper
-                  slidesPerView={3.4}
                   spaceBetween={30}
-                  loop={true}
-                  grabCursor={true}
+                  slidesPerView={3}
                   centeredSlides={true}
-                  effect={"coverflow"}
                   autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,
                   }}
-                  coverflowEffect={{
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows: true,
+                  pagination={{
+                    clickable: true,
                   }}
                   navigation={true}
-                  modules={[Autoplay, Navigation, EffectCoverflow]}
+                  modules={[Autoplay, Navigation]}
                   className="mySwiper"
                 >
                   {userLikedProperties.map((apartment, i) => (
                     <SwiperSlide key={i}>
-                      <div className="h-[220px] w-[150px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
+                      <div className="h-[280px] w-[200px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
                         <div className="w-full h-3/4">
                           <img
-                            src={returnRandomApartment()}
+                            src={apartment?.images[0]?.media}
                             alt=""
                             className="w-full rounded-t-[15px] h-full object-cover"
                           />
                         </div>
                         <div className="w-full h-full px-3 py-2 mb-1">
                           <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal">
-                            {apartment.propertyType}
+                            {apartment.title}
                           </p>
                           <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                            {apartment.propertyType}
+                            {apartment.location}
                           </p>
                           <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
-                            {apartment.price}
+                            N {apartment.price}
                           </p>
                         </div>
                       </div>
@@ -141,13 +168,13 @@ const UserDashboard = () => {
                 modules={[EffectCreative]}
                 className="mySwiper"
               >
-                {dashboardLikedApartments.map((apartment, i) => (
+                {userLikedProperties?.map((apartment, i) => (
                   <SwiperSlide key={i}>
                     <div>
                       <div className="w-full h-[150px] flex rounded-[5px]">
                         <div className="w-2/3">
                           <img
-                            src={returnRandomApartment()}
+                            src={apartment?.images[1]?.media}
                             alt=""
                             className="w-full rounded-l-[5px] h-full object-cover"
                           />
@@ -180,51 +207,55 @@ const UserDashboard = () => {
             <div className="font-semibold font-header text-[16px] md:text-[20px] leading-[24.38px] mb-6 ">
               Recent Transactions
             </div>
-            {/* <div className="font-header text-black/60 mb-6">
-              <div className="font-medium text-[18px] leading-[21.94px] my-2">
-                10 august, 2022
-              </div>
-              <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
-                <span>$2000</span>
-                <span>Duplex</span>
-              </div>
-              <p className="text-[16px] leading-[19.5px] font-normal my-2">
-                1 year duration
-              </p>
-            </div>
-            <div className="font-header text-black/60 mb-6">
-              <div className="font-medium text-[18px] leading-[21.94px] my-2">
-                10 august, 2022
-              </div>
-              <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
-                <span>$2000</span>
-                <span>Duplex</span>
-              </div>
-              <p className="text-[16px] leading-[19.5px] font-normal my-2">
-                1 year duration
-              </p>
-            </div>
-            <div className="font-header text-black/60 mb-6">
-              <div className="font-medium text-[18px] leading-[21.94px] my-2">
-                10 august, 2022
-              </div>
-              <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
-                <span>$2000</span>
-                <span>Duplex</span>
-              </div>
-              <p className="text-[16px] leading-[19.5px] font-normal my-2">
-                1 year duration
-              </p>
-            </div>
-          </div>
-          <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
-            See more
-          </div> */}
+            {userOrders?.length > 0 ? (
+              <>
+                <div className="font-header text-black/60 mb-6">
+                  <div className="font-medium text-[18px] leading-[21.94px] my-2">
+                    10 august, 2022
+                  </div>
+                  <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
+                    <span>$2000</span>
+                    <span>Duplex</span>
+                  </div>
+                  <p className="text-[16px] leading-[19.5px] font-normal my-2">
+                    1 year duration
+                  </p>
+                </div>
+                <div className="font-header text-black/60 mb-6">
+                  <div className="font-medium text-[18px] leading-[21.94px] my-2">
+                    10 august, 2022
+                  </div>
+                  <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
+                    <span>$2000</span>
+                    <span>Duplex</span>
+                  </div>
+                  <p className="text-[16px] leading-[19.5px] font-normal my-2">
+                    1 year duration
+                  </p>
+                </div>
+                <div className="font-header text-black/60 mb-6">
+                  <div className="font-medium text-[18px] leading-[21.94px] my-2">
+                    10 august, 2022
+                  </div>
+                  <div className="text-[16px] leading-[19.5px] font-normal flex gap-6 my-2">
+                    <span>$2000</span>
+                    <span>Duplex</span>
+                  </div>
+                  <p className="text-[16px] leading-[19.5px] font-normal my-2">
+                    1 year duration
+                  </p>
+                </div>
 
-            <div className="w-full  h-full text-center flex justify-center items-center font-header text-[12px] font-light md:text-[15px] text-black/70 mt-24">
-              You have not made any transaction. Order an apartment to get
-              started.
-            </div>
+                <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
+                  See more
+                </div>
+              </>
+            ) : (
+              <div className="w-full  h-[150px] text-center flex justify-center items-center font-header text-[12px] font-light md:text-[14px] text-black/70  mt-34">
+                You have not made any transaction. Order an apartment to get
+                started.
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -247,6 +278,49 @@ const UserDashboard = () => {
                   src={property.images[0].media}
                   className="h-full object-cover rounded-l-[20px]"
                 />
+              </div>
+              <div className="w-full md:w-3/5 p-6 relative">
+                <div className="text-black/70 font-header font-semibold text-[24px] leading-[26.63px]  mb-8 underline decoration-[#05C002]">
+                  {property.title}
+                </div>
+                <div className="flex flex-col md:flex-row flex-wrap gap-4 items-start my-4">
+                  <div className="w-1/4 text-black/70 font-header font-semibold text-[18px] leading-[20.63px]">
+                    Description:
+                  </div>
+                  <div className="w-3/4 font-header text-[16px] font-normal text-black/70 leading-[18.19px]">
+                    {property.description}
+                  </div>
+                </div>
+                <div className="flex flex-row flex-wrap gap-4 items-start my-4">
+                  <div className="w-1/4 text-black/70 font-header font-semibold text-[18px] leading-[20.63px]">
+                    Price:
+                  </div>
+                  <div className="w-3/4 font-header text-[16px] font-normal text-black/70 leading-[18.19px]">
+                    {property.price}
+                  </div>
+                </div>
+                <div className="flex flex-row flex-wrap gap-4 items-start my-4">
+                  <div className="w-1/4 text-black/70 font-header font-semibold text-[18px] leading-[20.63px]">
+                    Location:
+                  </div>
+                  <div className="w-3/4 font-header text-[16px] font-normal text-black/70 leading-[18.19px]">
+                    {property.location}
+                  </div>
+                </div>
+                <div className=" md:absolute md:w-full md:bottom-4 md:right-4 mt-8">
+                  <div className="w-full flex justify-center gap-4 items-center">
+                    <div
+                      className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
+                      // onClick={() => likeProps(property?.id)}
+                    >
+                      {/* {isFetching && <DotLoader color="#000" size={21} />}
+                      {!isFetching && "Like"} */}
+                    </div>
+                    <div className="border-[1.5px] border-none bg-[#068903] rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer">
+                      Purchase
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

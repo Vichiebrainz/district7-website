@@ -27,7 +27,7 @@ const LandlordDashboardLayout = () => {
           <DashboardNavbar />
         </div>
         <div className="block md:hidden">
-          <MobileNav />
+          <MobileNav avatar={user?.avatar} />
           <LandlordBottomNav />
         </div>
         <Routes>

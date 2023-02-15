@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://district7.onrender.com/api";
+const BASE_URL = "https://api.district7.com.ng/api";
 
 
 const api = axios.create({

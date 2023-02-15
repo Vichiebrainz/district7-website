@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { get_all_properties, get_users_liked_apartmemts } from "../../services/requests";
+import { add_property, get_all_properties, get_user_added_properties, get_users_liked_apartmemts, like_property } from "../../services/requests";
 import axios from "axios";
 
 
@@ -40,6 +40,65 @@ export const getUserLikedProperties = createAsyncThunk(
         }
     }
 );
+
+export const likeProperty = createAsyncThunk(
+    `/allproperty/property_id/like/`,
+    async (property_id, thunkAPI) => {
+        try {
+            const response = await like_property(property_id)
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message && error.response.data.detail) ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+export const addProperty = createAsyncThunk(
+    `/allproperty/property_id/like/`,
+    async (details, thunkAPI) => {
+        try {
+            const response = await add_property(property_details)
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message && error.response.data.detail) ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+
+export const getUserAddedProperties = createAsyncThunk(
+    `/property/`,
+    async (thunkAPI) => {
+        try {
+            const response = await get_user_added_properties()
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message && error.response.data.detail) ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
 
 
 const initialState = {
@@ -87,6 +146,45 @@ const propertySlice = createSlice({
             state.isSuccess = true;
         },
         [getUserLikedProperties.rejected]: (state, action) => {
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = action.payload;
+        },
+        [likeProperty.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [likeProperty.fulfilled]: (state, action) => {
+            state.userLikedProperties = action.payload;
+            state.isFetching = false;
+            state.isSuccess = true;
+        },
+        [likeProperty.rejected]: (state, action) => {
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = action.payload;
+        },
+        [addProperty.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [addProperty.fulfilled]: (state, action) => {
+            state.addedProperties = action.payload;
+            state.isFetching = false;
+            state.isSuccess = true;
+        },
+        [addProperty.rejected]: (state, action) => {
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = action.payload;
+        },
+        [getUserAddedProperties.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [getUserAddedProperties.fulfilled]: (state, action) => {
+            state.userAddedProperties = action.payload;
+            state.isFetching = false;
+            state.isSuccess = true;
+        },
+        [getUserAddedProperties.rejected]: (state, action) => {
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = action.payload;

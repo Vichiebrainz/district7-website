@@ -1,12 +1,17 @@
-export default function PostedApartmentsCard({ imageUrl, description, price, location }) {
+export default function PostedApartmentsCard({
+  imageUrl,
+  description,
+  price,
+  location,
+}) {
   return (
-    <div className="relative bg-[#068903]/5 rounded-[20px] overflow-hidden shadow-card flex my-16">
+    <div className="relative bg-[#068903]/5 rounded-[20px] overflow-hidden shadow-card flex flex-col md:flex-row my-16">
       <img
-        className="w-1/4 h-auto object-cover rounded-[20px]"
+        className="md:w-1/4 w-full h-auto object-cover rounded-[20px]"
         src={imageUrl}
         alt="Apartment"
       />
-      <div className="px-8 py-8 w-3/4">
+      <div className="px-8 py-8 w-full md:w-3/4">
         <div className="flex gap-4 items-start mb-8">
           <div className="basis-1/4 text-[18px] leading-[21.94px] text-black/70 font-header font-semibold">
             Description:
@@ -42,4 +47,4 @@ export default function PostedApartmentsCard({ imageUrl, description, price, loc
       </div>
     </div>
   );
-};
+}
