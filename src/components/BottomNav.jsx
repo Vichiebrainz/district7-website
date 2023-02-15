@@ -24,9 +24,7 @@ const BottomNav = () => {
 
   return (
     <div className="fixed bottom-0 w-full bg-[#D4EFD7] h-[60px] z-[9999] opacity-100 font-header">
-      <div
-        className={`justify-around grid grid-cols-${BottomBarRoutes.length} items-center h-full`}
-      >
+      <div className={`justify-around grid grid-cols-4 items-center h-full`}>
         {BottomBarRoutes.map((route, i) => (
           <Link to={route.to} key={i}>
             <div

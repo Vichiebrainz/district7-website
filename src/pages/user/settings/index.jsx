@@ -9,7 +9,6 @@ import { Tab } from "../../../components/tab/Tab";
 import { TabList } from "../../../components/tab/TabList";
 import TabTitle from "../../../components/tab/TabTitle";
 import Logout from "../../../components/settings/user/logout";
-import { MdLibraryAdd } from "react-icons/md";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { settingsRoutes } from "../../../routes";
 

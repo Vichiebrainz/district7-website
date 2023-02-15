@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaHome, FaSearch, FaHeart, FaUser } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { landlordSideBarRoutes } from "../../routes";
+import { landlordBottomBarRoutes } from "../../routes";
 
 const LandlordBottomNav = () => {
   let location = useLocation();
@@ -24,10 +24,8 @@ const LandlordBottomNav = () => {
 
   return (
     <div className="fixed bottom-0 w-full bg-[#D4EFD7] h-[60px] z-[9999] opacity-100 font-header">
-      <div
-        className={`justify-around grid grid-cols-${landlordSideBarRoutes.length} items-center h-full`}
-      >
-        {landlordSideBarRoutes.map((route, i) => (
+      <div className={`justify-around grid grid-cols-3 items-center h-full`}>
+        {landlordBottomBarRoutes.map((route, i) => (
           <Link to={route.to} key={i}>
             <div
               key={i}

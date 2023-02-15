@@ -80,15 +80,15 @@ export const landlordBottomBarRoutes = [
         icon: MdDashboard,
     },
     {
-        name: "Explore",
-        to: "explore",
-        icon: MdTravelExplore,
+        name: "Post",
+        to: "posts?tab=form",
+        icon: IoCreate,
     },
-    {
-        name: "Connect",
-        to: "connect",
-        icon: MdConnectWithoutContact,
-    },
+    // {
+    //     name: "Orders",
+    //     to: "orders?tab=active",
+    //     icon: MdInventory,
+    // },
     {
         name: "Settings",
         to: "settings",
@@ -116,6 +116,31 @@ export const settingsRoutes = [
         name: "Report",
         to: "report",
         icon: BsPatchExclamationFill,
+    },
+    {
+        name: "Logout",
+        to: "logout",
+        icon: IoLogOut,
+    },
+
+]
+    ;
+
+export const landlordSettingsRoutes = [
+    {
+        name: "Account details",
+        to: "account",
+        icon: BsFillHandThumbsUpFill,
+    },
+    {
+        name: "Notification setting",
+        to: "notifications",
+        icon: FaBell,
+    },
+    {
+        name: "Password setting",
+        to: "password",
+        icon: FaUnlock,
     },
     {
         name: "Logout",
