@@ -12,7 +12,7 @@ export default function ActiveOrders() {
         tenant={
           possibleConnections[
             Math.floor(Math.random() * possibleConnections.length - 1)
-          ].name
+          ]?.name
         }
       />
     )

@@ -12,7 +12,7 @@ export default function PostedApartmentsCard({
         alt="Apartment"
       />
       <div className="px-8 py-8 w-full md:w-3/4">
-        <div className="flex gap-4 items-start mb-8">
+        <div className="flex flex-col md:flex-row gap-4 items-start mb-8">
           <div className="basis-1/4 text-[18px] leading-[21.94px] text-black/70 font-header font-semibold">
             Description:
           </div>
@@ -20,15 +20,15 @@ export default function PostedApartmentsCard({
             {description}
           </div>
         </div>
-        <div className="flex gap-4 items-start mb-8">
+        <div className="flex flex-col md:flex-row gap-4 items-start mb-8">
           <div className="basis-1/4 text-[18px] leading-[21.94px] text-black/70 font-header font-semibold">
             Price:
           </div>
           <div className="basis-3/4 text-[16px] leading-[21.94px] text-black/70 font-header font-normal">
-            {price}
+            N {price}
           </div>
         </div>
-        <div className="flex gap-4 items-start mb-8">
+        <div className="flex flex-col md:flex-row gap-4 items-start mb-8">
           <div className="basis-1/4 text-[18px] leading-[21.94px] text-black/70 font-header font-semibold">
             Location:
           </div>

@@ -20,16 +20,22 @@ export default function PostedApartments() {
 
   return (
     <div className="px-8">
-      {likedApartmentsData.map(
-        ({ id, imageUrl, description, location, price }) => (
-          <PostedApartmentsCard
-            key={id}
-            imageUrl={imageUrl}
-            description={description}
-            location={location}
-            price={price}
-          />
+      {userAddedProperties?.length > 0 ? (
+        userAddedProperties.map(
+          ({ id, images, description, location, price }) => (
+            <PostedApartmentsCard
+              key={id}
+              imageUrl={images[0].media}
+              description={description}
+              location={location}
+              price={price}
+            />
+          )
         )
+      ) : (
+        <div className="w-full h-[55vh] flex justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-[#068903]">
+          You have not posted any apartment yet!
+        </div>
       )}
     </div>
   );

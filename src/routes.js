@@ -38,11 +38,11 @@ export const landlordSideBarRoutes = [
         to: "posts?tab=form",
         icon: IoCreate,
     },
-    {
-        name: "Orders",
-        to: "orders?tab=active",
-        icon: MdInventory,
-    },
+    // {
+    //     name: "Orders",
+    //     to: "orders?tab=active",
+    //     icon: MdInventory,
+    // },
     {
         name: "Settings",
         to: "settings?tab=password",

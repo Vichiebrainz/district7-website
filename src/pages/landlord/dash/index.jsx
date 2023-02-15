@@ -48,8 +48,8 @@ const LandlordDashboard = () => {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
-        <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card md:bg-[#068903]/5">
+      <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0 px-6">
+        <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5">
           <div className="px-8 py-5 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Posted Apartments</span>
@@ -107,7 +107,7 @@ const LandlordDashboard = () => {
               </Swiper>
             </div>
 
-            {/* <Swiper
+            <Swiper
               grabCursor={true}
               effect={"creative"}
               creativeEffect={{
@@ -150,16 +150,15 @@ const LandlordDashboard = () => {
                   </div>
                 </SwiperSlide>
               ))}
-            </Swiper> */}
+            </Swiper>
           </div>
         </div>
-        <div className="md:basis-1/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
-          {/* <img className="w-full" src={images[currentImage]} alt="" /> */}
+        <div className="md:basis-1/3 md:h-[500px] h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
           <div className="px-8 py-5">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
               Recent Transactions
             </div>
-            <div className="font-header text-black/60 mb-6">
+            {/* <div className="font-header text-black/60 mb-6">
               <div className="font-medium text-[18px] leading-[21.94px] my-2">
                 10 august, 2022
               </div>
@@ -194,19 +193,22 @@ const LandlordDashboard = () => {
               <p className="text-[16px] leading-[19.5px] font-normal my-2">
                 1 year duration
               </p>
-            </div>
-          </div>
-          <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
+            </div> */}
+            {/* <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
             See more
+          </div> */}
+          </div>
+          <div className="w-full h-[150px] p-8 flex text-center justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-[#068903]">
+            You have not made any transactions yet!
           </div>
         </div>
       </div>
 
-      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent">
-        <div className="font-semibold font-header text-[14px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-8 ">
+      <div className="md:my-24 my-8 bg-transparent">
+        <div className="font-semibold font-header text-[20px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-8 ">
           List of Orders
         </div>
-        <div className="hidden md:flex w-full">
+        <div className="flex w-full">
           <div className="w-fit h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative px-[33px] py-[24px]">
             <div className="font-medium text-[18px] text-[#05C002] leading-[21.78px] mb-[24px]">
               1 Flat, No 13, Orogun Ibadan.
@@ -224,7 +226,7 @@ const LandlordDashboard = () => {
             </div>
           </div>
         </div>
-        <div className="md:hidden grid grid-cols-2 px-6">Details</div>
+        {/* <div className="md:hidden grid grid-cols-2 px-6">Details</div> */}
       </div>
     </div>
   );

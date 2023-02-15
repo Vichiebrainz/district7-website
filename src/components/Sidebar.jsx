@@ -23,7 +23,7 @@ const Sidebar = ({ routes }) => {
         </div>
         <div className="px-6">
           <nav className="py-4 px-2">
-            {routes.slice(0, 3).map((link) => (
+            {routes.slice(0, routes.length - 1).map((link) => (
               <NavLink
                 to={link.to}
                 key={link.name}
@@ -38,7 +38,7 @@ const Sidebar = ({ routes }) => {
           </nav>
           <div className="flex flex-grow h-full" />
           <footer className="px-2 py-4">
-            {routes.slice(3, 4).map((link) => (
+            {routes.slice(routes.length - 1, routes.length).map((link) => (
               <NavLink
                 to={link.to}
                 key={link.name}
