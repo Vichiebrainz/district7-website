@@ -25,14 +25,14 @@ export default function Form() {
     formData.append("location", location);
     formData.append("price", price);
     formData.append("description", description);
-    formData.append("uploaded_images", uploaded_images[0]);
+    formData.append("uploaded_images", uploaded_images);
 
     console.log(formData);
 
     dispatch(addProperty(formData));
   };
 
-  console.log(uploaded_images[0]);
+  // console.log(uploaded_images[0]);
 
   return (
     <form className="md:px-32 w-full px-8">
@@ -74,7 +74,7 @@ export default function Form() {
           type="file"
           className="hidden"
           // value={uploaded_images?.name}
-          onChange={(e) => setUploadedImages(e.target.files)}
+          onChange={(e) => setUploadedImages(e.target.files[0])}
         />
         <div className={inputStyles + " text-gray-400 cursor-pointer"}>
           {uploaded_images?.name && uploaded_images[0].name}
