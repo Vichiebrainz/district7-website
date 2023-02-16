@@ -19,7 +19,7 @@ export default function PostedApartments() {
   console.log(userAddedProperties);
 
   return (
-    <div className="px-8">
+    <div className="">
       {userAddedProperties?.length > 0 ? (
         userAddedProperties.map(
           ({ id, images, description, location, price }) => (

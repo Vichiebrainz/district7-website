@@ -62,7 +62,7 @@ export const likeProperty = createAsyncThunk(
 
 export const addProperty = createAsyncThunk(
     `/allproperty/property_id/like/`,
-    async (details, thunkAPI) => {
+    async (property_details, thunkAPI) => {
         try {
             const response = await add_property(property_details)
             return response.data;

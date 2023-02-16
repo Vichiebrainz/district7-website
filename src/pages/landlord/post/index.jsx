@@ -22,8 +22,8 @@ const LandlordPosts = () => {
   }, [currentTab, navigate]);
 
   return (
-    <>
-      <div className="w-full flex flex-auto items center gap-8 px-8 mt-10">
+    <div className="px-6 w-full justify-center  ">
+      <div className="w-full md:w-fit flex flex-auto items-center justify-center gap-8 px-8 mt-10 bg-[#05C002] md:bg-[#068903] rounded-[8px] mx-auto mb-8">
         <TabTitle
           title="Form"
           tab="form"
@@ -49,7 +49,7 @@ const LandlordPosts = () => {
           </Tab>
         )}
       </TabList>
-    </>
+    </div>
   );
 };
 
