@@ -1,17 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { BsFillHeartFill } from "react-icons/bs";
-import Slider from "react-slick";
-import { BsFillTelephoneFill } from "react-icons/bs";
-import { RiMailSendFill } from "react-icons/ri";
 import { dashboardLikedApartments, possibleConnections } from "../../../data";
-import {
-  returnRandomImage,
-  returnRandomApartment,
-} from "../../../helper/randomizeProfilePictures";
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
+import { returnRandomApartment } from "../../../helper/randomizeProfilePictures";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -31,27 +21,27 @@ import {
   EffectCreative,
   EffectCards,
 } from "swiper";
-
-const settings = {
-  className: "center",
-  centerMode: true,
-  infinite: true,
-  centerPadding: "30px",
-  slidesToShow: 3,
-  speed: 500,
-  // nextArrow: <BsFillArrowRightCircleFill color="#068903" size={24} />,
-  // prevArrow: <BsFillArrowLeftCircleFill color="#068903" size={24} />,
-};
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUserAddedProperties,
+  propertySelector,
+} from "../../../store/slices/propertySlice";
 
 const LandlordDashboard = () => {
-  const [currentImage, setCurrentImage] = useState(0);
+  const dispatch = useDispatch();
+
+  const { userAddedProperties } = useSelector(propertySelector);
+
+  useEffect(() => {
+    dispatch(getUserAddedProperties());
+  }, []);
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0 px-6">
+      <div className="flex flex-col md:flex-row gap-16 space-between mt-8 mb-20  md:mt-0 px-6 md:px-0">
         <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5">
           <div className="px-8 py-5 ">
-            <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
+            <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 md:mb-16 flex gap-4">
               <span>Posted Apartments</span>
               <span className="text-[#05C002] text-[28px]">
                 <BsFillHeartFill />
@@ -59,43 +49,38 @@ const LandlordDashboard = () => {
             </div>
             <div className="hidden md:block">
               <Swiper
-                slidesPerView={3.4}
                 spaceBetween={30}
-                loop={true}
-                grabCursor={true}
+                slidesPerView={3}
                 centeredSlides={true}
-                effect={"coverflow"}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
-                coverflowEffect={{
-                  rotate: 50,
-                  stretch: 0,
-                  depth: 100,
-                  modifier: 1,
-                  slideShadows: true,
+                loop={false}
+                // autoplay={{
+                //   delay: 2500,
+                //   disableOnInteraction: false,
+                // }}
+                autoplay={false}
+                pagination={{
+                  clickable: true,
                 }}
                 navigation={true}
-                modules={[Autoplay, Navigation, EffectCoverflow]}
+                modules={[Autoplay, Navigation]}
                 className="mySwiper"
               >
-                {dashboardLikedApartments.map((apartment, i) => (
+                {userAddedProperties?.map((apartment, i) => (
                   <SwiperSlide key={i}>
-                    <div className="h-[220px] w-[150px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
+                    <div className="h-[300px] w-[200px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
                       <div className="w-full h-3/4">
                         <img
-                          src={returnRandomApartment()}
+                          src={apartment?.images[0].media}
                           alt=""
                           className="w-full rounded-t-[15px] h-full object-cover"
                         />
                       </div>
-                      <div className="w-full h-full px-3 py-2 mb-1">
+                      <div className="w-full h-full md:h-1/4 px-3 py-2 mb-1">
                         <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal">
-                          {apartment.propertyType}
+                          {apartment.title}
                         </p>
                         <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                          {apartment.propertyType}
+                          {apartment.location}
                         </p>
                         <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
                           {apartment.price}
@@ -107,50 +92,52 @@ const LandlordDashboard = () => {
               </Swiper>
             </div>
 
-            <Swiper
-              grabCursor={true}
-              effect={"creative"}
-              creativeEffect={{
-                prev: {
-                  shadow: true,
-                  translate: [0, 0, -400],
-                },
-                next: {
-                  translate: ["100%", 0, 0],
-                },
-              }}
-              modules={[EffectCreative]}
-              className="mySwiper"
-            >
-              {dashboardLikedApartments.map((apartment, i) => (
-                <SwiperSlide key={i}>
-                  <div>
-                    <div className="w-full h-[150px] flex rounded-[5px]">
-                      <div className="w-2/3">
-                        <img
-                          src={returnRandomApartment()}
-                          alt=""
-                          className="w-full rounded-l-[5px] h-full object-cover"
-                        />
-                      </div>
-                      <div className="w-1/3 bg-[#05C002] rounded-r-[5px] relative">
-                        <div className="w-full h-full px-3 py-2 mb-1">
-                          <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                            {apartment.propertyType}
-                          </p>
-                          <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-normal">
-                            {apartment.price}
-                          </p>
-                          <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header   absolute bottom bottom-2 underline">
-                            See more
-                          </p>
+            <div className="block md:hidden">
+              <Swiper
+                grabCursor={true}
+                effect={"creative"}
+                creativeEffect={{
+                  prev: {
+                    shadow: true,
+                    translate: [0, 0, -400],
+                  },
+                  next: {
+                    translate: ["100%", 0, 0],
+                  },
+                }}
+                modules={[EffectCreative]}
+                className="mySwiper"
+              >
+                {dashboardLikedApartments.map((apartment, i) => (
+                  <SwiperSlide key={i}>
+                    <div>
+                      <div className="w-full h-[150px] flex rounded-[5px]">
+                        <div className="w-2/3">
+                          <img
+                            src={returnRandomApartment()}
+                            alt=""
+                            className="w-full rounded-l-[5px] h-full object-cover"
+                          />
+                        </div>
+                        <div className="w-1/3 bg-[#05C002] rounded-r-[5px] relative">
+                          <div className="w-full h-full px-3 py-2 mb-1">
+                            <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
+                              {apartment.propertyType}
+                            </p>
+                            <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-normal">
+                              {apartment.price}
+                            </p>
+                            <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header   absolute bottom bottom-2 underline">
+                              See more
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
         </div>
         <div className="md:basis-1/3 md:h-[500px] h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
@@ -204,7 +191,18 @@ const LandlordDashboard = () => {
         </div>
       </div>
 
-      <div className="md:my-24 my-8 bg-transparent">
+      <div className="md:basis-1/3  h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
+        <div className="px-8 py-5">
+          <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
+            List of Orders
+          </div>
+        </div>
+        <div className="w-full h-[150px] p-8 flex text-center justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-[#068903]">
+          You have not made any transactions yet!
+        </div>
+      </div>
+
+      {/* <div className="md:my-24 my-8 bg-transparent">
         <div className="font-semibold font-header text-[20px] p-4 md:p-0 md:text-[20px] leading-[24.38px] md:mb-8 ">
           List of Orders
         </div>
@@ -226,8 +224,7 @@ const LandlordDashboard = () => {
             </div>
           </div>
         </div>
-        {/* <div className="md:hidden grid grid-cols-2 px-6">Details</div> */}
-      </div>
+      </div> */}
     </div>
   );
 };

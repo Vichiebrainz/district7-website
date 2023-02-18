@@ -11,3 +11,11 @@
     @apply placeholder:text-[12px] placeholder:md:text-base px-4 md:px-7 font-header;
   }
 }
+
+.swiper-slide {
+  scale: 0.75;
+}
+
+.swiper-slide-active {
+  scale: 1;
+}

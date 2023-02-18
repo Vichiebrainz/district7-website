@@ -40,9 +40,9 @@ export default function PostedApartmentsCard({
           <button className="bg-transparent border border-[#92918F] border-solid p-2 font-header font-normal text-[#252320] text-[18px] rounded-[5px]">
             Remove
           </button>
-          <button className="bg-[#068903] text-white text-[18px] leading-[21.94px] font-header font-semibold rounded-[5px] p-4 py-2">
+          {/* <button className="bg-[#068903] text-white text-[18px] leading-[21.94px] font-header font-semibold rounded-[5px] p-4 py-2">
             Edit
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

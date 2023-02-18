@@ -1,96 +1,163 @@
-import { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { addProperty } from "../../../store/slices/propertySlice";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addProperty,
+  clearState,
+  propertySelector,
+} from "../../../store/slices/propertySlice";
+import { set, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { DotLoader } from "react-spinners";
+import { useToasts } from "react-toast-notifications";
+
+const schema = yup
+  .object({
+    title: yup.string().required("Title is required"),
+    price: yup.string().required("Price is required"),
+    location: yup.string().required("Location is required"),
+    description: yup.string().required("Description is required"),
+    uploaded_images: yup.mixed().required("Images are required"),
+  })
+  .required();
 
 export default function Form() {
-  const [title, setTitle] = useState("Face to face");
-  const [location, setLocation] = useState("Agbowo");
-  const [price, setPrice] = useState("50000");
-  const [description, setDescription] = useState("conducive");
-  const [uploaded_images, setUploadedImages] = useState(null);
-
   const dispatch = useDispatch();
+  const { addToast } = useToasts();
 
-  const labelStyles =
-    "block font-normal font-header text-black/60 text-[16px] leading-[19.5px] mb-3";
-  const inputStyles =
-    "border border-[#92918F] border-solid form-input mb-6 p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px]";
+  const [picture, setPicture] = useState(null);
 
-  const postApartment = (e) => {
-    e.preventDefault();
+  const onChangePicture = (e) => {
+    setPicture(e.target.files[0]);
+  };
 
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const {
+    isAdding,
+    isAdded,
+    isAddedError,
+    errorMessage,
+    isLoggedIn,
+    isLandlord,
+  } = useSelector(propertySelector);
+
+  const onSubmit = async (data) => {
+    console.log(data);
     const formData = new FormData();
-
-    formData.append("title", title);
-    formData.append("location", location);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("uploaded_images", uploaded_images);
-
-    console.log(formData);
+    formData.append("title", data.title);
+    formData.append("price", data.price);
+    formData.append("location", data.location);
+    formData.append("description", data.description);
+    formData.append("uploaded_images", picture);
 
     dispatch(addProperty(formData));
   };
 
-  // console.log(uploaded_images[0]);
+  useEffect(() => {
+    return () => {
+      dispatch(clearState());
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isAddedError) {
+      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      dispatch(clearState());
+    }
+
+    if (isAdded) {
+      addToast("Property added successfully", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+
+      dispatch(clearState());
+    }
+  }, [isAdded, isAddedError]);
+
+  const labelStyles =
+    "block font-normal font-header text-black/60 text-[16px] leading-[19.5px] mb-3";
+
+  const inputStyles =
+    "border border-[#92918F] border-solid form-input mb-1 p-[18px] font-header font-normal text-[#252320] text-[18px] leading-[21.94px] rounded-[5px] focus:outline-[#05C002] md:focus:outline-[#068903]";
+
+  const errorMessageStyles =
+    "text-[crimson] text-[13px] font-medium font-header mb-6";
+
+  console.log(getValues("title"));
 
   return (
-    <form className="md:px-32 w-full px-8">
-      <div className="flex md:gap-20 gap-12">
+    <form className="md:px-32 w-full px-8" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-col md:flex-row md:gap-20 gap-12">
         <label className="flex-1">
           <span className={labelStyles}>Apartment type</span>
           <input
             type="text"
             placeholder="2 bedroom flat"
             className={inputStyles}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            {...register("title", { required: true })}
           />
+          <p className={errorMessageStyles}>{errors.title?.message}</p>
         </label>
+
         <label className="flex-1">
           <span className={labelStyles}>Apartment value</span>
           <input
             type="number"
             placeholder="fill in amount"
             className={inputStyles}
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            {...register("price")}
           />
+          <p className={errorMessageStyles}>{errors.price?.message}</p>
         </label>
       </div>
+
       <label>
         <span className={labelStyles}>Location</span>
         <input
           type="text"
           className={inputStyles}
           placeholder="Fill in your address"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          {...register("location")}
         />
+        <p className={errorMessageStyles}>{errors.location?.message}</p>
       </label>
+
       <label>
         <span className={labelStyles}>Upload image</span>
+        <div className={inputStyles + " text-gray-400 cursor-pointer"}>
+          {picture && picture.name}
+          {!picture && "Attach a picture"}
+        </div>
         <input
           type="file"
           className="hidden"
-          // value={uploaded_images?.name}
-          onChange={(e) => setUploadedImages(e.target.files[0])}
+          accept="image/png, image/jpeg"
+          {...register("uploaded_images")}
+          onChange={onChangePicture}
         />
-        <div className={inputStyles + " text-gray-400 cursor-pointer"}>
-          {uploaded_images?.name && uploaded_images[0].name}
-          {!uploaded_images?.name && "Upload image for proof"}
-        </div>
+        <p className={errorMessageStyles}>{errors.uploaded_images?.message}</p>
       </label>
+
       <label>
         <span className={labelStyles}>Brief Description</span>
         <textarea
           className={inputStyles}
-          placeholder="fill in your address"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Enter some description..."
+          {...register("description")}
         ></textarea>
+        <p className={errorMessageStyles}>{errors.description?.message}</p>
       </label>
-      <label>
+
+      {/* <label>
         <span className={labelStyles}>
           <span className="text-red-700">*</span> Date of posting
         </span>
@@ -98,12 +165,14 @@ export default function Form() {
           className={inputStyles + " text-gray-400 uppercase max-w-[30rem]"}
           type="date"
         />
-      </label>
+      </label> */}
       <button
-        onClick={postApartment}
+        type="submit"
+        onClick={handleSubmit(onSubmit)}
         className="block ml-auto bg-[#05C002] md:bg-[#068903] rounded-[5px] capitalize text-[18px] leading-[21.94px] font-header font-medium text-white justify-center items-center gap-4 py-4 px-12 w-fit"
       >
-        Submit
+        {isAdding && <DotLoader color="#fff" size={21} />}
+        {!isAdding && "Submit"}
       </button>
     </form>
   );

@@ -116,6 +116,8 @@ const propertySlice = createSlice({
             state.isError = false;
             state.isSuccess = false;
             state.isFetching = false;
+            state.isAdded = false;
+            state.isAdding = false;
             return state;
         },
         setRegisterType: (state, action) => {
@@ -164,20 +166,20 @@ const propertySlice = createSlice({
             state.errorMessage = action.payload;
         },
         [addProperty.pending]: (state) => {
-            state.isFetching = true;
+            state.isAdding = true;
         },
         [addProperty.fulfilled]: (state, action) => {
             state.addedProperties = action.payload;
-            state.isFetching = false;
-            state.isSuccess = true;
+            state.isAdding = false;
+            state.isAdded = true;
         },
         [addProperty.rejected]: (state, action) => {
-            state.isFetching = false;
-            state.isError = true;
+            state.isAdding = false;
+            state.isAddedError = true;
             state.errorMessage = action.payload;
         },
         [getUserAddedProperties.pending]: (state) => {
-            state.isFetching = true;
+            state.isAdding = true;
         },
         [getUserAddedProperties.fulfilled]: (state, action) => {
             state.userAddedProperties = action.payload;
