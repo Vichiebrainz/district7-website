@@ -25,7 +25,7 @@ const Logout = () => {
     navigate("/");
   };
   return (
-    <div className="flex h-[40vh] items-center justify-center font-header">
+    <div className="flex h-[40vh] items-center justify-center font-header px-8">
       <div className="text-center font-bold">
         <div className="text-[24px] mb-8">Are you sure you want to logout?</div>
         <button

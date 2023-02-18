@@ -96,7 +96,7 @@ export default function Form() {
 
   return (
     <form className="md:px-32 w-full px-8" onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col md:flex-row md:gap-20 gap-12">
+      <div className="flex flex-col md:flex-row md:gap-20 gap-4">
         <label className="flex-1">
           <span className={labelStyles}>Apartment type</span>
           <input

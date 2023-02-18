@@ -86,8 +86,8 @@ const UserDashboard = () => {
   return (
     <div className="px-6 md:px-0">
       <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
-        <div className="basis-full md:basis-2/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card md:bg-[#068903]/5">
-          <div className="px-0 py-5 mb-4 ">
+        <div className="w-full md:w-2/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card md:bg-[#068903]/5">
+          <div className="px-6 py-5 mb-4 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Liked Apartments</span>
               <span className="text-[#05C002] text-[28px]">
@@ -96,27 +96,6 @@ const UserDashboard = () => {
             </div>
             <div className="hidden md:block">
               {userLikedProperties?.length > 0 ? (
-                // <Swiper
-                //   slidesPerView={1}
-                //   spaceBetween={30}
-                //   loop={true}
-                //   centeredSlides={true}
-                //   autoplay={{
-                //     delay: 2500,
-                //     disableOnInteraction: false,
-                //   }}
-                //   effect={"cube"}
-                //   grabCursor={true}
-                //   cubeEffect={{
-                //     shadow: true,
-                //     slideShadows: true,
-                //     shadowOffset: 20,
-                //     shadowScale: 0.94,
-                //   }}
-                //   navigation={true}
-                //   modules={[Autoplay, Navigation, EffectCube]}
-                //   className="mySwiper"
-                // >
                 <Swiper
                   spaceBetween={30}
                   slidesPerView={3}
@@ -125,6 +104,7 @@ const UserDashboard = () => {
                     delay: 2500,
                     disableOnInteraction: false,
                   }}
+                  loop={false}
                   pagination={{
                     clickable: true,
                   }}
@@ -213,14 +193,13 @@ const UserDashboard = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="md:basis-1/3 md:h-[500px] h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
-        <div className="px-8 py-5">
-          <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
-            Recent Transactions
-          </div>
-          {/* <div className="font-header text-black/60 mb-6">
+        <div className="md:w-1/3 md:h-[500px] h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
+          <div className="px-8 py-5">
+            <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
+              Recent Transactions
+            </div>
+            {/* <div className="font-header text-black/60 mb-6">
               <div className="font-medium text-[18px] leading-[21.94px] my-2">
                 10 august, 2022
               </div>
@@ -256,12 +235,13 @@ const UserDashboard = () => {
                 1 year duration
               </p>
             </div> */}
-          {/* <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
+            {/* <div className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer">
             See more
           </div> */}
-        </div>
-        <div className="w-full h-[150px] p-8 flex text-center justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-[#068903]">
-          You have not made any transactions yet!
+          </div>
+          <div className="w-full h-[150px] p-8 flex text-center justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-[#068903]">
+            You have not made any transactions yet!
+          </div>
         </div>
       </div>
 
@@ -275,7 +255,7 @@ const UserDashboard = () => {
         <div>
           {allProperties?.map((property, index) => (
             <div
-              className="md:w-[550px] w-full h-full md:h-[250px] bg-[#068903]/5 shadow-card rounded-[20px] flex flex-col md:flex-row  "
+              className="md:w-[600px] w-full h-full md:h-[250px] bg-[#068903]/5 shadow-card rounded-[20px] flex flex-col md:flex-row  "
               key={index}
             >
               <div className="md:w-2/5 w-full rounded-[20px] md:rounded-l-[20px]">
@@ -285,7 +265,7 @@ const UserDashboard = () => {
                 />
               </div>
               <div className="w-full md:w-3/5 p-6 relative">
-                <div className="text-black/70 font-header font-semibold text-[24px] leading-[26.63px]  mb-8 underline decoration-[#05C002]">
+                <div className="text-black/70 font-header font-semibold text-[18px] md:text-[21px] leading-[26.63px]  mb-8 underline decoration-[#05C002]">
                   {property.title}
                 </div>
                 <div className="flex flex-col md:flex-row flex-wrap gap-4 items-start my-4">

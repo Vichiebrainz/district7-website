@@ -179,7 +179,7 @@ const propertySlice = createSlice({
             state.errorMessage = action.payload;
         },
         [getUserAddedProperties.pending]: (state) => {
-            state.isAdding = true;
+            state.isFetching = true;
         },
         [getUserAddedProperties.fulfilled]: (state, action) => {
             state.userAddedProperties = action.payload;

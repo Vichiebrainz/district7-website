@@ -105,30 +105,32 @@ const LandlordDashboard = () => {
                     translate: ["100%", 0, 0],
                   },
                 }}
-                modules={[EffectCreative]}
+                navigation={true}
+                modules={[Autoplay, Navigation]}
+                // modules={[EffectCreative]}
                 className="mySwiper"
               >
-                {dashboardLikedApartments.map((apartment, i) => (
+                {userAddedProperties?.map((apartment, i) => (
                   <SwiperSlide key={i}>
                     <div>
-                      <div className="w-full h-[150px] flex rounded-[5px]">
-                        <div className="w-2/3">
+                      <div className="w-full h-[250px] flex flex-col rounded-[5px]">
+                        <div className="h-2/3">
                           <img
-                            src={returnRandomApartment()}
+                            src={apartment?.images[0].media}
                             alt=""
-                            className="w-full rounded-l-[5px] h-full object-cover"
+                            className="w-full rounded-t-[5px] h-full object-cover"
                           />
                         </div>
-                        <div className="w-1/3 bg-[#05C002] rounded-r-[5px] relative">
+                        <div className="h-1/3 bg-[#05C002] rounded-b-[5px] relative">
                           <div className="w-full h-full px-3 py-2 mb-1">
-                            <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                              {apartment.propertyType}
+                            <p className="m-0 p-0 text-white text-[14px] leading-[15.85px] font-header font-normal my-1">
+                              {apartment.title}
                             </p>
-                            <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-normal">
-                              {apartment.price}
+                            <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal my-1">
+                              {apartment.location}
                             </p>
-                            <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header   absolute bottom bottom-2 underline">
-                              See more
+                            <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-bold">
+                              N {apartment.price}
                             </p>
                           </div>
                         </div>
@@ -191,7 +193,7 @@ const LandlordDashboard = () => {
         </div>
       </div>
 
-      <div className="md:basis-1/3  h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
+      <div className="md:basis-1/3 mx-6 h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
         <div className="px-8 py-5">
           <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
             List of Orders

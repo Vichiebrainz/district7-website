@@ -33,7 +33,7 @@ const Settings = () => {
   return (
     <>
       {/* <div className="w-full flex-auto items center gap-8 hidden md:flex"> */}
-      <div className="w-full md:w-fit flex flex-auto items-center justify-center gap-8 px-8 mt-10 bg-[#05C002] md:bg-[#068903] rounded-[8px] mx-auto mb-8">
+      <div className="w-full hidden md:w-fit flex flex-auto items-center justify-center gap-8 px-8 mt-10 bg-[#05C002] md:bg-[#068903] rounded-[8px] mx-auto mb-8">
         <TabTitle
           title="Change Password"
           tab="password"
