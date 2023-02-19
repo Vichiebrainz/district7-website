@@ -31,6 +31,7 @@ function Signup() {
     errorMessage,
     isLoggedIn,
     registerType,
+    isLandlord,
   } = useSelector(userSelector);
 
   function handleSubmit() {
@@ -76,13 +77,18 @@ function Signup() {
       });
 
       dispatch(clearState());
-      navigate("/user/dashboard");
-    }
-  }, [isError, isSuccess]);
 
+      if (isLandlord) {
+        navigate("/landlord/dashboard");
+      } else {
+        navigate("/user/dashboard");
+      }
+    }
+  }, [isError, isSuccess, isLandlord]);
   useEffect(() => {
-    isLoggedIn && navigate("/user/dashboard");
-  }, [isLoggedIn]);
+    isLoggedIn && isLandlord && navigate("/landlord/dashboard");
+    isLoggedIn && !isLandlord && navigate("/user/dashboard");
+  }, [isLoggedIn, isLandlord]);
 
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0">

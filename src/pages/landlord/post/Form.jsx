@@ -57,6 +57,7 @@ export default function Form() {
     formData.append("location", data.location);
     formData.append("description", data.description);
     formData.append("uploaded_images", picture);
+    formData.append("is_public", true);
 
     dispatch(addProperty(formData));
   };

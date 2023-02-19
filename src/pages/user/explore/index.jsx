@@ -135,7 +135,7 @@ const Explore = () => {
         <div className="w-full my-4 px-0 md:px-12 md:pt-10 pb-20 md:pb-0">
           {allProperties?.map((property, index) => (
             <div
-              className="h-full md:h-[300px] w-full flex flex-col md:flex-row rounded-[20px] bg-[#D4EFD7] shadow-card"
+              className="h-full md:h-[300px] w-full flex flex-col md:flex-row rounded-[20px] bg-[#D4EFD7] shadow-card  my-8"
               key={index}
             >
               <div className="md:w-1/3 w-full h-full rounded-[20px]">
@@ -200,9 +200,15 @@ const Explore = () => {
                       {isFetching && <DotLoader color="#000" size={21} />}
                       {!isFetching && "Like"}
                     </div>
-                    <div className="border-[1.5px] border-none bg-[#068903] rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer">
+                    <a
+                      className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
+                      href={`https://wa.me/234${property?.owner?.phone_number?.substr(
+                        1
+                      )}?text=I'm%20inquiring%20about%20the%20apartment%20listing`}
+                      target="_blank"
+                    >
                       Purchase
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>

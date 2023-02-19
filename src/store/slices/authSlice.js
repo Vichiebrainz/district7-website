@@ -70,7 +70,7 @@ export const loginUser = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async () => {
     console.log("logged out");
-    await localStorage.removeItem("user");
+    await localStorage.removeItem("token");
 });
 
 export const getUser = createAsyncThunk(

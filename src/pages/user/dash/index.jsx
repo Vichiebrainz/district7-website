@@ -86,7 +86,7 @@ const UserDashboard = () => {
   return (
     <div className="px-6 md:px-0">
       <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
-        <div className="w-full md:w-2/3 h-[500px] rounded-[20px] overflow-hidden md:shadow-card md:bg-[#068903]/5">
+        <div className="w-full md:w-2/3 h-[500px] rounded-[20px] overflow-hidden      shadow-card bg-[#068903]/5">
           <div className="px-6 py-5 mb-4 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Liked Apartments</span>
@@ -198,7 +198,7 @@ const UserDashboard = () => {
                   You have not liked any new home. Like an apartment to get
                   started.
                 </div>
-              )}  
+              )}
             </div>
           </div>
         </div>
@@ -254,14 +254,22 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div className="md:my-24 my-8  bg-transparent">
+      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent p-4 ">
         <div className="font-semibold font-header text-[18px] my-8 p-0 md:p-0 md:text-[20px] leading-[24.38px] mb-3">
           Get a property
         </div>
         <div className="md:mb-8  font-header text-black/60 text-[12px] mb-6">
           Browse through our gallery of apartments to get one suitable for you
         </div>
-        <div>
+        <button
+          className="text-white font-header font-semibold flex items-center gap-3 bg-[#05C002] md:bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg"
+          onClick={() => navigate("/user/explore")}
+        >
+          <span>Explore</span>
+          <BsArrowRight />
+        </button>
+
+        {/* <div>
           {allProperties?.map((property, index) => (
             <div
               className="md:w-[600px] w-full h-full md:h-[250px] bg-[#068903]/5 shadow-card rounded-[20px] flex flex-col md:flex-row  "
@@ -318,7 +326,7 @@ const UserDashboard = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent p-4 ">
@@ -330,7 +338,7 @@ const UserDashboard = () => {
             See possible connections on District connect{" "}
           </div>
           <button
-            className="text-white font-header font-semibold flex items-center gap-3 bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg"
+            className="text-white font-header font-semibold flex items-center gap-3  bg-[#05C002] md:bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg"
             onClick={() => navigate("/user/connect")}
           >
             <span>Go to district connect</span>
