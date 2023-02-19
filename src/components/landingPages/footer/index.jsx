@@ -51,17 +51,17 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://twitter.com/weatdistrict7?t=Vdr_0qs736WxYvBBvrRD1Q&s=09">
                   <FaTwitter />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://www.linkedin.com/company/district7/">
                   <FaLinkedin />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://instagram.com/weatdistrict7?igshid=YmMyMTA2M2Y=">
                   <FaInstagram />
                 </a>
               </li>
