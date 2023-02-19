@@ -12,6 +12,30 @@ import {
   userSelector,
 } from "../store/slices/authSlice";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const signupSchema = yup.object({
+  first_name: yup.string().required("Please Enter your First name"),
+  last_name: yup.string().required("Please Enter your Last name"),
+  phone_number: yup
+    .string()
+    .required("Please Enter your WhatsApp phone number"),
+  email: yup.string().email().required("Please Enter your password"),
+  password: yup
+    .string()
+    .required("Please Enter your password")
+    .min(8, "Password is too short - should be 8 chars minimum.")
+    .matches(/[a-z]+/, "One lowercase character")
+    .matches(/[A-Z]+/, "One uppercase character")
+    .matches(/\d+/, "Should have at least one number"),
+  password2: yup
+    .string()
+    .required("Please re-enter your password")
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
+});
+
 function Signup() {
   const [email, setEmail] = useState("");
   const [phone_number, setPhone] = useState("");
@@ -25,6 +49,15 @@ function Signup() {
   let navigate = useNavigate();
 
   const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(signupSchema),
+  });
+
+  const {
     isFetching,
     isSuccess,
     isError,
@@ -34,29 +67,37 @@ function Signup() {
     isLandlord,
   } = useSelector(userSelector);
 
-  function handleSubmit() {
+  // function handleSubmit() {
+  //   registerType == "tenant"
+  //     ? dispatch(
+  //         registerUser({
+  //           email,
+  //           first_name,
+  //           last_name,
+  //           password,
+  //           password2,
+  //           phone_number,
+  //         })
+  //       )
+  //     : dispatch(
+  //         registerLandlord({
+  //           email,
+  //           first_name,
+  //           last_name,
+  //           password,
+  //           password2,
+  //           phone_number,
+  //         })
+  //       );
+  // }
+
+  const onSubmit = async (data) => {
+    console.log(data);
+
     registerType == "tenant"
-      ? dispatch(
-          registerUser({
-            email,
-            first_name,
-            last_name,
-            password,
-            password2,
-            phone_number,
-          })
-        )
-      : dispatch(
-          registerLandlord({
-            email,
-            first_name,
-            last_name,
-            password,
-            password2,
-            phone_number,
-          })
-        );
-  }
+      ? dispatch(registerUser(data))
+      : dispatch(registerLandlord(data));
+  };
 
   useEffect(() => {
     return () => {
@@ -90,9 +131,15 @@ function Signup() {
     isLoggedIn && !isLandlord && navigate("/user/dashboard");
   }, [isLoggedIn, isLandlord]);
 
+  const errorMessageStyles =
+    "text-[crimson] text-[13px] font-medium font-header mb-6";
+
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0">
-      <div className="form flex flex-col items-center justify-center">
+      <form
+        className="form flex flex-col items-center justify-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="form-body w-full max-w-[450px] flex flex-col justify-center pb-[75px]">
           <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header mb-[81px]">
             <p className="page-title text-[#05C002]">Sign Up</p>
@@ -107,11 +154,11 @@ function Signup() {
               <input
                 type="name"
                 id="firstName"
-                className="form-input py-3 mb-[30px]"
-                value={first_name}
-                onChange={(e) => setFirstName(e.target.value)}
+                className="form-input py-3 mb-[10px]"
                 placeholder="First name"
+                {...register("first_name", { required: true })}
               />
+              <p className={errorMessageStyles}>{errors.first_name?.message}</p>
             </div>
             <div className="lastname font-body">
               <div className="label-wrapper">
@@ -122,11 +169,11 @@ function Signup() {
               <input
                 type="name"
                 id="lastName"
-                className="form-input py-3 mb-[30px]"
-                value={last_name}
-                onChange={(e) => setLastName(e.target.value)}
+                className="form-input py-3 mb-[10px]"
                 placeholder="Last name"
+                {...register("last_name", { required: true })}
               />
+              <p className={errorMessageStyles}>{errors.last_name?.message}</p>
             </div>
           </div>
           <div className="phone font-body">
@@ -138,11 +185,11 @@ function Signup() {
             <input
               type="phone"
               id="phone"
-              className="form-input py-3 mb-[30px]"
-              value={phone_number}
-              onChange={(e) => setPhone(e.target.value)}
+              className="form-input py-3 mb-[10px]"
               placeholder="07012345678"
+              {...register("phone_number", { required: true })}
             />
+            <p className={errorMessageStyles}>{errors.phone_number?.message}</p>
           </div>
           <div className="email font-body">
             <div className="label-wrapper">
@@ -153,11 +200,11 @@ function Signup() {
             <input
               type="email"
               id="email"
-              className="form-input py-3 mb-[30px]"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              className="form-input py-3 mb-[10px]"
               placeholder="weatdistrict7@gmail.com"
+              {...register("email", { required: true })}
             />
+            <p className={errorMessageStyles}>{errors.email?.message}</p>
           </div>
 
           <div className="password font-body">
@@ -167,13 +214,13 @@ function Signup() {
               </label>
             </div>
             <input
-              className="form-input py-3 mb-[30px]"
+              className="form-input py-3 mb-[10px]"
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
+              {...register("password", { required: true })}
             />
+            <p className={errorMessageStyles}>{errors.password?.message}</p>
           </div>
           <div className="password font-body">
             <div className="label-wrapper">
@@ -182,18 +229,18 @@ function Signup() {
               </label>
             </div>
             <input
-              className="form-input py-3 mb-[30px]"
+              className="form-input py-3 mb-[10px]"
               type="password"
               id="confirmPassword"
-              value={password2}
-              onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm password"
+              {...register("password2", { required: true })}
             />
+            <p className={errorMessageStyles}>{errors.password2?.message}</p>
           </div>
           <div>
             <button
               className="footer p-[22px] text-white text-[18px] font-header font-bold  bg-[#05C002] md:bg-primary-green w-full rounded-[5px]"
-              onClick={() => handleSubmit()}
+              onClick={() => handleSubmit(onsubmit)}
               type="submit"
             >
               {isFetching && <DotLoader color="#fff" size={21} />}
@@ -203,15 +250,13 @@ function Signup() {
           <Link to="/login">
             <div className="signup mt-[53px] w-full text-center text-[12px] md:text-base text-gray-700 font-header">
               <p>
-                Have an account already?{" "}
-                <span className="px-[4px] font-bold text-[#05C002]">
-                  Login{" "}
-                </span>
+                Have an account already?
+                <span className="px-[4px] font-bold text-[#05C002]">Login</span>
               </p>
             </div>
           </Link>
         </div>
-      </div>
+      </form>
       <div className="background-image min-h-screen hidden md:block">
         <img className="bg-img w-full h-full" src="/background-image.png"></img>
         <div className="content py-12 lg:py-24 px-20 flex flex-col justify-between h-full">

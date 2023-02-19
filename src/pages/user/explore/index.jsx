@@ -143,7 +143,7 @@ const Explore = () => {
         <div className="w-full my-4 px-0 md:px-12 md:pt-10 pb-20 md:pb-0">
           {allProperties?.map((property, index) => (
             <div
-              className="h-full md:h-[300px] w-full flex flex-col md:flex-row rounded-[20px] bg-[#D4EFD7] shadow-card  my-8"
+              className="h-full md:h-[300px]  w-full flex flex-col md:flex-row rounded-[20px] bg-[#D4EFD7] shadow-card  my-8"
               key={index}
             >
               <div className="md:w-1/3 w-full h-full rounded-[20px]">
@@ -159,13 +159,13 @@ const Explore = () => {
                     clickable: true,
                   }}
                   modules={[EffectFade, Navigation]}
-                  className="h-[300px]"
+                  className="h-full"
                 >
                   {property.images?.map((image, i) => (
-                    <SwiperSlide className="h-full" key={i}>
+                    <SwiperSlide className="h-full w-full" key={i}>
                       <img
                         src={image.media}
-                        className="h-full object-cover rounded-[20px]"
+                        className="w-full h-full object-cover rounded-[20px]"
                       />
                     </SwiperSlide>
                   ))}
@@ -175,7 +175,7 @@ const Explore = () => {
                 <div className="text-black/70 font-header font-semibold text-[24px] leading-[26.63px]  mb-8 underline decoration-[#05C002]">
                   {property.title}
                 </div>
-                <div className="flex flex-col md:flex-row flex-wrap gap-4 items-start my-4">
+                <div className="flex flex-col md:flex-row md:flex-nowrap flex-wrap gap-4 items-start my-4">
                   <div className="w-1/4 text-black/70 font-header font-semibold text-[18px] leading-[20.63px]">
                     Description:
                   </div>
@@ -183,15 +183,16 @@ const Explore = () => {
                     {property.description}
                   </div>
                 </div>
-                <div className="flex flex-row flex-wrap gap-4 items-start my-4">
+                <div className="flex flex-row flex-wrap md:flex-nowrap gap-4 items-start my-4">
                   <div className="w-1/4 text-black/70 font-header font-semibold text-[18px] leading-[20.63px]">
                     Price:
                   </div>
                   <div className="w-3/4 font-header text-[16px] font-normal text-black/70 leading-[18.19px]">
-                    {property.price}
+                    &#x20A6;
+                    {parseFloat(property.price).toLocaleString()}.00
                   </div>
                 </div>
-                <div className="flex flex-row flex-wrap gap-4 items-start my-4">
+                <div className="flex flex-row flex-wrap md:flex-nowrap gap-4 items-start my-4">
                   <div className="w-1/4 text-black/70 font-header font-semibold text-[18px] leading-[20.63px]">
                     Location:
                   </div>
@@ -199,15 +200,8 @@ const Explore = () => {
                     {property.location}
                   </div>
                 </div>
-                <div className=" md:absolute md:w-full md:bottom-4 md:right-4 mt-8">
-                  <div className="w-full flex justify-center gap-4 items-center">
-                    <div
-                      className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
-                      onClick={() => likeProps(property?.id)}
-                    >
-                      {isLiking && <DotLoader color="#000" size={21} />}
-                      {!isLiking && "Like"}
-                    </div>
+                <div className=" md:w-full w-full mt-8 flex flex-row-reverse">
+                  <div className="w-full flex flex-row-reverse gap-4 items-center">
                     <a
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
                       href={`https://wa.me/234${property?.owner?.phone_number?.substr(
@@ -215,8 +209,15 @@ const Explore = () => {
                       )}?text=I'm%20inquiring%20about%20the%20apartment%20listing`}
                       target="_blank"
                     >
-                      Purchase
+                      Contact Agent
                     </a>
+                    <div
+                      className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
+                      onClick={() => likeProps(property?.id)}
+                    >
+                      {isLiking && <DotLoader color="#000" size={21} />}
+                      {!isLiking && "Like"}
+                    </div>
                   </div>
                 </div>
               </div>

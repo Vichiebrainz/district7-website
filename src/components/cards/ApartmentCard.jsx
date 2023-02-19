@@ -3,11 +3,11 @@ import React from "react";
 function ApartmentCard({ imageUrl, description, price, location }) {
   return (
     <div className="relative bg-[#068903]/5 rounded-[20px] overflow-hidden shadow-card flex my-16">
-        <img
-          className="w-1/4 h-auto object-cover rounded-[20px]"
-          src={imageUrl}
-          alt="Apartment"
-        />
+      <img
+        className="w-1/4 h-auto object-cover rounded-[20px]"
+        src={imageUrl}
+        alt="Apartment"
+      />
       <div className="px-8 py-8 w-3/4">
         <div className="flex gap-4 items-start mb-8">
           <div className="basis-1/4 text-[18px] leading-[21.94px] text-black/70 font-header font-semibold">
@@ -35,7 +35,7 @@ function ApartmentCard({ imageUrl, description, price, location }) {
         </div>
         <div className="purchase-now flex justify-end">
           <button className="bg-[#068903] text-white text-[18px] leading-[21.94px] font-header font-semibold rounded-[5px] p-4 py-2">
-            Purchase
+            Contact Agent
           </button>
         </div>
       </div>
