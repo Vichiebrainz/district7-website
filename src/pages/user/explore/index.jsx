@@ -29,8 +29,16 @@ const Explore = () => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
 
-  const { allProperties, isFetching, isSuccess, isError, errorMessage } =
-    useSelector(propertySelector);
+  const {
+    allProperties,
+    isFetching,
+    isLiking,
+    isLiked,
+    isLikedError,
+    isSuccess,
+    isError,
+    errorMessage,
+  } = useSelector(propertySelector);
 
   useEffect(() => {
     dispatch(getAllProperties());
@@ -47,18 +55,18 @@ const Explore = () => {
   }, []);
 
   useEffect(() => {
-    // if (isError) {
-    //   addToast(errorMessage, { appearance: "error", autoDismiss: true });
-    //   dispatch(clearState());
-    // }
-    // if (isSuccess) {
-    //   addToast("Okay", {
-    //     appearance: "success",
-    //     autoDismiss: true,
-    //   });
-    //   dispatch(clearState());
-    // }
-  }, [isError, isSuccess]);
+    if (isLikedError) {
+      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      dispatch(clearState());
+    }
+    if (isLiked) {
+      addToast("Added to favorites", {
+        appearance: "success",
+        autoDismiss: true,
+      });
+      dispatch(clearState());
+    }
+  }, [isLikedError, isLiked]);
 
   console.log(allProperties);
 
@@ -197,8 +205,8 @@ const Explore = () => {
                       className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
                       onClick={() => likeProps(property?.id)}
                     >
-                      {isFetching && <DotLoader color="#000" size={21} />}
-                      {!isFetching && "Like"}
+                      {isLiking && <DotLoader color="#000" size={21} />}
+                      {!isLiking && "Like"}
                     </div>
                     <a
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"

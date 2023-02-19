@@ -42,7 +42,7 @@ export const getUserLikedProperties = createAsyncThunk(
 );
 
 export const likeProperty = createAsyncThunk(
-    `/allproperty/property_id/like/`,
+    `/allproperty/property_id/like`,
     async (property_id, thunkAPI) => {
         try {
             const response = await like_property(property_id)
@@ -61,7 +61,7 @@ export const likeProperty = createAsyncThunk(
 );
 
 export const addProperty = createAsyncThunk(
-    `/allproperty/property_id/like/`,
+    `/allproperty`,
     async (property_details, thunkAPI) => {
         try {
             const response = await add_property(property_details)
@@ -118,12 +118,12 @@ const propertySlice = createSlice({
             state.isFetching = false;
             state.isAdded = false;
             state.isAdding = false;
+            state.isAddedError = false;
+            state.isLiking = false;
+            state.isLiked = false;
+            state.isLikedError = false;
             return state;
         },
-        setRegisterType: (state, action) => {
-            state.registerType = action.payload;
-            return state;
-        }
     },
     extraReducers: {
         [getAllProperties.pending]: (state) => {
@@ -153,16 +153,16 @@ const propertySlice = createSlice({
             state.errorMessage = action.payload;
         },
         [likeProperty.pending]: (state) => {
-            state.isFetching = true;
+            state.isLiking = true;
         },
         [likeProperty.fulfilled]: (state, action) => {
             state.userLikedProperties = action.payload;
-            state.isFetching = false;
-            state.isSuccess = true;
+            state.isLiking = false;
+            state.isLiked = true;
         },
         [likeProperty.rejected]: (state, action) => {
-            state.isFetching = false;
-            state.isError = true;
+            state.isLiking = false;
+            state.isLikedError = true;
             state.errorMessage = action.payload;
         },
         [addProperty.pending]: (state) => {
