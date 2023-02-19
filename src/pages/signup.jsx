@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useToasts } from "react-toast-notifications";
+import toast from "react-hot-toast";
 import { DotLoader } from "react-spinners";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -44,7 +44,6 @@ function Signup() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
 
-  const { addToast } = useToasts();
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
@@ -67,30 +66,6 @@ function Signup() {
     isLandlord,
   } = useSelector(userSelector);
 
-  // function handleSubmit() {
-  //   registerType == "tenant"
-  //     ? dispatch(
-  //         registerUser({
-  //           email,
-  //           first_name,
-  //           last_name,
-  //           password,
-  //           password2,
-  //           phone_number,
-  //         })
-  //       )
-  //     : dispatch(
-  //         registerLandlord({
-  //           email,
-  //           first_name,
-  //           last_name,
-  //           password,
-  //           password2,
-  //           phone_number,
-  //         })
-  //       );
-  // }
-
   const onSubmit = async (data) => {
     console.log(data);
 
@@ -107,16 +82,12 @@ function Signup() {
 
   useEffect(() => {
     if (isError) {
-      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      toast.error(errorMessage);
       dispatch(clearState());
     }
 
     if (isSuccess) {
-      addToast("Account created successfully!", {
-        appearance: "success",
-        autoDismiss: true,
-      });
-
+      toast.success("Account created successfully!");
       dispatch(clearState());
 
       if (isLandlord) {
@@ -125,7 +96,12 @@ function Signup() {
         navigate("/user/dashboard");
       }
     }
-  }, [isError, isSuccess, isLandlord]);
+
+    if (isFetching) {
+      toast.loading("Creating Account...");
+    }
+  }, [isError, isSuccess, isFetching, isLandlord]);
+
   useEffect(() => {
     isLoggedIn && isLandlord && navigate("/landlord/dashboard");
     isLoggedIn && !isLandlord && navigate("/user/dashboard");

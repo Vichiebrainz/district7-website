@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { useToasts } from "react-toast-notifications";
-
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearState, logout } from "../../../store/slices/authSlice";
 
 const Logout = () => {
   let navigate = useNavigate();
-  const { addToast } = useToasts();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,10 +16,7 @@ const Logout = () => {
 
   const logoutUser = () => {
     dispatch(logout());
-    addToast("Logged Out!", {
-      appearance: "info",
-      autoDismiss: true,
-    });
+    toast("Logged Out!");
     navigate("/");
   };
   return (

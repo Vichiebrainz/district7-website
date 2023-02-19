@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link, Route } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { useToasts } from "react-toast-notifications";
 import { DotLoader } from "react-spinners";
 import { useSelector, useDispatch } from "react-redux";
 import { clearState, loginUser, userSelector } from "../store/slices/authSlice";
+import toast from "react-hot-toast";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { addToast } = useToasts();
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
@@ -36,15 +35,12 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      toast.error(errorMessage);
       dispatch(clearState());
     }
 
     if (isSuccess) {
-      addToast("Logged In!", {
-        appearance: "success",
-        autoDismiss: true,
-      });
+      toast.success("Logged In!");
 
       dispatch(clearState());
 
@@ -54,7 +50,13 @@ function Login() {
         navigate("/user/dashboard");
       }
     }
-  }, [isError, isSuccess, isLandlord]);
+
+    // if (isFetching) {
+    //   const loading = toast.loading("Logging in...");
+    // } else {
+    //   toast.dismiss(loading);
+    // }
+  }, [isError, isSuccess, isLandlord, isFetching]);
 
   useEffect(() => {
     isLoggedIn && isLandlord && navigate("/landlord/dashboard");

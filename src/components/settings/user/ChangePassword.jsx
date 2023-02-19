@@ -7,11 +7,10 @@ import {
   userSelector,
 } from "../../../store/slices/authSlice";
 import { DotLoader } from "react-spinners";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-hot-toast";
 
 const ChangePassword = () => {
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
 
   const [old_password, setCurrentPassword] = useState("");
   const [password, setNewPassword] = useState("");
@@ -37,19 +36,12 @@ const ChangePassword = () => {
 
   useEffect(() => {
     if (isError) {
-      addToast("Something went wrong, please try again!", {
-        appearance: "error",
-        autoDismiss: true,
-      });
+      toast.error("Something went wrong, please try again!");
       dispatch(clearState());
     }
 
     if (isSuccess) {
-      addToast(" Password updated successfully", {
-        appearance: "success",
-        autoDismiss: true,
-      });
-
+      toast.success("Password updated successfully");
       dispatch(clearState());
     }
   }, [isError, isSuccess]);

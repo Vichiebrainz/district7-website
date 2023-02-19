@@ -9,7 +9,7 @@ import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { DotLoader } from "react-spinners";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-hot-toast";
 
 const schema = yup
   .object({
@@ -23,7 +23,6 @@ const schema = yup
 
 export default function Form() {
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
 
   const [picture, setPicture] = useState(null);
 
@@ -70,15 +69,12 @@ export default function Form() {
 
   useEffect(() => {
     if (isAddedError) {
-      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      toast.error(errorMessage);
       dispatch(clearState());
     }
 
     if (isAdded) {
-      addToast("Property added successfully", {
-        appearance: "success",
-        autoDismiss: true,
-      });
+      toast.success("Property added successfully");
 
       dispatch(clearState());
     }

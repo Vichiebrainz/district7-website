@@ -25,7 +25,7 @@ import { ToastProvider } from "react-toast-notifications";
 import ForgotPassword from "./pages/auth/forgotPassword";
 import { userSelector } from "./store/slices/authSlice";
 import Home from "./pages/landingPages/homePage";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,38 +34,61 @@ function App() {
 
   return (
     <>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: "font-header",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
       <ToastProvider>
-        <Router>
-          <Routes>
-            {/* HOME ROUTE */}
-            <Route path="/" element={<Home />} />
+        <Routes>
+          {/* HOME ROUTE */}
+          <Route path="/" element={<Home />} />
 
-            {/* AUTH ROUTES */}
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
-            <Route path="auth/forgot-password" element={<ForgotPassword />} />
+          {/* AUTH ROUTES */}
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="auth/forgot-password" element={<ForgotPassword />} />
 
-            {/* PRIVATE ROUTES USER AND LANDLORD */}
-            <Route
-              path="/"
-              element={<PrivateRoute isAuthenticated={isLoggedIn} />}
-            >
-              <Route path="user/*" element={<UserDashboardLayout />}>
-                <Route path="dashboard" element={<UserDashboard />} />
-                <Route path="explore" element={<Explore />} />
-                <Route path="connect" element={<Connect />} />
-                <Route path="settings" element={<Settings />} />
-                <Route path="profile" element={<Profile />} />
-              </Route>
+          {/* PRIVATE ROUTES USER AND LANDLORD */}
+          <Route
+            path="/"
+            element={<PrivateRoute isAuthenticated={isLoggedIn} />}
+          >
+            <Route path="user/*" element={<UserDashboardLayout />}>
+              <Route path="dashboard" element={<UserDashboard />} />
+              <Route path="explore" element={<Explore />} />
+              <Route path="connect" element={<Connect />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="profile" element={<Profile />} />
             </Route>
-            <Route path="landlord/*" element={<LandlordDashboardLayout />}>
-              <Route path="dashboard" element={<LandlordDashboard />} />
-              <Route path="posts" element={<LandlordPosts />} />
-              <Route path="orders" element={<LandlordOrders />} />
-              <Route path="settings" element={<LandlordSettings />} />
-            </Route>
-          </Routes>
-        </Router>
+          </Route>
+          <Route path="landlord/*" element={<LandlordDashboardLayout />}>
+            <Route path="dashboard" element={<LandlordDashboard />} />
+            <Route path="posts" element={<LandlordPosts />} />
+            <Route path="orders" element={<LandlordOrders />} />
+            <Route path="settings" element={<LandlordSettings />} />
+          </Route>
+        </Routes>
       </ToastProvider>
     </>
   );

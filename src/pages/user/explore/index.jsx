@@ -20,14 +20,13 @@ import "swiper/css/pagination";
 // import required modules
 import { EffectFade, Navigation, Pagination } from "swiper";
 import { DotLoader } from "react-spinners";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-hot-toast";
 
 const Explore = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
 
   const {
     allProperties,
@@ -56,14 +55,11 @@ const Explore = () => {
 
   useEffect(() => {
     if (isLikedError) {
-      addToast(errorMessage, { appearance: "error", autoDismiss: true });
+      toast.error(errorMessage);
       dispatch(clearState());
     }
     if (isLiked) {
-      addToast("Added to favorites", {
-        appearance: "success",
-        autoDismiss: true,
-      });
+      toast.success("Added to favorites");
       dispatch(clearState());
     }
   }, [isLikedError, isLiked]);

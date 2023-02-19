@@ -1,6 +1,10 @@
 import axios from "axios";
+import { customHistory } from "../customBroswerRouter";
+import { toast } from "react-hot-toast";
+
 
 const BASE_URL = "https://api.district7.com.ng/api";
+
 
 
 const api = axios.create({
@@ -27,5 +31,25 @@ api.interceptors.request.use(
         return Promise.reject(error);
     }
 );
+
+api.interceptors.response.use(
+    (response) => response,
+    (err) => {
+        if (err.response.status === 401) {
+            console.log("jhi")
+            const token = JSON.parse(localStorage.getItem("token"))
+            if (token) {
+                localStorage.removeItem("token");
+                customHistory.push("/");
+                toast("Session timed out, please login again!")
+            } else {
+                customHistory.push("/");
+                toast("Session timed out, please login again!")
+            }
+        } else {
+            return Promise.reject(err);
+        }
+    }
+)
 
 export { api };

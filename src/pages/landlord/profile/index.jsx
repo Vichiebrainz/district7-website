@@ -8,11 +8,10 @@ import {
   userSelector,
 } from "../../../store/slices/authSlice";
 import { DotLoader } from "react-spinners";
-import { useToasts } from "react-toast-notifications";
+import { toast } from "react-hot-toast";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { addToast } = useToasts();
 
   const {
     isFetching,
@@ -46,18 +45,12 @@ const Profile = () => {
 
   useEffect(() => {
     if (isUpdateError) {
-      addToast("Something went wrong, please try again!", {
-        appearance: "error",
-        autoDismiss: true,
-      });
+      toast.error("Something went wrong, please try again!");
       dispatch(clearState());
     }
 
     if (isUpdated) {
-      addToast("Profile details updated successfully", {
-        appearance: "success",
-        autoDismiss: true,
-      });
+      toast.success("Profile details updated successfully");
 
       dispatch(clearState());
     }
