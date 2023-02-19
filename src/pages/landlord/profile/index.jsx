@@ -3,17 +3,26 @@ import { returnRandomImage } from "../../../helper/randomizeProfilePictures";
 import { useSelector, useDispatch } from "react-redux";
 import {
   clearState,
+  getUser,
   updateUser,
   userSelector,
 } from "../../../store/slices/authSlice";
 import { DotLoader } from "react-spinners";
 import { useToasts } from "react-toast-notifications";
 
-const Profile = ({ user }) => {
+const Profile = () => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
 
-  const { isFetching, isSuccess, isError } = useSelector(userSelector);
+  const {
+    isFetching,
+    isUpdating,
+    isUpdateError,
+    isUpdated,
+    isSuccess,
+    isError,
+    user,
+  } = useSelector(userSelector);
 
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
@@ -21,6 +30,8 @@ const Profile = ({ user }) => {
   const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
+    dispatch(getUser());
+
     setFirstName(user?.first_name);
     setLastName(user?.last_name);
     setPhone(user?.phone_number);
@@ -34,7 +45,7 @@ const Profile = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    if (isError) {
+    if (isUpdateError) {
       addToast("Something went wrong, please try again!", {
         appearance: "error",
         autoDismiss: true,
@@ -42,15 +53,15 @@ const Profile = ({ user }) => {
       dispatch(clearState());
     }
 
-    if (isSuccess) {
-      addToast(" Password updated successfully", {
+    if (isUpdated) {
+      addToast("Profile details updated successfully", {
         appearance: "success",
         autoDismiss: true,
       });
 
       dispatch(clearState());
     }
-  }, [isError, isSuccess]);
+  }, [isUpdateError, isUpdated]);
 
   const updateProfile = (e) => {
     e.preventDefault();
@@ -72,23 +83,23 @@ const Profile = ({ user }) => {
         <div>
           <img
             className="w-[80px] md:w-[160px] h-[80px] md:h-[160px] rounded-full mr-4 border-2 border-solid border-[#05C002]"
-            src={avatar}
+            src={user?.avatar}
             alt="User avatar"
           />
         </div>
         <div>
           <h3 className="text-black md:text-[#068903] text-[18px] md:text-[28px] leading-[34.13px] font-semibold font-header mb-2">
-            {user.first_name + " " + user.last_name}
+            {user?.first_name + " " + user?.last_name}
           </h3>
           <p className="hidden md:flex text-black text-[24px] leading-[29.26px] font-normal font-header mb-0 md:mb-2">
             {user?.is_landlord ? "Agent" : "User"}
           </p>
-          <p
+          {/* <p
             className="text-[#92918F] text-[12px] md:text-[18px] leading-[21.94px] font-normal font-header underline cursor-pointer"
             onClick={uploadImage}
           >
             Edit Profile Picture
-          </p>
+          </p> */}
         </div>
       </div>
       <div>
@@ -163,8 +174,8 @@ const Profile = ({ user }) => {
               className="button-primary bg-[#05C002] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-8"
               onClick={updateProfile}
             >
-              {isFetching && <DotLoader color="#fff" size={21} />}
-              {!isFetching && "Update profile"}
+              {isUpdating && <DotLoader color="#fff" size={21} />}
+              {!isUpdating && "Update profile"}
             </button>
           </form>
         </div>

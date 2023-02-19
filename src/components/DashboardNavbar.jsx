@@ -5,10 +5,8 @@ import { returnRandomImage } from "../helper/randomizeProfilePictures";
 import Searchbar from "./Searchbar";
 import { useSelector } from "react-redux";
 
-const DashboardNavbar = () => {
+const DashboardNavbar = ({ user }) => {
   const location = useLocation();
-
-  const { user } = useSelector((state) => state.auth);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-transparent mb-16">

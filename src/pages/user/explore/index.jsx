@@ -47,19 +47,17 @@ const Explore = () => {
   }, []);
 
   useEffect(() => {
-    if (isError) {
-      addToast(errorMessage, { appearance: "error", autoDismiss: true });
-      dispatch(clearState());
-    }
-
-    if (isSuccess) {
-      addToast("Okay", {
-        appearance: "success",
-        autoDismiss: true,
-      });
-
-      dispatch(clearState());
-    }
+    // if (isError) {
+    //   addToast(errorMessage, { appearance: "error", autoDismiss: true });
+    //   dispatch(clearState());
+    // }
+    // if (isSuccess) {
+    //   addToast("Okay", {
+    //     appearance: "success",
+    //     autoDismiss: true,
+    //   });
+    //   dispatch(clearState());
+    // }
   }, [isError, isSuccess]);
 
   console.log(allProperties);

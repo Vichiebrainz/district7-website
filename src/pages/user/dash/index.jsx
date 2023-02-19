@@ -146,50 +146,59 @@ const UserDashboard = () => {
             </div>
 
             <div className="block md:hidden">
-              <Swiper
-                grabCursor={true}
-                effect={"creative"}
-                creativeEffect={{
-                  prev: {
-                    shadow: true,
-                    translate: [0, 0, -400],
-                  },
-                  next: {
-                    translate: ["100%", 0, 0],
-                  },
-                }}
-                modules={[EffectCreative]}
-                className="mySwiper"
-              >
-                {userLikedProperties?.map((apartment, i) => (
-                  <SwiperSlide key={i}>
-                    <div>
-                      <div className="w-full h-[150px] flex rounded-[5px]">
-                        <div className="w-2/3">
-                          <img
-                            src={apartment?.images[1]?.media}
-                            alt=""
-                            className="w-full rounded-l-[5px] h-full object-cover"
-                          />
-                        </div>
-                        <div className="w-1/3 bg-[#05C002] rounded-r-[5px] relative">
-                          <div className="w-full h-full px-3 py-2 mb-1">
-                            <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                              {apartment.propertyType}
-                            </p>
-                            <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-normal">
-                              {apartment.price}
-                            </p>
-                            <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header   absolute bottom bottom-2 underline">
-                              See more
-                            </p>
+              {userLikedProperties?.length > 0 ? (
+                <Swiper
+                  grabCursor={true}
+                  effect={"creative"}
+                  creativeEffect={{
+                    prev: {
+                      shadow: true,
+                      translate: [0, 0, -400],
+                    },
+                    next: {
+                      translate: ["100%", 0, 0],
+                    },
+                  }}
+                  navigation={true}
+                  modules={[Autoplay, Navigation]}
+                  // modules={[EffectCreative]}
+                  className="mySwiper"
+                >
+                  {userLikedProperties?.map((apartment, i) => (
+                    <SwiperSlide key={i}>
+                      <div>
+                        <div className="w-full h-[250px] flex flex-col rounded-[5px]">
+                          <div className="h-2/3">
+                            <img
+                              src={apartment?.images[0].media}
+                              alt=""
+                              className="w-full rounded-t-[5px] h-full object-cover"
+                            />
+                          </div>
+                          <div className="h-1/3 bg-[#05C002] rounded-b-[5px] relative">
+                            <div className="w-full h-full px-3 py-2 mb-1">
+                              <p className="m-0 p-0 text-white text-[14px] leading-[15.85px] font-header font-normal my-1">
+                                {apartment.title}
+                              </p>
+                              <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal my-1">
+                                {apartment.location}
+                              </p>
+                              <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-bold">
+                                N {apartment.price}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              ) : (
+                <div className="w-full h-[300px] flex justify-center items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
+                  You have not liked any new home. Like an apartment to get
+                  started.
+                </div>
+              )}  
             </div>
           </div>
         </div>

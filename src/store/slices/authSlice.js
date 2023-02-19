@@ -3,14 +3,14 @@ import { change_password, get_user, login_user, register_landlord, register_user
 import axios from "axios";
 
 
-const user = JSON.parse(localStorage.getItem("user"));
+const token = JSON.parse(localStorage.getItem("token"));
 
 export const registerUser = createAsyncThunk(
     "auth/register",
     async (userRegistrationData, thunkAPI) => {
         try {
             const response = await register_user(userRegistrationData)
-            localStorage.setItem("user", stringify(response.data));
+            localStorage.setItem("token", JSON.stringify(response.data.token));
             return response.data;
         } catch (error) {
             console.log(error)
@@ -30,7 +30,7 @@ export const registerLandlord = createAsyncThunk(
     async (landlordRegistrationData, thunkAPI) => {
         try {
             const response = await register_landlord(landlordRegistrationData)
-            localStorage.setItem("user", JSON.stringify(response.data));
+            localStorage.setItem("token", JSON.stringify(response.data.token));
             return response.data;
         } catch (error) {
             console.log(error)
@@ -51,7 +51,7 @@ export const loginUser = createAsyncThunk(
         console.log(userLogin)
         try {
             const response = await login_user(userLogin)
-            localStorage.setItem("user", JSON.stringify(response.data));
+            localStorage.setItem("token", JSON.stringify(response.data.token));
             return { user: response.data };
         } catch (error) {
             console.log(error)
@@ -78,8 +78,6 @@ export const getUser = createAsyncThunk(
     async (details, thunkAPI) => {
         try {
             const response = await get_user()
-            user.user = response.data;
-            localStorage.setItem('user', JSON.stringify(user));
             return response.data;
         } catch (error) {
             console.log(error)
@@ -98,11 +96,9 @@ export const getUser = createAsyncThunk(
 export const updateUser = createAsyncThunk(
     "auth/user/update",
     async (details, thunkAPI) => {
-        console.log(user)
         try {
             const response = await update_user(details)
-            user.user = response.data;
-            localStorage.setItem('user', JSON.stringify(user));
+            console.log(response.data)
             return response.data;
         } catch (error) {
             console.log(error)
@@ -137,11 +133,10 @@ export const changePassword = createAsyncThunk("auth/change-password", async (pa
     }
 })
 
-const initialState = user
+const initialState = token
     ? {
         isLoggedIn: true,
         isLandlord: null,
-        user: user.user,
         isFetching: false,
         isSuccess: false,
         isError: false,
@@ -151,7 +146,6 @@ const initialState = user
     : {
         isLoggedIn: false,
         isLandlord: null,
-        user: null,
         isFetching: false,
         isSuccess: false,
         isError: false,
@@ -167,6 +161,9 @@ const authSlice = createSlice({
             state.isError = false;
             state.isSuccess = false;
             state.isFetching = false;
+            state.isUpdating = false;
+            state.isUpdated = false;
+            state.isUpdateError = false;
             return state;
         },
         setRegisterType: (state, action) => {
@@ -213,18 +210,31 @@ const authSlice = createSlice({
         [loginUser.pending]: (state) => {
             state.isFetching = true;
         },
-        [updateUser.pending]: (state) => {
+        [getUser.pending]: (state) => {
             state.isFetching = true;
         },
-        [updateUser.fulfilled]: (state, action) => {
-            state.user = user;
+        [getUser.fulfilled]: (state, action) => {
+            state.user = action.payload;
             state.isFetching = false;
             state.isSuccess = true;
         },
-        [updateUser.rejected]: (state, action) => {
+        [getUser.rejected]: (state, action) => {
             state.user = null;
             state.isFetching = false;
             state.isError = true;
+            state.errorMessage = action.payload;
+        },
+        [updateUser.pending]: (state) => {
+            state.isUpdating = true;
+        },
+        [updateUser.fulfilled]: (state, action) => {
+            state.user = action.payload;
+            state.isUpdating = false;
+            state.isUpdated = true;
+        },
+        [updateUser.rejected]: (state, action) => {
+            state.isUpdating = false;
+            state.isUpdateError = true;
             state.errorMessage = action.payload;
         },
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Connect from "./connect";
 import Sidebar from "../../components/Sidebar";
@@ -11,12 +11,17 @@ import Profile from "./profile";
 import { userSideBarRoutes } from "../../routes";
 import BottomNav from "../../components/BottomNav";
 import MobileNav from "../../components/MobileNav";
-import { useSelector } from "react-redux";
-import { userSelector } from "../../store/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, userSelector } from "../../store/slices/authSlice";
 
 const UserDashboardLayout = () => {
-  const { isLandlord, user } = useSelector(userSelector);
-  console.log(isLandlord);
+  const dispatch = useDispatch();
+
+  const { user } = useSelector(userSelector);
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   return (
     <div className="flex h-full">
@@ -25,7 +30,7 @@ const UserDashboardLayout = () => {
       </div>
       <div className="w-full md:w-5/6 px-0 md:px-[60px] py-[54px]">
         <div className="hidden md:block">
-          <DashboardNavbar />
+          <DashboardNavbar user={user} />
         </div>
         <div className="block md:hidden">
           <MobileNav avatar={user?.avatar} />
