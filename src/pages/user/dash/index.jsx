@@ -86,7 +86,7 @@ const UserDashboard = () => {
   return (
     <div className="px-6 md:px-0">
       <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
-        <div className="w-full md:w-2/3 h-[500px] rounded-[20px] overflow-hidden      shadow-card bg-[#068903]/5">
+        <div className="w-full md:w-2/3 md:h-[500px] h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5">
           <div className="px-6 py-5 mb-4 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Liked Apartments</span>
@@ -203,7 +203,7 @@ const UserDashboard = () => {
           </div>
         </div>
 
-        <div className="md:w-1/3 md:h-[500px] h-full rounded-[20px] overflow-hidden shadow-card bg-[#068903]/5 relative">
+        <div className="md:w-1/3 md:h-[500px] h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           <div className="px-8 py-5">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6 ">
               Recent Transactions

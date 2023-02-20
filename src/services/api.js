@@ -40,10 +40,10 @@ api.interceptors.response.use(
             const token = JSON.parse(localStorage.getItem("token"))
             if (token) {
                 localStorage.removeItem("token");
-                customHistory.push("/");
+                customHistory.push("/login");
                 toast("Session timed out, please login again!")
             } else {
-                customHistory.push("/");
+                customHistory.push("/login");
                 toast("Session timed out, please login again!")
             }
         } else {

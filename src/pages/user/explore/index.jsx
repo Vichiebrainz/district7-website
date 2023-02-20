@@ -68,7 +68,7 @@ const Explore = () => {
 
   return (
     <div className="mt-8  md:mt-16 p-6">
-      <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+      {/* <div className="flex flex-col md:flex-row gap-8 md:gap-16">
         <div className="relative flex-1">
           <select
             className="block appearance-none w-full bg-white border-[1px] md:border-[1.5px] border-black/30 hover:border-black/60 px-4 py-4 pr-8 rounded-[5px] md:shadow  focus:outline-none focus:shadow-outline font-header font-medium text-black/60 text-[18px] leading-[21.94px]"
@@ -131,7 +131,7 @@ const Explore = () => {
             <span>Explore</span>
           </button>
         </div>
-      </div>
+      </div> */}
       <div className="w-full h-[600px] my-20 md:my-10">
         <div className="text-black text-[21px] md:text-[28px] font-header font-semibold">
           Featured Apartments
