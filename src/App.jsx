@@ -26,6 +26,7 @@ import ForgotPassword from "./pages/auth/forgotPassword";
 import { userSelector } from "./store/slices/authSlice";
 import Home from "./pages/landingPages/homePage";
 import { Toaster } from "react-hot-toast";
+import UpdateProperty from "./pages/landlord/updateProperty";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -87,6 +88,7 @@ function App() {
             <Route path="posts" element={<LandlordPosts />} />
             <Route path="orders" element={<LandlordOrders />} />
             <Route path="settings" element={<LandlordSettings />} />
+            <Route path="post/:id/update" element={<UpdateProperty />} />
           </Route>
         </Routes>
       </ToastProvider>

@@ -70,6 +70,10 @@ export const get_all_properties = () => {
     return api.get("/allproperty/")
 }
 
+export const get_single_property = (id) => {
+    return api.get(`/allproperty/${id}`)
+}
+
 export const like_property = (property_id) => {
     return api.post(`/allproperty/${property_id}/like/`)
 }

@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 export default function PostedApartmentsCard({
   imageUrl,
   description,
   price,
   location,
+  id,
 }) {
+  const navigate = useNavigate();
   return (
     <div className="relative bg-[#068903]/5 rounded-[20px] overflow-hidden shadow-card flex flex-col md:flex-row my-16">
       <img
@@ -40,7 +44,10 @@ export default function PostedApartmentsCard({
           <button className="bg-transparent border border-[#92918F] border-solid p-2 font-header font-normal text-[#252320] text-[18px] rounded-[5px]">
             Remove
           </button>
-          {/* <button className="bg-[#068903] text-white text-[18px] leading-[21.94px] font-header font-semibold rounded-[5px] p-4 py-2">
+          {/* <button
+            className="bg-[#068903] text-white text-[18px] leading-[21.94px] font-header font-semibold rounded-[5px] p-4 py-2"
+            onClick={() => navigate(`/landlord/post/${id}/update`)}
+          >
             Edit
           </button> */}
         </div>

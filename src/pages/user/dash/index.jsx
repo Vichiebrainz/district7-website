@@ -48,15 +48,6 @@ import {
 } from "../../../store/slices/ordersSlice";
 import { DotLoader } from "react-spinners";
 
-const settings = {
-  className: "center",
-  centerMode: true,
-  infinite: true,
-  centerPadding: "30px",
-  slidesToShow: 3,
-  speed: 500,
-};
-
 const UserDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -248,13 +239,13 @@ const UserDashboard = () => {
             See more
           </div> */}
           </div>
-          <div className="w-full h-[150px] p-8 flex text-center justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-[#068903]">
+          <div className="w-full h-[150px] p-8 flex text-center justify-center items-center text-[15px] md:text-[21px] font-semibold font-header text-black/70">
             You have not made any transactions yet!
           </div>
         </div>
       </div>
 
-      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent p-4 ">
+      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent p-4 rounded-[20px]">
         <div className="font-semibold font-header text-[18px] my-8 p-0 md:p-0 md:text-[20px] leading-[24.38px] mb-3">
           Get a property
         </div>
@@ -329,7 +320,7 @@ const UserDashboard = () => {
         </div> */}
       </div>
 
-      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent p-4 ">
+      <div className="md:my-24 my-8 bg-[#068903]/5 md:bg-transparent p-4 rounded-[20px]">
         <div className="font-semibold font-header text-[18px] md:p-0 md:text-[20px] leading-[24.38px] md:mb-4 ">
           Possible Connections
         </div>

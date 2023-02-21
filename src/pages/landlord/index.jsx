@@ -13,6 +13,7 @@ import LandlordBottomNav from "../../components/Nav/landlordBottomNav";
 import Profile from "./profile";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, userSelector } from "../../store/slices/authSlice";
+import UpdateProperty from "./updateProperty";
 
 const LandlordDashboardLayout = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const LandlordDashboardLayout = () => {
         <Routes>
           <Route path="dashboard" element={<LandlordDashboard />} />
           <Route path="posts" element={<LandlordPosts />} />
+          <Route path="post/:id/update" element={<UpdateProperty />} />
           <Route path="orders" element={<LandlordOrders />} />
           <Route path="settings" element={<LandlordSettings />} />
           <Route path="notifications" element={<Notifications />} />

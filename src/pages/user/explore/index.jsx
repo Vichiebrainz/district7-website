@@ -21,10 +21,13 @@ import "swiper/css/pagination";
 import { EffectFade, Navigation, Pagination } from "swiper";
 import { DotLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
+import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
-const Explore = () => {
+
+const Explore = ({userId}) => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+
 
   const dispatch = useDispatch();
 
@@ -59,8 +62,10 @@ const Explore = () => {
       dispatch(clearState());
     }
     if (isLiked) {
-      toast.success("Added to favorites");
+      // toast.success("Added to favorites");
       dispatch(clearState());
+      dispatch(getAllProperties());
+
     }
   }, [isLikedError, isLiked]);
 
@@ -197,7 +202,7 @@ const Explore = () => {
                   </div>
                 </div>
                 <div className=" md:w-full w-full mt-8 flex flex-row-reverse">
-                  <div className="w-full flex flex-row-reverse gap-4 items-center">
+                  <div className="w-full flex flex-row-reverse justify-between gap-4 items-center">
                     <a
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
                       href={`https://wa.me/234${property?.owner?.phone_number?.substr(
@@ -207,13 +212,19 @@ const Explore = () => {
                     >
                       Contact Agent
                     </a>
-                    <div
+                    {/* <div
                       className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
                       onClick={() => likeProps(property?.id)}
                     >
                       {isLiking && <DotLoader color="#000" size={21} />}
-                      {!isLiking && "Like"}
+                      
+                    </div> */}
+                    <div className="cursor-pointer text-[30px]" >
+                    {isLiking && <DotLoader color="#000" size={21} />}
+                    {!isLiking && property?.liked_by.includes(userId) && <BsFillHeartFill color="red" onClick={() => likeProps(property?.id)}/>  }               
+                    {!isLiking && !property?.liked_by.includes(userId) && <BsHeart color="red" onClick={() => likeProps(property?.id)}/>}
                     </div>
+                    
                   </div>
                 </div>
               </div>

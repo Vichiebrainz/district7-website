@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { add_property, get_all_properties, get_user_added_properties, get_users_liked_apartmemts, like_property } from "../../services/requests";
+import { add_property, get_all_properties, get_single_property, get_user_added_properties, get_users_liked_apartmemts, like_property } from "../../services/requests";
 import axios from "axios";
 
 
@@ -8,6 +8,25 @@ export const getAllProperties = createAsyncThunk(
     async (thunkAPI) => {
         try {
             const response = await get_all_properties()
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message && error.response.data.detail) ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+export const getSingleProperty = createAsyncThunk(
+    "/allproperty/id",
+    async (property_id, thunkAPI) => {
+        try {
+            const response = await get_single_property(property_id)
             return response.data;
         } catch (error) {
             console.log(error)
@@ -135,6 +154,19 @@ const propertySlice = createSlice({
             state.isSuccess = true;
         },
         [getAllProperties.rejected]: (state, action) => {
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = action.payload;
+        },
+        [getSingleProperty.pending]: (state) => {
+            state.isFetching = true;
+        },
+        [getSingleProperty.fulfilled]: (state, action) => {
+            state.singleProperty = action.payload;
+            state.isFetching = false;
+            state.isSuccess = true;
+        },
+        [getSingleProperty.rejected]: (state, action) => {
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = action.payload;

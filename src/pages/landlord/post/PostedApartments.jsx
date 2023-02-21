@@ -29,6 +29,7 @@ export default function PostedApartments() {
               description={description}
               location={location}
               price={price}
+              id={id}
             />
           )
         )
