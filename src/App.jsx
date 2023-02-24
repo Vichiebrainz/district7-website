@@ -28,10 +28,15 @@ import Home from "./pages/landingPages/homePage";
 import { Toaster } from "react-hot-toast";
 import UpdateProperty from "./pages/landlord/updateProperty";
 
+import ReactGA from "react-ga";
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const { isLoggedIn } = useSelector(userSelector);
+
+  const TRACKING_ID = "UA-192954122-1"; // YOUR_OWN_TRACKING_ID
+  ReactGA.initialize(TRACKING_ID);
 
   return (
     <>
@@ -73,8 +78,7 @@ function App() {
           {/* PRIVATE ROUTES USER AND LANDLORD */}
           <Route
             path="/"
-            element={<PrivateRoute isAuthenticated={isLoggedIn} />}
-          >
+            element={<PrivateRoute isAuthenticated={isLoggedIn} />}>
             <Route path="user/*" element={<UserDashboardLayout />}>
               <Route path="dashboard" element={<UserDashboard />} />
               <Route path="explore" element={<Explore />} />

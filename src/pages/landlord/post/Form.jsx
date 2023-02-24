@@ -26,13 +26,36 @@ const schema = yup
 export default function Form() {
   const dispatch = useDispatch();
 
-  const [picture, setPicture] = useState(null);
+  // const [picture, setPicture] = useState(null);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
   const [is_public, setIsPublic] = useState(true);
 
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  const selectFiles = (event) => {
+    if (selectedFiles.length > 4) {
+      toast("You can only upload 5 images");
+      console.log("Fuck");
+    } else {
+      for (let i = 0; i < event.target.files.length; i++) {
+        setImagePreviews([
+          ...imagePreviews,
+          URL.createObjectURL(event.target.files[i]),
+        ]);
+      }
+
+      setSelectedFiles([...selectedFiles, event.target.files[0]]);
+      // setImagePreviews(images);
+    }
+  };
+
+  // Single Image uplaod
   const onChangePicture = (e) => {
     setPicture(e.target.files[0]);
   };
+
+  console.log(selectedFiles);
 
   const {
     register,
@@ -41,6 +64,9 @@ export default function Form() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      is_public: true,
+    },
   });
 
   const {
@@ -59,7 +85,9 @@ export default function Form() {
     formData.append("price", data.price);
     formData.append("location", data.location);
     formData.append("description", data.description);
-    formData.append("uploaded_images", picture);
+    Array.from(selectedFiles).forEach((file) => {
+      formData.append("uploaded_images", file);
+    });
     formData.append("is_public", is_public);
 
     dispatch(addProperty(formData));
@@ -135,17 +163,38 @@ export default function Form() {
       </label>
 
       <label>
-        <span className={labelStyles}>Upload image</span>
+        <span className={labelStyles}>
+          Upload image{" "}
+          <span className="font-bold text-[13px] text-primary-green">
+            (You can upload up to 5 images)
+          </span>
+        </span>
         <div className={inputStyles + " text-gray-400 cursor-pointer"}>
-          {picture && picture.name}
-          {!picture && "Attach a picture"}
+          {/* {picture && picture.name} */}
+          {/* {selectedFiles.length ==0 && "Attach a picture"} */}
+          {imagePreviews && (
+            <div className="w-full flex gap-2 h-[50px]">
+              {imagePreviews.map((img, i) => {
+                return (
+                  <img
+                    // className="preview"
+                    src={img}
+                    alt={"image-" + i}
+                    key={i}
+                    className="h-full mx-4"
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
         <input
           type="file"
           className="hidden"
+          multiple
           accept="image/png, image/jpeg"
           {...register("uploaded_images")}
-          onChange={onChangePicture}
+          onChange={selectFiles}
         />
         <p className={errorMessageStyles}>{errors.uploaded_images?.message}</p>
       </label>
@@ -155,8 +204,7 @@ export default function Form() {
         <textarea
           className={inputStyles}
           placeholder="Enter some description..."
-          {...register("description")}
-        ></textarea>
+          {...register("description")}></textarea>
         <p className={errorMessageStyles}>{errors.description?.message}</p>
       </label>
 
@@ -166,9 +214,8 @@ export default function Form() {
             <div
               className="flex gap-1 items-center"
               onMouseEnter={() => setIsPopoverVisible(true)}
-              onMouseLeave={() => setIsPopoverVisible(false)}
-            >
-              <div className={`${labelStyles}`}>Make Private</div>
+              onMouseLeave={() => setIsPopoverVisible(false)}>
+              <div className={`${labelStyles}`}>Is Public</div>
               <IoHelpCircleOutline className={labelStyles} />
             </div>
             <Popover
@@ -182,9 +229,10 @@ export default function Form() {
             <label className="relative items-center cursor-pointer">
               <input
                 type="checkbox"
-                checked={!is_public}
                 className="sr-only peer"
-                onChange={handleToggleChange}
+                // checked={!is_public}
+                // onChange={handleToggleChange}
+                {...register("is_public")}
               />
               <div className="w-14 h-7 bg-transparent border-[2px] border-solid border-[#05C002] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-none after:content-[''] after:absolute after:top-[3px] after:left-[5px]  peer-checked:after:bg-white after:bg-[#05C002] after:border-none after:border after:rounded-full after:h-[22px] after:w-[22px] after:transition-all peer-checked:bg-[#05C002] peer-checked:border-none"></div>
             </label>
@@ -204,8 +252,7 @@ export default function Form() {
       <button
         type="submit"
         onClick={handleSubmit(onSubmit)}
-        className="block ml-auto bg-[#05C002] md:bg-[#068903] rounded-[5px] capitalize text-[18px] leading-[21.94px] font-header font-medium text-white justify-center items-center gap-4 py-4 px-12 w-fit"
-      >
+        className="block ml-auto bg-[#05C002] md:bg-[#068903] rounded-[5px] capitalize text-[18px] leading-[21.94px] font-header font-medium text-white justify-center items-center gap-4 py-4 px-12 w-fit">
         {isAdding && <DotLoader color="#fff" size={21} />}
         {!isAdding && "Submit"}
       </button>

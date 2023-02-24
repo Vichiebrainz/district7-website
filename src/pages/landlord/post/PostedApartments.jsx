@@ -2,21 +2,45 @@ import { useDispatch, useSelector } from "react-redux";
 import PostedApartmentsCard from "../../../components/cards/PostedApartmentsCard";
 import { likedApartmentsData } from "../../../data";
 import {
+  clearState,
   getUserAddedProperties,
   propertySelector,
+  removeProperty,
 } from "../../../store/slices/propertySlice";
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 
 export default function PostedApartments() {
   const dispatch = useDispatch();
 
-  const { userAddedProperties } = useSelector(propertySelector);
+  const {
+    userAddedProperties,
+    isRemoving,
+    isRemoved,
+    isRemoveError,
+    errorMessage,
+  } = useSelector(propertySelector);
 
   useEffect(() => {
     dispatch(getUserAddedProperties());
   }, []);
 
-  console.log(userAddedProperties);
+  useEffect(() => {
+    if (isRemoveError) {
+      toast.error(errorMessage);
+      dispatch(clearState());
+    }
+
+    if (isRemoved) {
+      toast.success("Property removed!");
+      dispatch(getUserAddedProperties());
+      dispatch(clearState());
+    }
+  }, [isRemoved, isRemoveError]);
+
+  const handleRemoveApartment = (propertyId) => {
+    dispatch(removeProperty(propertyId));
+  };
 
   return (
     <div className="">
@@ -25,11 +49,13 @@ export default function PostedApartments() {
           ({ id, images, description, location, price }) => (
             <PostedApartmentsCard
               key={id}
-              imageUrl={images[0].media}
+              imageUrl={images}
               description={description}
               location={location}
               price={price}
               id={id}
+              isRemoving={isRemoving}
+              handleRemoveApartment={handleRemoveApartment}
             />
           )
         )

@@ -7,8 +7,10 @@ import "./homePage.css";
 import Navbar from "../../components/landingPages/navbar/nav2";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../store/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 function Home() {
   const { isLandlord, isLoggedIn } = useSelector(userSelector);
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -90,7 +92,7 @@ function Home() {
           </div>
         </div>
         <div className="w-full flex flex-col items-center justify-center px-12">
-          <button className="border-none block bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px]">
+          <button onClick={() => navigate("/signup")} className="border-none flex bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] justify-center items-center">
             Get Started
           </button>
           <span className="font-header text-[10px] font-normal mt-[10px]">
@@ -118,7 +120,7 @@ function Home() {
               satisfied with our houses.
             </p>
             <div className="font-header w-full ">
-              <button className="border-none block bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] shadow-md mb-2">
+              <button onClick={()=>navigate("/signup")} className="border-none flex justify-center items-center bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] shadow-md mb-2">
                 Get Started
               </button>
               <span className="font-header text-[10px] font-normal mt-[10px] text-center md:text-left">
@@ -148,7 +150,7 @@ function Home() {
               customers.
             </p>
             <div className="w-full flex flex-col items-center justify-center">
-              <button className="border-none block bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px]">
+              <button onClick={()=>navigate("/signup")} className="border-none flex justify-center items-center bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px]">
                 Get Started
               </button>
               <span className="font-header text-[10px] font-normal text-[#e6e6e6] mt-[10px]">
