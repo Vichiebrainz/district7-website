@@ -108,7 +108,7 @@ export default function UpdateProperty() {
     formData.append("location", data.location);
     formData.append("description", data.description);
     // formData.append("uploaded_images", picture);
-    formData.append("is_public", data.is_public);
+    formData.append("is_public", true);
 
     dispatch(updateProperty({ id: params.id, details: formData }));
   };
@@ -213,7 +213,7 @@ export default function UpdateProperty() {
                 }
               />
             </div>
-            <div>
+            {/* <div>
               <label className="relative items-center cursor-pointer">
                 <input
                   type="checkbox"
@@ -225,7 +225,7 @@ export default function UpdateProperty() {
                 />
                 <div className="w-14 h-7 bg-transparent border-[2px] border-solid border-[#05C002] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-none after:content-[''] after:absolute after:top-[3px] after:left-[5px]  peer-checked:after:bg-white after:bg-[#05C002] after:border-none after:border after:rounded-full after:h-[22px] after:w-[22px] after:transition-all peer-checked:bg-[#05C002] peer-checked:border-none"></div>
               </label>
-            </div>
+            </div> */}
           </div>
         </label>
 

@@ -7,12 +7,11 @@ const TabTitle = ({ title, onClick, active }) => {
         className={`cursor-pointer  px-4 py-2 font-medium text-[16  px] md:text-[20px] font-header flex w-full justify-center
           ${
             active
-              ? " text-[#05C002] md:text-[#068903]  bg-white text-center rounded-[8px]"
+              ? " text-[#05C002] md:text-[#068903]  bg-white text-center rounded-[8px] underline decoration-white"
               : " text-white"
           }
         `}
-        onClick={onClick}
-      >
+        onClick={onClick}>
         {title}
       </button>
     </div>
