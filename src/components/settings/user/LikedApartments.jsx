@@ -20,12 +20,12 @@ const LikedApartments = () => {
   }, []);
 
   return (
-    <div className="my-10">
+    <div className="my-10 px-6">
       {userLikedProperties?.length > 0 &&
         userLikedProperties?.map((apartment, i) => (
           <ApartmentCard
             key={i}
-            imageUrl={apartment.imageUrl}
+            imageUrl={apartment.images}
             description={apartment.description}
             price={apartment.price}
             location={apartment.location}

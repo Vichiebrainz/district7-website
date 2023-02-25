@@ -38,15 +38,18 @@ const LandlordDashboardLayout = () => {
           <MobileNav avatar={user?.avatar} />
           <LandlordBottomNav />
         </div>
-        <Routes>
-          <Route path="dashboard" element={<LandlordDashboard />} />
-          <Route path="posts" element={<LandlordPosts />} />
-          <Route path="post/:id/update" element={<UpdateProperty />} />
-          <Route path="orders" element={<LandlordOrders />} />
-          <Route path="settings" element={<LandlordSettings />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="profile" element={<Profile />} />
-        </Routes>
+        <div className="py-6">
+          {" "}
+          <Routes>
+            <Route path="dashboard" element={<LandlordDashboard />} />
+            <Route path="posts" element={<LandlordPosts />} />
+            <Route path="post/:id/update" element={<UpdateProperty />} />
+            <Route path="orders" element={<LandlordOrders />} />
+            <Route path="settings" element={<LandlordSettings />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="profile" element={<Profile />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

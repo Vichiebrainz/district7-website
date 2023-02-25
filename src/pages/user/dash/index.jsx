@@ -77,7 +77,7 @@ const UserDashboard = () => {
   return (
     <div className="px-6 md:px-0">
       <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
-        <div className="w-full md:w-2/3 md:h-[500px] h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5">
+        <div className="w-full md:w-2/3 md:h-[500px] h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           <div className="px-6 py-5 mb-4 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Liked Apartments</span>
@@ -87,47 +87,53 @@ const UserDashboard = () => {
             </div>
             <div className="hidden md:block">
               {userLikedProperties?.length > 0 ? (
-                <Swiper
-                  spaceBetween={30}
-                  slidesPerView={3}
-                  centeredSlides={true}
-                  autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                  }}
-                  loop={false}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  navigation={true}
-                  modules={[Autoplay, Navigation]}
-                  className="mySwiper"
-                >
-                  {userLikedProperties.map((apartment, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="h-[280px] w-[200px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
-                        <div className="w-full h-3/4">
-                          <img
-                            src={apartment?.images[0]?.media}
-                            alt=""
-                            className="w-full rounded-t-[15px] h-full object-cover"
-                          />
+                <>
+                  <Swiper
+                    spaceBetween={30}
+                    slidesPerView={3}
+                    centeredSlides={true}
+                    autoplay={{
+                      delay: 2500,
+                      disableOnInteraction: false,
+                    }}
+                    loop={false}
+                    pagination={{
+                      clickable: true,
+                    }}
+                    navigation={true}
+                    modules={[Autoplay, Navigation]}
+                    className="mySwiper">
+                    {userLikedProperties.map((apartment, i) => (
+                      <SwiperSlide key={i}>
+                        <div className="h-[280px] w-[200px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
+                          <div className="w-full h-3/4">
+                            <img
+                              src={apartment?.images[0]?.media}
+                              alt=""
+                              className="w-full rounded-t-[15px] h-full object-cover"
+                            />
+                          </div>
+                          <div className="w-full h-full px-3 py-2 mb-1">
+                            <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal">
+                              {apartment.title}
+                            </p>
+                            <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
+                              {apartment.location}
+                            </p>
+                            <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
+                              N {apartment.price}
+                            </p>
+                          </div>
                         </div>
-                        <div className="w-full h-full px-3 py-2 mb-1">
-                          <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal">
-                            {apartment.title}
-                          </p>
-                          <p className="m-0 p-0 text-white text-[11px] leading-[15.85px] font-header font-normal">
-                            {apartment.location}
-                          </p>
-                          <p className="m-0 p-0 text-white text-[11px] leading-[19.85px] font-header font-thin">
-                            N {apartment.price}
-                          </p>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                  <div
+                    className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer underline"
+                    onClick={() => navigate("/user/settings?tab=liked")}>
+                    See more
+                  </div>
+                </>
               ) : (
                 <div className="w-full h-[300px] flex justify-center items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
                   You have not liked any new home. Like an apartment to get
@@ -138,52 +144,58 @@ const UserDashboard = () => {
 
             <div className="block md:hidden">
               {userLikedProperties?.length > 0 ? (
-                <Swiper
-                  grabCursor={true}
-                  effect={"creative"}
-                  creativeEffect={{
-                    prev: {
-                      shadow: true,
-                      translate: [0, 0, -400],
-                    },
-                    next: {
-                      translate: ["100%", 0, 0],
-                    },
-                  }}
-                  navigation={true}
-                  modules={[Autoplay, Navigation]}
-                  // modules={[EffectCreative]}
-                  className="mySwiper"
-                >
-                  {userLikedProperties?.map((apartment, i) => (
-                    <SwiperSlide key={i}>
-                      <div>
-                        <div className="w-full h-[250px] flex flex-col rounded-[5px]">
-                          <div className="h-2/3">
-                            <img
-                              src={apartment?.images[0].media}
-                              alt=""
-                              className="w-full rounded-t-[5px] h-full object-cover"
-                            />
-                          </div>
-                          <div className="h-1/3 bg-[#05C002] rounded-b-[5px] relative">
-                            <div className="w-full h-full px-3 py-2 mb-1">
-                              <p className="m-0 p-0 text-white text-[14px] leading-[15.85px] font-header font-normal my-1">
-                                {apartment.title}
-                              </p>
-                              <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal my-1">
-                                {apartment.location}
-                              </p>
-                              <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-bold">
-                                N {apartment.price}
-                              </p>
+                <>
+                  <Swiper
+                    grabCursor={true}
+                    effect={"creative"}
+                    creativeEffect={{
+                      prev: {
+                        shadow: true,
+                        translate: [0, 0, -400],
+                      },
+                      next: {
+                        translate: ["100%", 0, 0],
+                      },
+                    }}
+                    navigation={true}
+                    modules={[Autoplay, Navigation]}
+                    // modules={[EffectCreative]}
+                    className="mySwiper">
+                    {userLikedProperties?.map((apartment, i) => (
+                      <SwiperSlide key={i}>
+                        <div>
+                          <div className="w-full h-[250px] flex flex-col rounded-[5px]">
+                            <div className="h-2/3">
+                              <img
+                                src={apartment?.images[0].media}
+                                alt=""
+                                className="w-full rounded-t-[5px] h-full object-cover"
+                              />
+                            </div>
+                            <div className="h-1/3 bg-[#05C002] rounded-b-[5px] relative">
+                              <div className="w-full h-full px-3 py-2 mb-1">
+                                <p className="m-0 p-0 text-white text-[14px] leading-[15.85px] font-header font-normal my-1">
+                                  {apartment.title}
+                                </p>
+                                <p className="m-0 p-0 text-white text-[13px] leading-[15.85px] font-header font-normal my-1">
+                                  {apartment.location}
+                                </p>
+                                <p className="m-0 p-0 text-white text-[10px] leading-[15.85px] font-header font-bold">
+                                  N {apartment.price}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                  <div
+                    className="px-6 py-4 flex justify-between text-[#068903] text-[14px] leading-[19.5px] font-semibold font-header absolute bottom-0 right-2 cursor-pointer underline mt-4"
+                    onClick={() => navigate("/user/settings?tab=liked")}>
+                    See more
+                  </div>
+                </>
               ) : (
                 <div className="w-full h-[300px] flex justify-center items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
                   You have not liked any new home. Like an apartment to get
@@ -254,8 +266,7 @@ const UserDashboard = () => {
         </div>
         <button
           className="text-white font-header font-semibold flex items-center gap-3 bg-[#05C002] md:bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg"
-          onClick={() => navigate("/user/explore")}
-        >
+          onClick={() => navigate("/user/explore")}>
           <span>Explore</span>
           <BsArrowRight />
         </button>
@@ -330,8 +341,7 @@ const UserDashboard = () => {
           </div>
           <button
             className="text-white font-header font-semibold flex items-center gap-3  bg-[#05C002] md:bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg"
-            onClick={() => navigate("/user/connect")}
-          >
+            onClick={() => navigate("/user/connect")}>
             <span>Go to district connect</span>
             <BsArrowRight />
           </button>
@@ -347,8 +357,7 @@ const UserDashboard = () => {
             <div>
               <a
                 className="flex gap-2 items-center my-4 link link-underline link-underline-black"
-                href="tel:+2349065918317"
-              >
+                href="tel:+2349065918317">
                 <div>
                   <BsFillTelephoneFill fontSize={22} color="#05C002" />
                 </div>
@@ -358,8 +367,7 @@ const UserDashboard = () => {
               </a>
               <a
                 className="flex gap-2 items-center link link-underline link-underline-black"
-                href="mailto:weatdistrict7@gmail.com"
-              >
+                href="mailto:weatdistrict7@gmail.com">
                 <div>
                   <RiMailSendFill fontSize={22} color="#05C002" />
                 </div>
