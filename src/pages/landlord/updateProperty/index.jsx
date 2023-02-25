@@ -110,7 +110,7 @@ export default function UpdateProperty() {
     // formData.append("uploaded_images", picture);
     formData.append("is_public", data.is_public);
 
-    // dispatch(updateProperty({ id: params.id, details: formData }));
+    dispatch(updateProperty({ id: params.id, details: formData }));
   };
 
   const handleToggleChange = () => {
