@@ -26,16 +26,21 @@ const Profile = () => {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [phone_number, setPhone] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   useEffect(() => {
     dispatch(getUser());
-
-    setFirstName(user?.first_name);
-    setLastName(user?.last_name);
-    setPhone(user?.phone_number);
-    setAvatar(user?.avatar);
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      setFirstName(user?.first_name);
+      setLastName(user?.last_name);
+      setPhone(user?.phone_number);
+      setAvatarUrl(user?.avatar);
+    }
+  }, [user]);
 
   useEffect(() => {
     return () => {
@@ -64,11 +69,17 @@ const Profile = () => {
     formData.append("first_name", first_name); //append the values with key, value pair
     formData.append("last_name", last_name);
     formData.append("phone_number", phone_number);
+    if (!!avatar) {
+      formData.append("avatar", avatar);
+    }
 
     dispatch(updateUser(formData));
   };
 
-  const uploadImage = () => {};
+  const uploadImage = (event) => {
+    setAvatar(event.target.files[0]);
+    setAvatarUrl(URL.createObjectURL(event.target.files[0]));
+  };
 
   return (
     <div className="p-6 md:p-0">
@@ -76,7 +87,7 @@ const Profile = () => {
         <div>
           <img
             className="w-[80px] md:w-[160px] h-[80px] md:h-[160px] rounded-full mr-4 border-2 border-solid border-[#05C002]"
-            src={user?.avatar}
+            src={avatarUrl}
             alt="User avatar"
           />
         </div>
@@ -87,12 +98,18 @@ const Profile = () => {
           <p className="hidden md:flex text-black text-[24px] leading-[29.26px] font-normal font-header mb-0 md:mb-2">
             {user?.is_landlord ? "Agent" : "User"}
           </p>
-          {/* <p
-            className="text-[#92918F] text-[12px] md:text-[18px] leading-[21.94px] font-normal font-header underline cursor-pointer"
-            onClick={uploadImage}
-          >
-            Edit Profile Picture
-          </p> */}
+
+          <label>
+            <p className="text-[#92918F] text-[12px] md:text-[18px] leading-[21.94px] font-normal font-header underline cursor-pointer">
+              Edit Profile Picture
+            </p>
+            <input
+              type="file"
+              className="hidden"
+              accept="image/png, image/jpeg"
+              onChange={uploadImage}
+            />
+          </label>
         </div>
       </div>
       <div>
@@ -100,8 +117,7 @@ const Profile = () => {
           <form onSubmit={updateProfile}>
             <label
               htmlFor="name"
-              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
-            >
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1">
               First Name
             </label>
             <input
@@ -116,8 +132,7 @@ const Profile = () => {
 
             <label
               htmlFor="name"
-              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
-            >
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1">
               Last Name
             </label>
             <input
@@ -132,8 +147,7 @@ const Profile = () => {
 
             <label
               htmlFor="email"
-              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
-            >
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1">
               Email Address
             </label>
             <input
@@ -148,8 +162,7 @@ const Profile = () => {
 
             <label
               htmlFor="phone_number"
-              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1"
-            >
+              className="block font-normal font-header text-[#92918F] text-[13px] md:text-[16px] leading-[19.5px] mb-1">
               Phone Number
             </label>
             <input
@@ -165,8 +178,7 @@ const Profile = () => {
             <button
               type="submit"
               className="button-primary bg-[#05C002] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-8"
-              onClick={updateProfile}
-            >
+              onClick={updateProfile}>
               {isUpdating && <DotLoader color="#fff" size={21} />}
               {!isUpdating && "Update profile"}
             </button>

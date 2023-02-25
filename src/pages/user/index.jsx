@@ -38,7 +38,7 @@ const UserDashboardLayout = () => {
         </div>
         <Routes>
           <Route path="dashboard" element={<UserDashboard />} />
-          <Route path="explore" element={<Explore userId={user?.id}/>} />
+          <Route path="explore" element={<Explore userId={user?.id} />} />
           <Route path="connect" element={<Connect />} />
           <Route path="settings" element={<Settings />} />
           <Route path="notifications" element={<MdNotifications />} />
