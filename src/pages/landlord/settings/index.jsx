@@ -47,13 +47,13 @@ const Settings = () => {
           onClick={() => setCurrentTab("notifications")}
           active={currentTab === "notifications"}
         />
-
+        {/* 
         <TabTitle
           title="Account"
           tab="account"
           onClick={() => setCurrentTab("account")}
           active={currentTab === "account"}
-        />
+        /> */}
 
         <TabTitle
           title="Logout"
@@ -65,8 +65,7 @@ const Settings = () => {
       <div className="block md:hidden my-4 pt-6 px-6">
         <div
           className="flex text-left gap-1 items-center text-[#333] font-header mb-4"
-          onClick={() => setCurrentTab("")}
-        >
+          onClick={() => setCurrentTab("")}>
           <BiChevronLeft />
           <div className="text-[13px]">Back</div>
         </div>
@@ -81,8 +80,7 @@ const Settings = () => {
                 <div
                   className="w-full flex items-center gap-3 rounded-[5px]  border-[0.5px] border-solid border-black/30 px-5 py-3 font-header my-5"
                   onClick={() => setCurrentTab(route.to)}
-                  key={i}
-                >
+                  key={i}>
                   <div className="">
                     <route.icon />
                   </div>
@@ -112,11 +110,11 @@ const Settings = () => {
           </Tab>
         )}
 
-        {currentTab === "account" && (
+        {/* {currentTab === "account" && (
           <Tab>
             <Account />
           </Tab>
-        )}
+        )} */}
 
         {currentTab === "logout" && (
           <Tab>
