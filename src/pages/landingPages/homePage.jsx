@@ -35,8 +35,8 @@ function Home() {
             <span className="text-[#05c002]">Dream Spaces</span>
           </h1>
           <p className="text-[12px] md:text-[16px] font-header font-normal mt-[20px] mb:mt-[30px] text-white">
-            We provide access to thousands of house listings in any area of your
-            choice. The best stress free way of securing suitable accomodation
+            We provide access to thousands of house listings across Nigeria. The
+            easiest way to secure suitable accommodation.
           </p>
         </div>
       </div>
