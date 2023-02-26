@@ -52,17 +52,16 @@ function Home() {
               Stress free
             </h3>
             <p className="text-[15px] font-normal text-[#ffffffb2]">
-              We make search for houses easy as this could be done from the
-              comfort of your homes.
+              Enjoy the ease of thousands of home listings all at your
+              fingertips
             </p>
           </div>
           <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
             <h3 className="text-[#05d901] font-semibold text-[20px] ">
-              Cheap rate
+              Affordable
             </h3>
             <p className="text-[15px] font-normal text-[#ffffffb2]">
-              We offer the cheapest apartments for rent by eliminating the cost
-              of middle man.
+              Access dream spaces without breaking the bank.
             </p>
           </div>
           <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
@@ -70,7 +69,7 @@ function Home() {
               High Quality
             </h3>
             <p className="text-[15px] font-normal text-[#ffffffb2]">
-              We recommend the best type of houses for rent.
+              Get value for your money, and kiss discomfort goodbye.
             </p>
           </div>
           <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
@@ -78,16 +77,17 @@ function Home() {
               Secured Transaction
             </h3>
             <p className="text-[15px] font-normal text-[#ffffffb2]">
-              We strictly monitor all payments and ensure all transactions are
-              secured.
+              All house listings are verified to ensure safe and secure
+              transactions.
             </p>
           </div>
           <div className="bg-black flex flex-col items-start justify-center px-8 py-3 m-[20px] w-[300px] h-[230px] font-header">
             <h3 className="text-[#05d901] font-semibold text-[20px] ">
-              Comfortability
+              Comfort
             </h3>
             <p className="text-[15px] font-normal text-[#ffffffb2]">
-              We help you create a comfortable space for yourself & family.
+              Make and house memories in homes tailored to suit you and your
+              family.
             </p>
           </div>
         </div>
@@ -115,17 +115,17 @@ function Home() {
         <div className="flex-1 flex items-center place-content-center">
           <div>
             <h1 className="font-header text-[30px] md:text[50px] font-semibold mb-2">
-              Stay happy with your refunds
+              Refunds? Not a Problem
             </h1>
             <p className="text-[15px] font-header font-normal my-8 text-justify">
-              We ensure you are refunded within 2 days of request if you are not
-              satisfied with our houses.
+              Get refunded within 48 hours if you're not satisfied with any of
+              our houses.
             </p>
             <div className="font-header w-full ">
               <button
-                onClick={() => navigate("/signup")}
+                // onClick={() => navigate("/signup")}
                 className="border-none flex justify-center items-center bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] shadow-md mb-2">
-                Get Started
+                Request refund
               </button>
               <span className="font-header text-[10px] font-normal mt-[10px] text-center md:text-left">
                 {/* Join our waitlist to know when we go live */}
@@ -139,7 +139,7 @@ function Home() {
       <div className="h-[90vh]  w-full bg-no-repeat bg-cover bg-center bg-best-tenants flex flex-col items-center box-border">
         <div className="w-[80%] mt-[50px] mb-[30px]">
           <h2 className="font-header text-[28px] font-semibold text-[#05c002] leading-[34.13px]">
-            For Agents & Landlords
+            Agents & Landlords
           </h2>
         </div>
         <div className="min-h-[70vh] !w-full flex items-center justify-center">
@@ -149,9 +149,8 @@ function Home() {
               Your Houses listed
             </h1>
             <p className="font-header text-[12px] md:text-[18px] font-normal text-[#e6e6e6] my-[14px] text-center">
-              We provide access to thousands of tenants listings for any of your
-              houses. The best stress free way of securing potential responsible
-              customers.
+              Get access to thousands of potential tenants for your houses, and
+              property. Join a community of Agents and Landlords like yourself.
             </p>
             <div className="w-full flex flex-col items-center justify-center">
               <button

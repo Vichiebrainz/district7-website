@@ -135,9 +135,17 @@ const UserDashboard = () => {
                   </div>
                 </>
               ) : (
-                <div className="w-full h-[300px] flex justify-center items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
-                  You have not liked any new home. Like an apartment to get
-                  started.
+                <div className="w-full h-[300px] flex justify-center items-center ">
+                  <div className="flex flex-col items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
+                    You have not liked any apartments, yet. Like an apartment to
+                    get started
+                    <button
+                      className="w-fit text-white font-header font-semibold flex items-center gap-3 bg-[#05C002] md:bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg "
+                      onClick={() => navigate("/user/explore")}>
+                      <span>See apartments</span>
+                      <BsArrowRight />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -197,9 +205,17 @@ const UserDashboard = () => {
                   </div>
                 </>
               ) : (
-                <div className="w-full h-[300px] flex justify-center items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
-                  You have not liked any new home. Like an apartment to get
-                  started.
+                <div className="w-full h-[300px] flex justify-center items-center ">
+                  <div className="flex flex-col items-center font-header text-center font-semibold text-[12px] md:text-[18px] text-black/70">
+                    You have not liked any apartments, yet. Like an apartment to
+                    get started
+                    <button
+                      className="w-fit text-white font-header font-semibold flex items-center gap-3 bg-[#05C002] md:bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg "
+                      onClick={() => navigate("/user/explore")}>
+                      <span>See apartments</span>
+                      <BsArrowRight />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -262,7 +278,7 @@ const UserDashboard = () => {
           Get a property
         </div>
         <div className="md:mb-8  font-header text-black/60 text-[12px] mb-6">
-          Browse through our gallery of apartments to get one suitable for you
+          Browse through our gallery of apartments to find yourself a new home
         </div>
         <button
           className="text-white font-header font-semibold flex items-center gap-3 bg-[#05C002] md:bg-[#068903] rounded-[8px] shadow  p-4 my-3 hover:shadow-lg"
