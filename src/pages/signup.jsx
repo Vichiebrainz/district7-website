@@ -9,12 +9,16 @@ import {
   clearState,
   registerLandlord,
   registerUser,
+  setRegisterType,
   userSelector,
 } from "../store/slices/authSlice";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+import landlord from "../../public/landlord.png";
+import tenant from "../../public/renter.png";
 
 const signupSchema = yup.object({
   first_name: yup.string().required("Please Enter your First name"),
@@ -43,6 +47,7 @@ function Signup() {
   const [password2, setConfirmPassword] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
+  const [registrationStep, setRegistrationStep] = useState("one");
 
   const dispatch = useDispatch();
   let navigate = useNavigate();
@@ -102,137 +107,216 @@ function Signup() {
     }
   }, [isError, isSuccess, isFetching, isLandlord]);
 
-  useEffect(() => {
-    isLoggedIn && isLandlord && navigate("/landlord/dashboard");
-    isLoggedIn && !isLandlord && navigate("/user/dashboard");
-  }, [isLoggedIn, isLandlord]);
+  // useEffect(() => {
+  //   isLoggedIn && isLandlord && navigate("/landlord/dashboard");
+  //   isLoggedIn && !isLandlord && navigate("/user/dashboard");
+  // }, [isLoggedIn, isLandlord]);
+
+  const handleRegisterType = (e) => {
+    dispatch(setRegisterType(e));
+    navigate("/signup");
+  };
 
   const errorMessageStyles =
     "text-[crimson] text-[13px] font-medium font-header mb-6";
 
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0">
-      <form
-        className="form flex flex-col items-center justify-center"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="form-body w-full max-w-[450px] flex flex-col justify-center pb-[75px]">
-          <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header mb-[81px]">
-            <p className="page-title text-[#05C002]">Sign Up</p>
-          </div>
-          <div className="grid grid-cols-2 gap-5">
-            <div className="firstname font-body">
-              <div className="label-wrapper">
-                <label className="form-label" htmlFor="firstname">
-                  Firstname{" "}
-                </label>
-              </div>
-              <input
-                type="name"
-                id="firstName"
-                className="form-input py-3 mb-[10px]"
-                placeholder="First name"
-                {...register("first_name", { required: true })}
-              />
-              <p className={errorMessageStyles}>{errors.first_name?.message}</p>
+      {registrationStep === "one" && (
+        <div className="step-1 flex flex-col items-center justify-center">
+          <div className="w-full md:w-3/4 mx-auto">
+            <div className="text-[21px] md:text-[28px] text-black/80 font-semibold font-header mb-8">
+              Select account type
             </div>
-            <div className="lastname font-body">
-              <div className="label-wrapper">
-                <label className="form-label" htmlFor="lastname">
-                  Lastname{" "}
-                </label>
-              </div>
-              <input
-                type="name"
-                id="lastName"
-                className="form-input py-3 mb-[10px]"
-                placeholder="Last name"
-                {...register("last_name", { required: true })}
-              />
-              <p className={errorMessageStyles}>{errors.last_name?.message}</p>
-            </div>
-          </div>
-          <div className="phone font-body">
-            <div className="label-wrapper">
-              <label className="form-label" htmlFor="phone">
-                Phone{" "}
-              </label>
-            </div>
-            <input
-              type="phone"
-              id="phone"
-              className="form-input py-3 mb-[10px]"
-              placeholder="07012345678"
-              {...register("phone_number", { required: true })}
-            />
-            <p className={errorMessageStyles}>{errors.phone_number?.message}</p>
-          </div>
-          <div className="email font-body">
-            <div className="label-wrapper">
-              <label className="form-label" htmlFor="email">
-                Email{" "}
-              </label>
-            </div>
-            <input
-              type="email"
-              id="email"
-              className="form-input py-3 mb-[10px]"
-              placeholder="weatdistrict7@gmail.com"
-              {...register("email", { required: true })}
-            />
-            <p className={errorMessageStyles}>{errors.email?.message}</p>
-          </div>
+            <p></p>
 
-          <div className="password font-body">
-            <div className="label-wrapper">
-              <label className="form-label" htmlFor="password">
-                Password{" "}
-              </label>
+            <div>
+              <div
+                className={`item-card bg-white shadow-[0px_8px_24px_rgba(149,157,165,0.2)] hover:shadow-sm rounded-[12px] p-4 flex items-center gap-4 cursor-pointer my-4 border-[2px] border-solid ${
+                  registerType === "tenant"
+                    ? "border-[#05C002] bg-[#05C002]/10"
+                    : "border-none"
+                }`}
+                onClick={() => handleRegisterType("tenant")}>
+                <div className="w-[32px] h-[32px] relative">
+                  <img src={tenant} alt="" className="w-full object-cover" />
+                </div>
+                <div>
+                  <div className="text-[12px] md:text-[16px] text-black/80 font-semibold font-header ">
+                    Tenant
+                  </div>
+                  <div className="text-[10px] md:text-[14px] text-black/80 font-light font-header ">
+                    Search or find a home
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`item-card bg-white shadow-[0px_8px_24px_rgba(149,157,165,0.2)] hover:shadow-sm rounded-[12px] p-4 flex items-center gap-4 cursor-pointer my-4 border-[2px] border-solid ${
+                  registerType === "landlord"
+                    ? "border-[#05C002] bg-[#05C002]/10"
+                    : "border-none"
+                } `}
+                onClick={() => handleRegisterType("landlord")}>
+                <div className="w-[32px] h-[32px] relative">
+                  <img src={landlord} alt="" className="w-full object-cover" />
+                </div>
+                <div>
+                  <div className="text-[12px] md:text-[16px] text-black/80 font-semibold font-header ">
+                    Agent
+                  </div>
+                  <div className="text-[10px] md:text-[14px] text-black/80 font-light font-header ">
+                    Post a property
+                  </div>
+                </div>
+              </div>
             </div>
-            <input
-              className="form-input py-3 mb-[10px]"
-              type="password"
-              id="password"
-              placeholder="Password"
-              {...register("password", { required: true })}
-            />
-            <p className={errorMessageStyles}>{errors.password?.message}</p>
+
+            {registerType && (
+              <div className="button mt-24">
+                <button
+                  className="footer py-4 px-12 text-white text-[18px] font-header font-bold  bg-[#05C002]  w-fit rounded-[5px]"
+                  onClick={() => setRegistrationStep("two")}>
+                  Next
+                </button>
+              </div>
+            )}
           </div>
-          <div className="password font-body">
-            <div className="label-wrapper">
-              <label className="form-label" htmlFor="password">
-                Confirm Password{" "}
-              </label>
-            </div>
-            <input
-              className="form-input py-3 mb-[10px]"
-              type="password"
-              id="confirmPassword"
-              placeholder="Confirm password"
-              {...register("password2", { required: true })}
-            />
-            <p className={errorMessageStyles}>{errors.password2?.message}</p>
-          </div>
-          <div>
-            <button
-              className="footer p-[22px] text-white text-[18px] font-header font-bold  bg-[#05C002] md:bg-primary-green w-full rounded-[5px]"
-              onClick={() => handleSubmit(onsubmit)}
-              type="submit"
-            >
-              {isFetching && <DotLoader color="#fff" size={21} />}
-              {!isFetching && "Get started"}
-            </button>
-          </div>
-          <Link to="/login">
-            <div className="signup mt-[53px] w-full text-center text-[12px] md:text-base text-gray-700 font-header">
-              <p>
-                Have an account already?
-                <span className="px-[4px] font-bold text-[#05C002]">Login</span>
-              </p>
-            </div>
-          </Link>
         </div>
-      </form>
+      )}
+      {/* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */}
+      {registrationStep === "two" && (
+        <div className="step-2">
+          <form
+            className="form flex flex-col items-center justify-center"
+            onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-body w-full max-w-[450px] flex flex-col justify-center pb-[75px]">
+              <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header mb-[81px]">
+                <p className="page-title text-[#05C002]">Sign Up</p>
+              </div>
+              <div className="grid grid-cols-2 gap-5">
+                <div className="firstname font-body">
+                  <div className="label-wrapper">
+                    <label className="form-label" htmlFor="firstname">
+                      Firstname{" "}
+                    </label>
+                  </div>
+                  <input
+                    type="name"
+                    id="firstName"
+                    className="form-input py-3 mb-[10px]"
+                    placeholder="First name"
+                    {...register("first_name", { required: true })}
+                  />
+                  <p className={errorMessageStyles}>
+                    {errors.first_name?.message}
+                  </p>
+                </div>
+                <div className="lastname font-body">
+                  <div className="label-wrapper">
+                    <label className="form-label" htmlFor="lastname">
+                      Lastname{" "}
+                    </label>
+                  </div>
+                  <input
+                    type="name"
+                    id="lastName"
+                    className="form-input py-3 mb-[10px]"
+                    placeholder="Last name"
+                    {...register("last_name", { required: true })}
+                  />
+                  <p className={errorMessageStyles}>
+                    {errors.last_name?.message}
+                  </p>
+                </div>
+              </div>
+              <div className="phone font-body">
+                <div className="label-wrapper">
+                  <label className="form-label" htmlFor="phone">
+                    Phone{" "}
+                  </label>
+                </div>
+                <input
+                  type="phone"
+                  id="phone"
+                  className="form-input py-3 mb-[10px]"
+                  placeholder="07012345678"
+                  {...register("phone_number", { required: true })}
+                />
+                <p className={errorMessageStyles}>
+                  {errors.phone_number?.message}
+                </p>
+              </div>
+              <div className="email font-body">
+                <div className="label-wrapper">
+                  <label className="form-label" htmlFor="email">
+                    Email{" "}
+                  </label>
+                </div>
+                <input
+                  type="email"
+                  id="email"
+                  className="form-input py-3 mb-[10px]"
+                  placeholder="weatdistrict7@gmail.com"
+                  {...register("email", { required: true })}
+                />
+                <p className={errorMessageStyles}>{errors.email?.message}</p>
+              </div>
+
+              <div className="password font-body">
+                <div className="label-wrapper">
+                  <label className="form-label" htmlFor="password">
+                    Password{" "}
+                  </label>
+                </div>
+                <input
+                  className="form-input py-3 mb-[10px]"
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  {...register("password", { required: true })}
+                />
+                <p className={errorMessageStyles}>{errors.password?.message}</p>
+              </div>
+              <div className="password font-body">
+                <div className="label-wrapper">
+                  <label className="form-label" htmlFor="password">
+                    Confirm Password{" "}
+                  </label>
+                </div>
+                <input
+                  className="form-input py-3 mb-[10px]"
+                  type="password"
+                  id="confirmPassword"
+                  placeholder="Confirm password"
+                  {...register("password2", { required: true })}
+                />
+                <p className={errorMessageStyles}>
+                  {errors.password2?.message}
+                </p>
+              </div>
+              <div>
+                <button
+                  className="footer p-[22px] text-white text-[18px] font-header font-bold  bg-[#05C002] md:bg-primary-green w-full rounded-[5px]"
+                  onClick={() => handleSubmit(onsubmit)}
+                  type="submit">
+                  {isFetching && <DotLoader color="#fff" size={21} />}
+                  {!isFetching && "Get started"}
+                </button>
+              </div>
+              <Link to="/login">
+                <div className="signup mt-[53px] w-full text-center text-[12px] md:text-base text-gray-700 font-header">
+                  <p>
+                    Have an account already?
+                    <span className="px-[4px] font-bold text-[#05C002]">
+                      Login
+                    </span>
+                  </p>
+                </div>
+              </Link>
+            </div>
+          </form>
+        </div>
+      )}
       <div className="background-image min-h-screen hidden md:block">
         <img className="bg-img w-full h-full" src="/background-image.png"></img>
         <div className="content py-12 lg:py-24 px-20 flex flex-col justify-between h-full">

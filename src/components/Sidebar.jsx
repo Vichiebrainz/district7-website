@@ -1,9 +1,23 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MdDashboard, MdTravelExplore, MdSettings } from "react-icons/md";
+import { RiLogoutBoxRFill } from "react-icons/ri";
 import logo from "../assets/brand.png";
+import { useSelector } from "react-redux";
+import { userSelector } from "../store/slices/authSlice";
 
 const Sidebar = ({ routes }) => {
+  const navigate = useNavigate();
+
+  const { isLandlord } = useSelector(userSelector);
+  let user;
+
+  if (isLandlord) {
+    user = "landlord";
+  } else {
+    user = "user";
+  }
+
   const activeLink =
     "flex items-center gap-5 p-[15px] rounded-[5px] text-[18px] font-semibold leading-[24.38px] text-white text-white bg-[#068903] my-8";
   const normalLink =
@@ -21,36 +35,28 @@ const Sidebar = ({ routes }) => {
             />
           </a>
         </div>
-        <div className="px-6">
+        <div className="px-6 relative">
           <nav className="py-4 px-2">
-            {routes.slice(0, routes.length - 1).map((link) => (
+            {routes.map((link) => (
               <NavLink
                 to={link.to}
                 key={link.name}
                 className={({ isActive }) =>
                   isActive ? activeLink : normalLink
-                }
-              >
+                }>
                 <link.icon fontSize={28} />
                 <span className="capitalize ">{link.name}</span>
               </NavLink>
             ))}
           </nav>
-          <div className="flex flex-grow h-full" />
-          <footer className="px-2 py-4">
-            {routes.slice(routes.length - 1, routes.length).map((link) => (
-              <NavLink
-                to={link.to}
-                key={link.name}
-                className={({ isActive }) =>
-                  isActive ? activeLink : normalLink
-                }
-              >
-                <link.icon fontSize={28} />
-                <span className="capitalize ">{link.name}</span>
-              </NavLink>
-            ))}
-          </footer>
+          <div className="flex flex-grow h-24 w-full" />
+
+          <div
+            className={`${activeLink} w-full !bg-[crimson] text-white mb-0 my-0 cursor-pointer flex items-center gap-5 `}
+            onClick={() => navigate(`/${user}/settings?tab=logout`)}>
+            <RiLogoutBoxRFill />
+            <span className="capitalize">Logout</span>
+          </div>
         </div>
       </>
     </div>

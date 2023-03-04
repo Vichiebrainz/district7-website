@@ -61,13 +61,11 @@ const Navbar = () => {
       <div className="block lg:hidden">
         <button
           onClick={() => setOpen(!isOpen)}
-          className="flex items-center px-3 py-2 border rounded text-[#05C002] border-[#05C002] hover:text-[#068903] hover:border-[#068903]"
-        >
+          className="flex items-center px-3 py-2 border rounded text-[#05C002] border-[#05C002] hover:text-[#068903] hover:border-[#068903]">
           <svg
             className="fill-current h-3 w-3"
             viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+            xmlns="http://www.w3.org/2000/svg">
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
         </button>
@@ -80,31 +78,26 @@ const Navbar = () => {
         // style={props}
         className={`w-full block lg:flex lg:items-center lg:w-auto rounded-[12px] font-header font-medium text-[15px] text-black ${
           isOpen ? "block" : "hidden"
-        }`}
-      >
+        }`}>
         <div className="flex flex-col md:flex-row">
           <a
             href="#"
-            className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6  md:mb-0"
-          >
+            className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6  md:mb-0">
             Home
           </a>
           <a
             href="#"
-            className="block lg:inline-block lg:mt-0 hover:text-gray-800 mr-8 mb-6 md:mb-0"
-          >
+            className="block lg:inline-block lg:mt-0 hover:text-gray-800 mr-8 mb-6 md:mb-0">
             About
           </a>
           <a
             href="#"
-            className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6 md:mb-0"
-          >
+            className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6 md:mb-0">
             Services
           </a>
           <a
             href="#"
-            className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6 md:mb-0"
-          >
+            className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6 md:mb-0">
             Contact
           </a>
         </div>
@@ -112,8 +105,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <button
               className="text-white bg-[#05C002] text-[15px] font-semibold px-3 py-2"
-              onClick={gotoDashboard}
-            >
+              onClick={gotoDashboard}>
               Go to dashboard
             </button>
           ) : (
@@ -131,13 +123,11 @@ const Navbar = () => {
               {showPopup && (
                 <div
                   ref={popoverRef}
-                  className="bg-white rounded py-2 px-3 text-gray-700 w-[90%] right-[5%] absolute top-60 md:top-12 md:right-0 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] md:w-[400px]"
-                >
+                  className="bg-white rounded py-2 px-3 text-gray-700 w-[90%] right-[5%] absolute top-60 md:top-12 md:right-0 shadow-[0px_5px_15px_rgba(0,0,0,0.35)] md:w-[400px]">
                   <div className="w-full flex gap-4 p-4 items-center divide-x">
                     <div
                       className="text-center cursor-pointer"
-                      onClick={() => handleRegisterType("tenant")}
-                    >
+                      onClick={() => handleRegisterType("tenant")}>
                       <div className="text-black text-[24px] font-medium font-header">
                         TENANT
                       </div>
@@ -150,8 +140,7 @@ const Navbar = () => {
                     </div>
                     <div
                       className="text-center p-2 cursor-pointer"
-                      onClick={() => handleRegisterType("lanlord")}
-                    >
+                      onClick={() => handleRegisterType("lanlord")}>
                       <div className="text-black text-[24px] font-medium font-header">
                         AGENT
                       </div>
