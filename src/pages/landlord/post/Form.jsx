@@ -13,6 +13,8 @@ import { toast } from "react-hot-toast";
 import { IoHelpCircleOutline } from "react-icons/io5";
 import { Popover } from "../../../components/Popover";
 
+import useAnalyticsEventTracker from "../../../hooks/useAnalyticsEventTracker";
+
 const schema = yup
   .object({
     title: yup.string().required("Title is required"),
@@ -32,6 +34,8 @@ export default function Form() {
 
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
+
+  const gaEventTracker = useAnalyticsEventTracker("Landlord Section");
 
   const selectFiles = (event) => {
     if (selectedFiles.length > 4) {
@@ -107,6 +111,7 @@ export default function Form() {
 
     if (isAdded) {
       toast.success("Property added successfully");
+      gaEventTracker("New Property Added!");
 
       dispatch(clearState());
     }

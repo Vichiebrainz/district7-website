@@ -9,6 +9,8 @@ import {
   propertySelector,
 } from "../../../store/slices/propertySlice";
 
+import useAnalyticsEventTracker from "../../../hooks/useAnalyticsEventTracker";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -23,11 +25,11 @@ import { DotLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 
-
-const Explore = ({userId}) => {
+const Explore = ({ userId }) => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
+  const gaEventTracker = useAnalyticsEventTracker("User dashboard events");
 
   const dispatch = useDispatch();
 
@@ -48,6 +50,7 @@ const Explore = ({userId}) => {
 
   const likeProps = (id) => {
     dispatch(likeProperty(id));
+    gaEventTracker("One property liked");
   };
 
   useEffect(() => {
@@ -65,7 +68,6 @@ const Explore = ({userId}) => {
       // toast.success("Added to favorites");
       dispatch(clearState());
       dispatch(getAllProperties());
-
     }
   }, [isLikedError, isLiked]);
 
@@ -145,8 +147,7 @@ const Explore = ({userId}) => {
           {allProperties?.map((property, index) => (
             <div
               className="h-full md:h-[300px]  w-full flex flex-col md:flex-row rounded-[20px] bg-[#D4EFD7] shadow-card  my-8"
-              key={index}
-            >
+              key={index}>
               <div className="md:w-1/3 w-full h-full rounded-[20px]">
                 {/* <img
                   src={property.images[0].media}
@@ -160,8 +161,7 @@ const Explore = ({userId}) => {
                     clickable: true,
                   }}
                   modules={[EffectFade, Navigation]}
-                  className="h-full"
-                >
+                  className="h-full">
                   {property.images?.map((image, i) => (
                     <SwiperSlide className="h-full w-full" key={i}>
                       <img
@@ -204,12 +204,12 @@ const Explore = ({userId}) => {
                 <div className=" md:w-full w-full mt-8 flex flex-row-reverse">
                   <div className="w-full flex flex-row-reverse justify-between gap-4 items-center">
                     <a
+                      onClick={() => gaEventTracker("User contacted agent")}
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
                       href={`https://wa.me/234${property?.owner?.phone_number?.substr(
                         1
                       )}?text=I'm%20inquiring%20about%20the%20apartment%20listing`}
-                      target="_blank"
-                    >
+                      target="_blank">
                       Contact Agent
                     </a>
                     {/* <div
@@ -219,12 +219,21 @@ const Explore = ({userId}) => {
                       {isLiking && <DotLoader color="#000" size={21} />}
                       
                     </div> */}
-                    <div className="cursor-pointer text-[30px]" >
-                    {isLiking && <DotLoader color="#000" size={21} />}
-                    {!isLiking && property?.liked_by.includes(userId) && <BsFillHeartFill color="red" onClick={() => likeProps(property?.id)}/>  }               
-                    {!isLiking && !property?.liked_by.includes(userId) && <BsHeart color="red" onClick={() => likeProps(property?.id)}/>}
+                    <div className="cursor-pointer text-[30px]">
+                      {isLiking && <DotLoader color="#000" size={21} />}
+                      {!isLiking && property?.liked_by.includes(userId) && (
+                        <BsFillHeartFill
+                          color="red"
+                          onClick={() => likeProps(property?.id)}
+                        />
+                      )}
+                      {!isLiking && !property?.liked_by.includes(userId) && (
+                        <BsHeart
+                          color="red"
+                          onClick={() => likeProps(property?.id)}
+                        />
+                      )}
                     </div>
-                    
                   </div>
                 </div>
               </div>

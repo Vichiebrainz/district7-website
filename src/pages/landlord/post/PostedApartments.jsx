@@ -10,8 +10,12 @@ import {
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
+import useAnalyticsEventTracker from "../../../hooks/useAnalyticsEventTracker";
+
 export default function PostedApartments() {
   const dispatch = useDispatch();
+
+  const gaEventTracker = useAnalyticsEventTracker("Landlord Section");
 
   const {
     userAddedProperties,
@@ -35,6 +39,7 @@ export default function PostedApartments() {
       toast.success("Property removed!");
       dispatch(getUserAddedProperties());
       dispatch(clearState());
+      gaEventTracker("One Property Removed!");
     }
   }, [isRemoved, isRemoveError]);
 

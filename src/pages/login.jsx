@@ -6,6 +6,7 @@ import { DotLoader } from "react-spinners";
 import { useSelector, useDispatch } from "react-redux";
 import { clearState, loginUser, userSelector } from "../store/slices/authSlice";
 import toast from "react-hot-toast";
+import useAnalyticsEventTracker from "../hooks/useAnalyticsEventTracker";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,6 +14,8 @@ function Login() {
 
   const dispatch = useDispatch();
   let navigate = useNavigate();
+
+  const gaEventTracker = useAnalyticsEventTracker("Auth");
 
   const {
     isFetching,
@@ -25,6 +28,7 @@ function Login() {
 
   function handleSubmit() {
     dispatch(loginUser({ email, password }));
+    gaEventTracker("user logged in to account");
   }
 
   useEffect(() => {
@@ -81,8 +85,7 @@ function Login() {
             <div className="label-wrapper">
               <label
                 className="form-labe text-[14px] md:text-[16px]"
-                htmlFor="email"
-              >
+                htmlFor="email">
                 Email{" "}
               </label>
             </div>
@@ -99,8 +102,7 @@ function Login() {
             <div className="label-wrapper">
               <label
                 className="form-labe text-[14px] md:text-[16px]"
-                htmlFor="password"
-              >
+                htmlFor="password">
                 Password{" "}
               </label>
             </div>
@@ -118,8 +120,7 @@ function Login() {
               className="footer p-[22px] text-white font-bold bg-[#05C002] md:bg-primary-green w-full rounded-[5px]"
               onClick={() => handleSubmit()}
               type="submit"
-              disabled={isFetching}
-            >
+              disabled={isFetching}>
               {isFetching && <DotLoader color="#fff" size={21} />}
               {!isFetching && "Proceed"}
             </button>

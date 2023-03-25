@@ -20,6 +20,8 @@ import * as yup from "yup";
 import landlord from "../../public/landlord.png";
 import tenant from "../../public/renter.png";
 
+import useAnalyticsEventTracker from "../hooks/useAnalyticsEventTracker";
+
 const signupSchema = yup.object({
   first_name: yup.string().required("Please Enter your First name"),
   last_name: yup.string().required("Please Enter your Last name"),
@@ -52,6 +54,8 @@ function Signup() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
+  const gaEventTracker = useAnalyticsEventTracker("Auth");
+
   const {
     register,
     handleSubmit,
@@ -77,6 +81,7 @@ function Signup() {
     registerType == "tenant"
       ? dispatch(registerUser(data))
       : dispatch(registerLandlord(data));
+    gaEventTracker("Account created!");
   };
 
   useEffect(() => {
