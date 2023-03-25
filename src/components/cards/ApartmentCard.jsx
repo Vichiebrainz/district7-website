@@ -41,7 +41,7 @@ function ApartmentCard({ imageUrl, description, price, location }) {
             Description:
           </div>
           <div className="basis-3/4 text-[16px] leading-[21.94px] text-black/70 font-header font-normal">
-            {description}
+            {description.slice(0, 5)}
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start mb-8">
