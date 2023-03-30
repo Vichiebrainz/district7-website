@@ -75,7 +75,7 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className="px-6 md:px-0">
+    <div className="px-6 xl:px-0">
       <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
         <div className="w-full md:w-2/3 md:h-[500px] h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           <div className="px-6 py-5 mb-4 ">

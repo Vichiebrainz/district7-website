@@ -68,7 +68,7 @@ function Login() {
   }, [isLoggedIn, isLandlord]);
 
   return (
-    <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0 ">
+    <div className="grid-container grid grid-cols-1 lg:grid-cols-2 h-screen px-[30px] md:px-0 ">
       <div className="form flex flex-col items-center justify-center font-header">
         <div className="form-body w-full max-w-[450px] flex flex-col justify-center">
           <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header">
@@ -140,7 +140,7 @@ function Login() {
           </div>
         </Link>
       </div>
-      <div className="background-image h-screen hidden md:block">
+      <div className="background-image h-screen hidden lg:block">
         <img className="bg-img w-full h-full" src="/background-image.png"></img>
         <div className="content py-12 lg:py-24 px-20 flex flex-col justify-between h-full">
           <p className="font-header max-w-[418px] text-[50px] leading-[61px] text-white">
