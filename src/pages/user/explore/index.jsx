@@ -146,9 +146,9 @@ const Explore = ({ userId }) => {
         <div className="w-full my-4 px-0 md:px-12 md:pt-10 pb-20 md:pb-0">
           {allProperties?.map((property, index) => (
             <div
-              className="h-full md:h-[300px]  w-full flex flex-col md:flex-row rounded-[20px] bg-[#D4EFD7] shadow-card  my-8"
+              className="grid xl:grid-cols-[320px_auto] grid-cols-1 xl:grid-rows-1 grid-rows-[300px_auto] w-full rounded-[20px] bg-[#D4EFD7] shadow-card  my-8"
               key={index}>
-              <div className="md:w-1/3 w-full h-full rounded-[20px]">
+              <div className="relative rounded-[20px]">
                 {/* <img
                   src={property.images[0].media}
                   className="h-full object-cover rounded-l-[20px]"
@@ -161,12 +161,12 @@ const Explore = ({ userId }) => {
                     clickable: true,
                   }}
                   modules={[EffectFade, Navigation]}
-                  className="h-full">
+                  className="absolute inset-0 h-full w-full">
                   {property.images?.map((image, i) => (
                     <SwiperSlide className="h-full w-full" key={i}>
                       <img
                         src={image.media}
-                        className="w-full h-full object-cover rounded-[20px]"
+                        className="w-full h-full object-center object-cover rounded-[20px]"
                       />
                     </SwiperSlide>
                   ))}

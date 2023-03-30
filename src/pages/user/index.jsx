@@ -25,14 +25,14 @@ const UserDashboardLayout = () => {
 
   return (
     <div className="flex h-full">
-      <div className="hidden md:block md:w-1/6 h-screen text-white p-4 pl-0">
+      <div className="hidden xl:block xl:max-w-[264px] w-full h-screen text-white p-4 pl-0">
         <Sidebar routes={userSideBarRoutes} />
       </div>
-      <div className="w-full md:w-5/6 px-0 md:px-[60px] py-[54px]">
-        <div className="hidden md:block">
+      <div className="flex-grow px-0 xl:px-[60px] xl:py-14 py-24">
+        <div className="hidden lg:block">
           <DashboardNavbar user={user} />
         </div>
-        <div className="block md:hidden">
+        <div className="block xl:hidden">
           <MobileNav avatar={user?.avatar} />
           <BottomNav />
         </div>
