@@ -165,12 +165,13 @@ const UserDashboard = () => {
                         translate: ["100%", 0, 0],
                       },
                     }}
+                    slidesPerView={1}
                     navigation={true}
                     modules={[Autoplay, Navigation]}
                     // modules={[EffectCreative]}
-                    className="mySwiper">
+                    className="mySwiper w-full">
                     {userLikedProperties?.map((apartment, i) => (
-                      <SwiperSlide key={i}>
+                      <SwiperSlide key={i} className="w-full">
                         <div>
                           <div className="w-full h-[250px] flex flex-col rounded-[5px]">
                             <div className="h-2/3">
