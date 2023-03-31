@@ -2,14 +2,14 @@
 export const likedApartmentsData = [
     {
         id: 1,
-        imageUrl: "../src/assets/house1.jpg",
+        imageUrl: "../src/assets/apartments/house1.jpg",
         description: '3 Bed room flat, conducive environment, good electricity and running borehole.Located in an open area, close to the road.',
         location: "Ikolaba, Bodija. Ibadan",
         price: "N300,000"
     },
     {
         id: 2,
-        imageUrl: "../src/assets/house2.jpg",
+        imageUrl: "../src/assets/apartments/house2.jpg",
         description: '3 Bed room flat, conducive environment, good electricity and running borehole.Located in an open area, close to the road.',
         location: "Ikolaba, Bodija. Ibadan",
         price: "N300,000"
