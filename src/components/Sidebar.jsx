@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MdDashboard, MdTravelExplore, MdSettings } from "react-icons/md";
 import { RiLogoutBoxRFill } from "react-icons/ri";
-import logo from "../assets/brand.png";
+import logo from "../assets/logo.svg";
 import { useSelector } from "react-redux";
 import { userSelector } from "../store/slices/authSlice";
 
@@ -29,7 +29,7 @@ const Sidebar = ({ routes }) => {
         <div className="w-full p-7">
           <a href="/">
             <img
-              className="w-full h-full object-cover my-5"
+              className="h-full object-cover my-5 w-52"
               src={logo}
               alt=""
             />
