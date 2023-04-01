@@ -127,6 +127,11 @@ function Signup() {
 
   return (
     <div className="grid-container grid grid-cols-1 md:grid-cols-2 h-screen px-[30px] md:px-0">
+      <nav className="fixed p-5 bg-white w-full shadow">
+        <a href="/" className="">
+          <img src="/district-logo.svg" className="w-40 inline" />
+        </a>
+      </nav>
       {registrationStep === "one" && (
         <div className="step-1 flex flex-col items-center justify-center">
           <div className="w-full md:w-3/4 mx-auto">

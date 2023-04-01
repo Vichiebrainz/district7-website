@@ -69,6 +69,11 @@ function Login() {
 
   return (
     <div className="grid-container grid grid-cols-1 lg:grid-cols-2 h-screen px-[30px] md:px-0 ">
+      <nav className="fixed p-5">
+        <a href="/">
+          <img src="/district-logo.svg" className="w-40 inline" />
+        </a>
+      </nav>
       <div className="form flex flex-col items-center justify-center font-header">
         <div className="form-body w-full max-w-[450px] flex flex-col justify-center">
           <div className="bg-white font-semibold m-8 text-3xl text-primary-green font-header">
