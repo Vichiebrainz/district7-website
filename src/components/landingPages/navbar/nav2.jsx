@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import navLogo from "./logo.png";
+import navLogo from "../../../assets/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbarStyles.css";
 import { BsArrowRightCircleFill } from "react-icons/bs";
@@ -54,7 +54,7 @@ const Navbar = () => {
       <div className="flex items-center flex-shrink-0  mr-6">
         <span className="font-semibold text-xl tracking-tight">
           <a href="/" className="text-sm font-medium text-gray-900">
-            <img src={navLogo} alt="brand logo" className="w-[80%]" />
+            <img src={navLogo} alt="brand logo" className="w-40" />
           </a>
         </span>
       </div>
@@ -80,11 +80,11 @@ const Navbar = () => {
           isOpen ? "block" : "hidden"
         }`}>
         <div className="flex flex-col md:flex-row">
-          <a
+          {/* <a
             href="#"
             className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6  md:mb-0">
             Home
-          </a>
+          </a> */}
           <a
             href="#"
             className="block lg:inline-block lg:mt-0 hover:text-gray-800 mr-8 mb-6 md:mb-0">

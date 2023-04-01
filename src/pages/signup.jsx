@@ -17,8 +17,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import landlord from "../../public/landlord.png";
-import tenant from "../../public/renter.png";
+import landlord from "../assets/landlord.png";
+import tenant from "../assets/renter.png";
 
 import useAnalyticsEventTracker from "../hooks/useAnalyticsEventTracker";
 

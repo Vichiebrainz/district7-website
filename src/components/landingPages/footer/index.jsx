@@ -1,6 +1,6 @@
 import React from "react";
 // import footerLogo from "../../../assets/footerLogo.png";
-import footerLogo from "./footerlogo.png";
+import footerLogo from "../../../assets/logo.svg";
 import {
   FaFacebookF,
   FaTwitter,
@@ -32,12 +32,12 @@ function Footer() {
         </div>
         <div className="mt-[80px] flex flex-col md:flex-row md:items-center justify-between">
           <div className="">
-            <img src={footerLogo} alt="" className="w-[90%]" />
+            <img src={footerLogo} alt="" className="w-40" />
             <h2 className="font-header text-base font-normal my-[10px] text-[#ffffffb2]">
               support@district7.com.ng
             </h2>
             <h3 className="font-header text-base font-normal text-[#ffffffb2]">
-              +2348037837313
+              +2349065918317
             </h3>
           </div>
           <div className="flex flex-col md:items-end">
@@ -71,7 +71,7 @@ function Footer() {
       </div>
       <div className="h-[15vh] w-full mt-[20px] border-t-[3px] border-white flex items-center justify-center">
         <h2 className="font-header text-[15px] font-normal text-white/70">
-          Copyright @ 2022. All rights reserved.
+          Copyright @ {new Date().getFullYear()}. All rights reserved.
         </h2>
       </div>
     </div>

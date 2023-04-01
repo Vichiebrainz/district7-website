@@ -1,14 +1,62 @@
-<svg width="324" height="84" viewBox="0 0 324 84" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<mask id="mask0_270_132" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="324" height="84">
-<rect width="324" height="84" fill="url(#pattern0)"/>
-</mask>
-<g mask="url(#mask0_270_132)">
-<rect x="-27" y="-44" width="351" height="128" fill="white"/>
-</g>
-<defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_270_132" transform="translate(-0.00373619) scale(0.0022742 0.00877193)"/>
-</pattern>
-<image id="image0_270_132" width="443" height="114" xlink:href="data:image/png;base64,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"/>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="7.54207in" height="2.15056in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 7542 2151"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <font id="FontID1" horiz-adv-x="712" font-variant="normal" style="fill-rule:nonzero" font-weight="400">
+	<font-face 
+		font-family="Lufga">
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="T" horiz-adv-x="591"><path d="M562.007 689.998l-533.008 0 0 -86.0082 221.007 0 0 -603.989 90.9949 0 0 603.989 221.007 0 0 86.0082z"/></glyph>
+   <glyph unicode="M" horiz-adv-x="863"><path d="M670.006 689.998l-237 -410.005 -236.012 410.005 -115.995 0 0 -689.998 92.0057 0 0 551.001 233.99 -406.006 51.0119 0 233.99 406.006 0 -551.001 90.9949 0 0 689.998 -112.985 0z"/></glyph>
+  </font>
+  <font id="FontID0" horiz-adv-x="716" font-variant="normal" style="fill-rule:nonzero" font-weight="600">
+	<font-face 
+		font-family="Lufga SemiBold">
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="D" horiz-adv-x="727"><path d="M340.001 689.999l-270 0 0 -689.999 270 0c200.998,0 351.998,148.002 351.998,345.001 0,197 -151.001,344.998 -351.998,344.998zm-3.00319 -560.001l-129 0 0 430.003 129 0c122.003,0 213.003,-92.0022 213.003,-214.999 0,-123.001 -90.9999,-215.003 -213.003,-215.003z"/></glyph>
+   <glyph unicode="R" horiz-adv-x="633"><path d="M449.001 0l166.001 0 -172.003 257.001c92.0022,28.9981 155.002,108.001 155.002,207 0,129 -101,225.998 -234.001,225.998l-293.998 0 0 -689.999 137.997 0 0 245.998 82.0021 0 159 -245.998zm-241.002 560.001l153.002 0c53.9985,0 95.0015,-42.0014 95.0015,-97.0023 0,-54.9969 -41.003,-96.9984 -95.0015,-96.9984l-153.002 0 0 194.001z"/></glyph>
+   <glyph unicode="I" horiz-adv-x="277"><path d="M70.0011 0l137.997 0 0 689.999 -137.997 0 0 -689.999z"/></glyph>
+   <glyph unicode="C" horiz-adv-x="727"><path d="M399 -12.001c129,0 240,60.0009 303.998,155.002l-119 73.9988c-40.0006,-58.9986 -106.999,-95.9999 -184.999,-95.9999 -126,0 -222,95.9999 -222,224.001 0,127.997 95.9999,223.997 222,223.997 78.0004,0 144.998,-36.9974 184.999,-95.9999l119 74.0027c-63.9986,94.9976 -174.999,154.999 -303.998,154.999 -207,0 -363.999,-154 -363.999,-356.999 0,-203.002 156.999,-357.002 363.999,-357.002z"/></glyph>
+   <glyph unicode="T" horiz-adv-x="588"><path d="M563 689.999l-537.001 0 0 -129.998 199.999 0 0 -560.001 138.001 0 0 560.001 199.001 0 0 129.998z"/></glyph>
+   <glyph unicode="7" horiz-adv-x="524"><path d="M38.0005 689.999l0 -130 295.998 0 -254.997 -559.999 156 0 263 582.001 0 107.998 -460.001 0z"/></glyph>
+   <glyph unicode=" " horiz-adv-x="227"></glyph>
+   <glyph unicode="S" horiz-adv-x="600"><path d="M310.001 -12.001c151.001,0 268.998,85.0013 268.998,209.001 0,158.002 -189.001,204.999 -252.999,217.999 -63.9986,14.0018 -136.001,37.0014 -136.001,90.0014 0,42.9999 49.0023,73.9988 118.001,73.9988 68.9987,0 138.001,-28.9981 177,-66.9979l63.9986 103.999c-50.9992,50.0008 -135.997,85.9998 -238.997,85.9998 -155.002,0 -262.001,-80.0013 -262.001,-202.998 0,-121 108.001,-184.001 240,-215.003 70.9995,-16.9971 149,-34.9966 149,-92.9967 0,-48 -58.0001,-80.0013 -126.999,-80.0013 -78.0004,0 -160.003,37.0014 -216.002,90.0014l-70.9995 -105.002c70.0011,-65.001 181.001,-108.001 287.001,-108.001z"/></glyph>
+  </font>
+  <style type="text/css">
+   <![CDATA[
+    @font-face { font-family:"Lufga";src:url("#FontID1") format(svg)}
+    @font-face { font-family:"Lufga SemiBold";src:url("#FontID0") format(svg)}
+    .fil1 {fill:black}
+    .fil0 {fill:black}
+    .fil2 {fill:#068802}
+    .fil3 {fill:#068802}
+    .fnt2 {font-weight:normal;font-size:175.272px;font-family:'Lufga'}
+    .fnt0 {font-weight:600;font-size:1001.56px;font-family:'Lufga SemiBold'}
+    .fnt1 {font-weight:600;font-size:1073.44px;font-family:'Lufga SemiBold'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2789728703456">
+   <g>
+    <path class="fil0" d="M904 2151c1203,-16 1258,-1479 669,-1743 -328,556 -279,949 -361,1274 -60,241 -153,298 -308,469z"/>
+    <path class="fil1" d="M4 1327c59,-173 237,-463 355,-539l-355 0 0 539z"/>
+    <path class="fil1" d="M4 2140l303 0c-143,-85 -234,-206 -303,-311l0 311z"/>
+    <path class="fil2" d="M647 1466l130 0 0 128 -130 0 0 -128zm-153 0l130 0 0 128 -130 0 0 -128zm153 -159l130 0 0 128 -130 0 0 -128zm-153 0l130 0 0 128 -130 0 0 -128zm-494 -783l1026 -1c-254,338 -657,472 -761,956 -47,217 57,431 312,439 371,8 406,-384 471,-759 82,-469 179,-574 350,-924 -71,-11 -139,-21 -206,-28l0 -128 -241 -79 0 184c-307,-21 -593,-13 -951,-14l0 354z"/>
+   </g>
+   <g>
+    <g>
+     <text x="2293" y="1511"  class="fil1 fnt0">DISTRICT </text>
+     <text x="6825" y="1523"  class="fil3 fnt1">7</text>
+    </g>
+    <text x="7301" y="749"  class="fil0 fnt2">TM</text>
+   </g>
+  </g>
+ </g>
 </svg>
