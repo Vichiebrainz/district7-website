@@ -32,7 +32,7 @@ function Footer() {
         </div>
         <div className="mt-[80px] flex flex-col md:flex-row md:items-center justify-between">
           <div className="">
-            <img src={footerLogo} alt="" className="w-52" />
+            <img src={footerLogo} alt="" className="w-40" />
             <h2 className="font-header text-base font-normal my-[10px] text-[#ffffffb2]">
               support@district7.com.ng
             </h2>

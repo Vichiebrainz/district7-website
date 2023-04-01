@@ -54,7 +54,7 @@ const Navbar = () => {
       <div className="flex items-center flex-shrink-0  mr-6">
         <span className="font-semibold text-xl tracking-tight">
           <a href="/" className="text-sm font-medium text-gray-900">
-            <img src={navLogo} alt="brand logo" className="w-52" />
+            <img src={navLogo} alt="brand logo" className="w-40" />
           </a>
         </span>
       </div>
