@@ -28,6 +28,7 @@ import Home from "./pages/landingPages/homePage";
 import { Toaster } from "react-hot-toast";
 import UpdateProperty from "./pages/landlord/updateProperty";
 import ReactGA from "react-ga";
+import Contact from "./pages/landingPages/contact";
 
 const TRACKING_ID = "UA-192954122-2"; // YOUR_OWN_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
@@ -72,6 +73,7 @@ function App() {
         <Routes>
           {/* HOME ROUTE */}
           <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
 
           {/* AUTH ROUTES */}
           <Route path="login" element={<Login />} />

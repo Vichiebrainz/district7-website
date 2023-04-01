@@ -24,7 +24,7 @@ function Home() {
             placeholder="Search Houses With Locations"
             className="w-[90%] h-[45px] py-[10px] px-[20px] transition-all duration-500 ease-linear focus:outline-[#05c002]"
           />
-          <button className="py-0 px-[15px] h-[45px] border-none text-white flex items-center justify-center text-[25px] font-semibold bg-[#05c002]">
+          <button className="py-0 px-[15px] h-[45px] border-none text-white flex items-center justify-center text-[25px] font-semibold bg-[#05c002] rounded">
             <BiSearch />
           </button>
         </div>
@@ -94,7 +94,7 @@ function Home() {
         <div className="w-full flex flex-col items-center justify-center px-12">
           <button
             onClick={() => navigate("/signup")}
-            className="border-none flex bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] justify-center items-center">
+            className="border-none flex bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] justify-center items-center rounded">
             Get Started
           </button>
           <span className="font-header text-[10px] font-normal mt-[10px]">
@@ -124,7 +124,7 @@ function Home() {
             <div className="font-header w-full ">
               <button
                 // onClick={() => navigate("/signup")}
-                className="border-none flex justify-center items-center bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] shadow-md mb-2">
+                className="border-none flex justify-center items-center bg-[#05c002] w-full md:w-fit py-[10px] px-5 whitespace-nowrap font-header  text-white text-[20px] font-semibold mt-[20px] shadow-md mb-2 rounded">
                 Request refund
               </button>
               <span className="font-header text-[10px] font-normal mt-[10px] text-center md:text-left">
@@ -155,7 +155,7 @@ function Home() {
             <div className="w-full flex flex-col items-center justify-center">
               <button
                 onClick={() => navigate("/signup")}
-                className="border-none flex justify-center items-center bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px]">
+                className="border-none flex justify-center items-center bg-[#05c002] w-full md:w-[30%] py-[10px] font-header  text-white text-[20px] font-semibold mt-[20px] rounded">
                 Get Started
               </button>
               <span className="font-header text-[10px] font-normal text-[#e6e6e6] mt-[10px]">

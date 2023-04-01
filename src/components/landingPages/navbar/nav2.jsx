@@ -96,7 +96,7 @@ const Navbar = () => {
             Services
           </a>
           <a
-            href="#"
+            href="/contact"
             className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6 md:mb-0">
             Contact
           </a>
@@ -104,19 +104,19 @@ const Navbar = () => {
         <div className="flex gap-4 w-full justify-center mt-8 md:mt-0  md:justify-end">
           {isLoggedIn ? (
             <button
-              className="text-white bg-[#05C002] text-[15px] font-semibold px-3 py-2"
+              className="text-white bg-[#05C002] text-[15px] font-semibold px-3 py-2 rounded"
               onClick={gotoDashboard}>
               Go to dashboard
             </button>
           ) : (
             <>
               <div onClick={() => setShowPopup(!showPopup)}>
-                <button className="text-white bg-[#05C002] text-[15px] font-semibold px-3 py-2">
+                <button className="text-white bg-[#05C002] text-[15px] font-semibold px-3 py-2 rounded">
                   SIGN UP
                 </button>
               </div>
               <Link to="/login">
-                <button className="text-white bg-[#05C002] text-[15px] font-semibold px-3 py-2">
+                <button className="text-white bg-[#05C002] text-[15px] font-semibold px-3 py-2 rounded">
                   lOG IN
                 </button>
               </Link>
