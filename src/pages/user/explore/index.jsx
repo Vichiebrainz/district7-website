@@ -208,7 +208,7 @@ const Explore = ({ userId }) => {
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
                       href={`https://wa.me/234${property?.owner?.phone_number?.substr(
                         1
-                      )}?text=I'm%20inquiring%20about%20the%20apartment%20listing`}
+                      )}?text=${encodeURIComponent(`is ${property.description} at ${property.location} still available? i found this listing on district 7`)}`}
                       target="_blank">
                       Contact Agent
                     </a>
