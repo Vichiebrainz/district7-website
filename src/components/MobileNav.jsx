@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo/logo_solid.png";
+import logo from "../assets/logo.svg";
 import { MdSettings } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 // import { Squash as Hamburger } from "hamburger-react";
@@ -51,9 +51,7 @@ const MobileNav = ({ avatar }) => {
 
   return (
     <nav className="h-16 w-full z-[999] top-0 bg-white shadow-lg fixed px-4 flex items-center justify-between">
-      <div className="flex w-1/3">
-        <img src={logo} alt="District 7" className="w-full object-cover" />
-      </div>
+      <img src={logo} alt="District 7" className="w-36 object-cover" />
       {/* <div className="flex flex-grow">
         <input />
       </div> */}

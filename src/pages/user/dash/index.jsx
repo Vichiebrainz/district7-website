@@ -76,8 +76,8 @@ const UserDashboard = () => {
 
   return (
     <div className="px-6 xl:px-0">
-      <div className="flex flex-col md:flex-row gap-16 space-between mt-8 md:mt-0">
-        <div className="w-full md:w-2/3 md:h-[500px] h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
+      <div className="flex flex-col md:flex-row gap-8 lg:gap-16 space-between mt-8 md:mt-0">
+        <div className="md:w-2/3 md:h-[500px] h-full rounded-[20px] overflow-hidden md:shadow-card bg-[#068903]/5 relative">
           <div className="px-6 py-5 mb-4 ">
             <div className="font-semibold font-header text-[20px] leading-[24.38px] mb-6   md:mb-16 flex gap-4">
               <span>Liked Apartments</span>
@@ -85,12 +85,12 @@ const UserDashboard = () => {
                 <BsFillHeartFill />
               </span>
             </div>
-            <div className="hidden md:block">
+            <div>
               {userLikedProperties?.length > 0 ? (
                 <>
                   <Swiper
-                    spaceBetween={30}
-                    slidesPerView={3}
+                    // spaceBetween={30}
+                    slidesPerView={innerWidth >= 640 ? 3 : 1}
                     centeredSlides={true}
                     autoplay={{
                       delay: 2500,
@@ -105,7 +105,7 @@ const UserDashboard = () => {
                     className="mySwiper">
                     {userLikedProperties.map((apartment, i) => (
                       <SwiperSlide key={i}>
-                        <div className="h-[280px] w-[200px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
+                        <div className="h-[280px] w-[200px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)] mx-auto">
                           <div className="w-full h-3/4">
                             <img
                               src={apartment?.images[0]?.media}
@@ -129,7 +129,7 @@ const UserDashboard = () => {
                     ))}
                   </Swiper>
                   <div
-                    className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-2 right-2 cursor-pointer underline"
+                    className="px-6 py-4 flex justify-between text-[#068903] text-[16px] leading-[19.5px] font-semibold font-header absolute bottom-0 right-2 cursor-pointer underline"
                     onClick={() => navigate("/user/settings?tab=liked")}>
                     See more
                   </div>
@@ -150,7 +150,7 @@ const UserDashboard = () => {
               )}
             </div>
 
-            <div className="block md:hidden">
+            {/* <div className="block md:hidden">
               {userLikedProperties?.length > 0 ? (
                 <>
                   <Swiper
@@ -219,7 +219,7 @@ const UserDashboard = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
 
