@@ -21,7 +21,8 @@ const ChangePassword = () => {
     confirmNewPassword: false,
   });
 
-  const { isFetching, isSuccess, isError } = useSelector(userSelector);
+  const { isUpdatingPassword, isUpdatedPassword, isUpdatePasswordError } =
+    useSelector(userSelector);
 
   const handleChangePassword = () => {
     event.preventDefault();
@@ -35,16 +36,16 @@ const ChangePassword = () => {
   }, []);
 
   useEffect(() => {
-    if (isError) {
+    if (isUpdatePasswordError) {
       toast.error("Something went wrong, please try again!");
       dispatch(clearState());
     }
 
-    if (isSuccess) {
+    if (isUpdatedPassword) {
       toast.success("Password updated successfully");
       dispatch(clearState());
     }
-  }, [isError, isSuccess]);
+  }, [isUpdatePasswordError, isUpdatedPassword]);
 
   return (
     <>
@@ -56,8 +57,7 @@ const ChangePassword = () => {
           <div className="mb-1 md:mb-4 relative ">
             <label
               htmlFor="current-password"
-              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
-            >
+              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3">
               Current Password
             </label>
             <input
@@ -93,8 +93,7 @@ const ChangePassword = () => {
           <div className="mb-1 md:mb-4 relative ">
             <label
               htmlFor="new-password"
-              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
-            >
+              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3">
               New Password
             </label>
             <input
@@ -130,8 +129,7 @@ const ChangePassword = () => {
           <div className="mb-1 md:mb-4 relative ">
             <label
               htmlFor="confirm-new-password"
-              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3"
-            >
+              className="block font-normal font-header text-black/60 text-[14px] md:text-[16px] leading-[19.5px] mb-3">
               Confirm New Password
             </label>
             <input
@@ -175,10 +173,9 @@ const ChangePassword = () => {
               type="submit"
               className="button-primary bg-[#05C002] w-full text-white text-[18px] font-header font-semibold leading-[21.94px] p-[20px] rounded-[5px] my-4"
               onClick={handleChangePassword}
-              disabled={!old_password || !password || !password2}
-            >
-              {isFetching && <DotLoader color="#fff" size={21} />}
-              {!isFetching && "Change Password"}
+              disabled={!old_password || !password || !password2}>
+              {isUpdatingPassword && <DotLoader color="#fff" size={21} />}
+              {!isUpdatingPassword && "Change Password"}
             </button>
           </div>
         </form>

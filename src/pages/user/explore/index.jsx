@@ -24,6 +24,7 @@ import { EffectFade, Navigation, Pagination } from "swiper";
 import { DotLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
+import withAuth from "../../../middleware/isAuthenticated";
 
 const Explore = ({ userId }) => {
   const [city, setCity] = useState("");
@@ -246,3 +247,6 @@ const Explore = ({ userId }) => {
 };
 
 export default Explore;
+
+// const ExploreWithAuth = withAuth(Explore);
+// export default ExploreWithAuth;
