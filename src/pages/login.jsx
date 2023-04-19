@@ -31,6 +31,12 @@ function Login() {
     gaEventTracker("user logged in to account");
   }
 
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  }
+
   useEffect(() => {
     return () => {
       dispatch(clearState());
@@ -62,10 +68,10 @@ function Login() {
     // }
   }, [isError, isSuccess, isLandlord, isFetching]);
 
-  useEffect(() => {
-    isLoggedIn && isLandlord && navigate("/landlord/dashboard");
-    isLoggedIn && !isLandlord && navigate("/user/dashboard");
-  }, [isLoggedIn, isLandlord]);
+  // useEffect(() => {
+  //   isLoggedIn && isLandlord && navigate("/landlord/dashboard");
+  //   isLoggedIn && !isLandlord && navigate("/user/dashboard");
+  // }, [isLoggedIn, isLandlord]);
 
   return (
     <div className="grid-container grid grid-cols-1 lg:grid-cols-2 h-screen px-[30px] md:px-0 ">
@@ -101,6 +107,7 @@ function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="weatdistrict7@gmail.com"
+              onKeyPress={handleKeyPress}
             />
           </div>
           <div className="password ">
@@ -118,6 +125,7 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
+              onKeyPress={handleKeyPress}
             />
           </div>
           <div>

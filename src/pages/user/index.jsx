@@ -13,6 +13,7 @@ import BottomNav from "../../components/BottomNav";
 import MobileNav from "../../components/MobileNav";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, userSelector } from "../../store/slices/authSlice";
+import withAuth from "../../middleware/isAuthenticated";
 
 const UserDashboardLayout = () => {
   const dispatch = useDispatch();
@@ -49,4 +50,6 @@ const UserDashboardLayout = () => {
   );
 };
 
+// const UserDashboardWithAuth = withAuth(UserDashboardLayout);
+// export default UserDashboardWithAuth;
 export default UserDashboardLayout;
