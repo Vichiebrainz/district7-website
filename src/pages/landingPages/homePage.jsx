@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import stayHappy from "../../assets/stayhappy.jpg";
 import Footer from "../../components/landingPages/footer";
 import { BiSearch } from "react-icons/bi";
@@ -10,6 +10,7 @@ import { userSelector } from "../../store/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 function Home() {
   const { isLandlord, isLoggedIn } = useSelector(userSelector);
+  const inputRef = useRef(null); 
   const navigate = useNavigate();
 
   return (
@@ -18,8 +19,8 @@ function Home() {
       <Navbar />
       {/* // Showcase Section  */}
       <div className="h-screen w-full bg-header bg-cover bg-no-repeat bg-center flex flex-col items-center justify-center text-center">
-        <div className="w-[80%] md:w-[70%] flex justify-between my-12 md:my-0">
-          <input
+        <form className="w-[80%] md:w-[70%] flex justify-between my-12 md:my-0" onSubmit={e => {e.preventDefault(); location.href = `/search/${inputRef.current.value}`}}>
+          <input ref={inputRef}
             type="text"
             placeholder="Search Houses With Locations"
             className="w-[90%] h-[45px] py-[10px] px-[20px] transition-all duration-500 ease-linear focus:outline-[#05c002]"
@@ -27,7 +28,7 @@ function Home() {
           <button className="py-0 px-[15px] h-[45px] border-none text-white flex items-center justify-center text-[25px] font-semibold bg-[#05c002] rounded">
             <BiSearch />
           </button>
-        </div>
+        </form>
 
         <div className="w-full p-8 d-flex flex-col items-center justify-center text-center">
           <h1 className="text-[42px] md:text-[64px] text-white font-bold font-header">

@@ -7,6 +7,7 @@ import {
   get_users_liked_apartmemts,
   like_property,
   remove_property,
+  search_properties_for,
   update_property,
 } from "../../services/requests";
 import axios from "axios";
@@ -30,6 +31,26 @@ export const getAllProperties = createAsyncThunk(
     }
   }
 );
+
+export const searchPropertiesFor = createAsyncThunk(
+  "/allproperty?search=searchQuery", 
+  async (searchQuery, thunkAPI) => {
+    try {
+      const response = await search_properties_for(searchQuery);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message &&
+          error.response.data.detail) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+)
 
 export const getSingleProperty = createAsyncThunk(
   "/allproperty/id",
@@ -212,6 +233,19 @@ const propertySlice = createSlice({
       state.isSuccess = true;
     },
     [getAllProperties.rejected]: (state, action) => {
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = action.payload;
+    },
+    [searchPropertiesFor.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [searchPropertiesFor.fulfilled]: (state, action) => {
+      state.matchedProperties = action.payload;
+      state.isFetching = false;
+      state.isSuccess = true;
+    },
+    [searchPropertiesFor.rejected]: (state, action) => {
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = action.payload;
