@@ -51,7 +51,7 @@ const MobileNav = ({ avatar }) => {
 
   return (
     <nav className="h-16 w-full z-[999] top-0 bg-white shadow-lg fixed px-4 flex items-center justify-between">
-      <img src={logo} alt="District 7" className="w-36 object-cover" />
+      <a href="/"><img src={logo} alt="District 7 logo" className="w-36 object-cover" /></a>
       {/* <div className="flex flex-grow">
         <input />
       </div> */}
