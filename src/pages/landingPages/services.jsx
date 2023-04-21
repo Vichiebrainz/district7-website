@@ -4,12 +4,12 @@ export default function Services() {
   return (
     <div>
       <Navbar />
-      <div className="p-10 pt-32 space-y-4">
+      <div className="p-10 pt-32 space-y-4 xl:w-[1024px] mx-auto">
         <h2 className="text-3xl font-bold mb-3">Services</h2>
         <p>Welcome to District 7, your ultimate destination for finding your dream apartment and making the rental process as smooth as possible.</p>
         <p>We offer a wide range of services to ensure that your apartment search is a success. Our team of experts is committed to providing personalized service and working with you every step of the way to make sure that you find the perfect apartment.</p>
         <p>Our services include:</p>
-        <ol className="grid grid-cols-3 gap-5 list-decimal">
+        <ol className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 list-decimal">
           <li className="border rounded-md p-4">Apartment Search: Our innovative platform allows you to search for apartments in any area of your choice. With our user-friendly interface, you can easily browse through a wide selection of properties, view pictures, compare prices and amenities, and find the perfect apartment that meets your needs.</li>
           <li className="border rounded-md p-4">Rental Assistance: We understand that the rental process can be overwhelming, especially if you're new to an area. That's why we offer rental assistance to guide you through every step of the process, from finding the right apartment to signing the lease.</li>
           <li className="border rounded-md p-4">Connect: Our product adopts a tinder-like system to connect, recommend and match=make potential roommates. We understand that looking for the right roommate can be a hassle, that's why we have built a solution to help you find the roommate made for you, with ease.</li>
