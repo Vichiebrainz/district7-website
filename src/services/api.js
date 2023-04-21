@@ -5,29 +5,36 @@ import { setIsLoggedOut } from "../store/slices/authSlice";
 
 const BASE_URL = "https://api.district7.com.ng/api";
 
-axios.defaults.baseURL = BASE_URL;
-axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
-axios.defaults.headers.common["Accept"] = "application/json";
-axios.defaults.withCredentials = true;
+const api = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    // "Access-Control-Allow-Origin": "*",
+    // "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
+    Accept: "application/json",
+  },
+  // withCredentials: true,
+});
 
 let cancel;
 
-const cancelPendingRequests = () => {
-  if (cancel) {
-    cancel("Operation canceled by the user.");
-    cancel = null;
-  }
-  cancel = axios.CancelToken.source();
-};
+// const cancelPendingRequests = () => {
+//   cancel = axios.CancelToken.source();
+//   if (cancel) {
+//     cancel("Operation canceled by the user.");
+//     cancel = null;
+//   }
+// };
 
-axios.interceptors.request.use(
+api.interceptors.request.use(
   async (request) => {
     const token = JSON.parse(localStorage.getItem("token"));
+    console.log(token);
     if (request.headers && token) {
       request.headers["authorization"] = `Token ${token}`;
     }
-    cancelPendingRequests();
-    request.cancelToken = cancel.token;
+    // cancelPendingRequests();
+    // request.cancelToken = cancel.token;
     return request;
   },
   (error) => {
@@ -35,10 +42,14 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
-  (response) => response,
+api.interceptors.response.use(
+  (response) => {
+    console.log(response);
+    return response;
+  },
   (err) => {
-    if (err.response.status === 401) {
+    if (err.response && err.response.status === 401) {
+      console.log("jhi");
       const token = JSON.parse(localStorage.getItem("token"));
       if (token) {
         localStorage.removeItem("token");
@@ -50,10 +61,13 @@ axios.interceptors.response.use(
         setIsLoggedOut();
         // toast("Session timed out, please login again!")
       }
-      cancelPendingRequests();
+      // cancelPendingRequests();
+    } else {
+      return Promise.reject(err);
+      // cancelPendingRequests();
     }
     return Promise.reject(err);
   }
 );
 
-export { axios as api };
+export { api };

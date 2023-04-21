@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearState, loginUser, userSelector } from "../store/slices/authSlice";
 import toast from "react-hot-toast";
 import useAnalyticsEventTracker from "../hooks/useAnalyticsEventTracker";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -29,6 +30,26 @@ function Login() {
   function handleSubmit() {
     dispatch(loginUser({ email, password }));
     gaEventTracker("user logged in to account");
+    // fetch(
+    //   "https://cors-anywhere.herokuapp.com/https://api.district7.com.ng/api/auth/login/",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       // Authorization: "Bearer your-token",
+    //       // add any other headers you need here
+    //       "Access-Control-Allow-Origin": "*",
+    //     },
+    //     body: JSON.stringify({ email, password }), // replace data with the data you want to send
+    //   }
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     // handle the response data here
+    //   })
+    //   .catch((error) => {
+    //     // handle any errors here
+    //   });
   }
 
   function handleKeyPress(event) {

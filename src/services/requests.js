@@ -76,7 +76,7 @@ export const get_all_properties = () => {
 
 export const search_properties_for = (searchQuery) => {
   return api.get(`/allproperty?search=${searchQuery}`);
-}
+};
 
 export const get_single_property = (id) => {
   return api.get(`/allproperty/${id}`);
