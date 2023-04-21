@@ -91,7 +91,7 @@ const Navbar = () => {
             About
           </a>
           <a
-            href="#"
+            href="/services"
             className="block lg:inline-block lg:mt-0  hover:text-gray-800 mr-8 mb-6 md:mb-0">
             Services
           </a>

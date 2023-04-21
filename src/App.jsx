@@ -30,6 +30,7 @@ import UpdateProperty from "./pages/landlord/updateProperty";
 import ReactGA from "react-ga";
 import Contact from "./pages/landingPages/contact";
 import Search from "./pages/landingPages/search";
+import Services from "./pages/landingPages/services";
 import About from "./pages/landingPages/About";
 
 const TRACKING_ID = "UA-192954122-2"; // YOUR_OWN_TRACKING_ID
@@ -78,6 +79,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/search/:query" element={<Search />} />
+          <Route path="/services" element={<Services />} />
 
           {/* AUTH ROUTES */}
           <Route path="login" element={<Login />} />
