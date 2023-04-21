@@ -16,7 +16,7 @@ const About = () => {
           </p>
         </div>
       </div> */}
-      <div className="p-8 md:p-16 mt-8 md:mt-0">
+      <div className="p-8 md:p-16 pt-20 md:pt-16">
         <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-16 md:py-12 md:px-6 py-9 px-4">
           <div className="flex flex-col lg:flex-row justify-between gap-8">
             <div className="w-full lg:w-5/12 flex flex-col justify-center">
