@@ -24,15 +24,11 @@ const Sidebar = ({ routes }) => {
     "flex items-center gap-5 p-[15px] rounded-lg text-[18px] font-semibold leading-[24.38px] text-black/75 dark:hover:text-black hover:bg-[#068903]/10 my-8";
 
   return (
-    <div className="ml-0 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 fixed top-0 font-header bg-[#068903]/20  shadow-[4px_0  px_rgba(0,0,0,0.35)]">
+    <div className="ml-0 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 fixed  top-0 font-header bg-[#068903]/20  shadow-[4px_0  px_rgba(0,0,0,0.35)]">
       <>
         <div className="w-full p-7">
           <a href="/">
-            <img
-              className="h-full object-cover my-5 w-52"
-              src={logo}
-              alt=""
-            />
+            <img className="h-full object-cover my-5 w-52" src={logo} alt="" />
           </a>
         </div>
         <div className="px-6 relative">
