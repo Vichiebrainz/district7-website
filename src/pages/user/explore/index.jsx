@@ -206,24 +206,22 @@ const Explore = ({ userId }) => {
                 </div>
                 <div className=" md:w-full w-full mt-8 flex flex-row-reverse">
                   <div className="w-full flex flex-row-reverse justify-between gap-4 items-center">
-                    <a
+                    {/* <a
                       onClick={() => gaEventTracker("User contacted agent")}
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
                       href={`https://wa.me/234${property?.owner?.phone_number?.substr(
                         1
-                      )}?text=${encodeURIComponent(
-                        `is ${property.description} at ${property.location} still available? i found this listing on district 7`
-                      )}`}
+                      )}?text=${encodeURIComponent(`is ${property.description} at ${property.location} still available? i found this listing on district 7`)}`}
                       target="_blank">
                       Contact Agent
-                    </a>
-                    {/* <div
+                    </a> */}
+                    <div
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
                       onClick={() =>
                         navigate(`/user/property/${property?.id}`)
                       }>
                       View Details
-                    </div> */}
+                    </div>
                     {/* <div
                       className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
                       onClick={() => likeProps(property?.id)}
