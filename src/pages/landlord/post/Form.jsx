@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { DotLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
-import { IoHelpCircleOutline } from "react-icons/io5";
+import { IoClose, IoCloseCircle, IoHelpCircleOutline } from "react-icons/io5";
 import { Popover } from "../../../components/Popover";
 
 import useAnalyticsEventTracker from "../../../hooks/useAnalyticsEventTracker";
@@ -22,6 +22,7 @@ const schema = yup
     location: yup.string().required("Location is required"),
     description: yup.string().required("Description is required"),
     uploaded_images: yup.mixed().required("Images are required"),
+    uploaded_media: yup.mixed().required("A video upload is required"),
   })
   .required();
 
@@ -34,13 +35,13 @@ export default function Form() {
 
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [videoFile, setVideoFile] = useState(null);
 
   const gaEventTracker = useAnalyticsEventTracker("Landlord Section");
 
   const selectFiles = (event) => {
     if (selectedFiles.length > 4) {
       toast("You can only upload 5 images");
-      console.log("Fuck");
     } else {
       for (let i = 0; i < event.target.files.length; i++) {
         setImagePreviews([
@@ -54,12 +55,34 @@ export default function Form() {
     }
   };
 
+  const selectVideo = (event) => {
+    const file = event.target.files[0];
+    const fileSize = file.size / 1024 / 1024; // convert to MB
+    if (fileSize <= 20) {
+      setVideoFile(file);
+    } else {
+      toast("File size exceeds 20MB limit.");
+    }
+  };
+
+  const removeVideo = () => {
+    setVideoFile(null);
+  };
+
   // Single Image uplaod
   const onChangePicture = (e) => {
     setPicture(e.target.files[0]);
   };
 
-  console.log(selectedFiles);
+  const emptyArray = (array) => {
+    if (array.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  console.log(emptyArray(selectedFiles));
 
   const {
     register,
@@ -92,6 +115,7 @@ export default function Form() {
     Array.from(selectedFiles).forEach((file) => {
       formData.append("uploaded_images", file);
     });
+    formData.append("uploaded_images", videoFile);
     formData.append("is_public", is_public);
 
     dispatch(addProperty(formData));
@@ -181,13 +205,20 @@ export default function Form() {
             <div className="w-full flex gap-2 h-[50px]">
               {imagePreviews.map((img, i) => {
                 return (
-                  <img
-                    // className="preview"
-                    src={img}
-                    alt={"image-" + i}
-                    key={i}
-                    className="h-full mx-4"
-                  />
+                  <div className="relative">
+                    <img
+                      // className="preview"
+                      src={img}
+                      alt={"image-" + i}
+                      key={i}
+                      className="w-[48px] md:w-[72px] object-cover h-full mx-4"
+                    />
+                    {/* <div
+                      className="cursor-pointer absolute top-0 right-4"
+                      onClick={removeVideo}>
+                      <IoCloseCircle />
+                    </div> */}
+                  </div>
                 );
               })}
             </div>
@@ -202,6 +233,40 @@ export default function Form() {
           onChange={selectFiles}
         />
         <p className={errorMessageStyles}>{errors.uploaded_images?.message}</p>
+      </label>
+
+      <label>
+        <span className={labelStyles}>
+          Upload video{" "}
+          <span className="font-bold text-[13px] text-[crimson]">
+            (Video should be less than 20mb)
+          </span>
+        </span>
+        <div className={inputStyles + " text-gray-400 cursor-pointer"}>
+          {videoFile && (
+            <div className="w-full flex justify-between items-center gap-2 h-[40px]">
+              <div className="font-header text-gray-600 text-[15px]">
+                {videoFile.name.slice(0, 30)}...
+              </div>
+              <div
+                className="cursor-pointer rounded-full h-[28px] w-[28px] bg-transparent grid place-items-center hover:bg-gray-100 transition-all"
+                onClick={removeVideo}>
+                <IoClose />
+              </div>
+            </div>
+          )}
+        </div>
+        {!videoFile && (
+          <input
+            type="file"
+            className="hidden"
+            multiple
+            accept="video/mp4, video/x-msvideo, video/x-ms-wmv, video/quicktime, video/webm, video/x-flv, video/mpeg, video/mkv"
+            {...register("uploaded_media")}
+            onChange={selectVideo}
+          />
+        )}
+        <p className={errorMessageStyles}>{errors.uploaded_media?.message}</p>
       </label>
 
       <label>
@@ -257,6 +322,7 @@ export default function Form() {
       <button
         type="submit"
         onClick={handleSubmit(onSubmit)}
+        disabled={emptyArray(selectedFiles)}
         className="block ml-auto bg-[#05C002] md:bg-[#068903] rounded-[5px] capitalize text-[18px] leading-[21.94px] font-header font-medium text-white justify-center items-center gap-4 py-4 px-12 w-fit">
         {isAdding && <DotLoader color="#fff" size={21} />}
         {!isAdding && "Submit"}

@@ -5,17 +5,7 @@ const About = () => {
   return (
     <div>
       <Navbar />
-      {/* <div className="h-[250px] md:h-[350px] w-full mb-4 md:md-12 text-white font-bold font-header text-center text-[18px] md:text-[24px] background-image">
-        <img
-          className="bg-img w-full h-full object-cover"
-          src="/background-image.png"></img>
 
-        <div className="content py-12 lg:py-24 px-20 flex flex-col justify-between h-full">
-          <p className="font-header w-full text-[50px] leading-[61px] text-white">
-            ABOUT US
-          </p>
-        </div>
-      </div> */}
       <div className="p-8 md:p-16 pt-20 md:pt-16">
         <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-16 md:py-12 md:px-6 py-9 px-4">
           <div className="flex flex-col lg:flex-row justify-between gap-8">
@@ -47,11 +37,6 @@ const About = () => {
               </p>
             </div>
             <div className="w-full lg:w-8/12 rounded-[12px]">
-              {/* <img
-                className="w-full h-full"
-                src="https://i.ibb.co/FhgPJt8/Rectangle-116.png"
-                alt="A group of People"
-              /> */}
               <img
                 src="/background-image.png"
                 alt=""
@@ -87,70 +72,6 @@ const About = () => {
                 apartment. Sign up today to get started!
               </p>
             </div>
-            {/* <div className="w-full lg:w-8/12 lg:pt-8">
-              <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-4 shadow-lg rounded-md">
-                <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                  <img
-                    className="md:block hidden"
-                    src="https://i.ibb.co/FYTKDG6/Rectangle-118-2.png"
-                    alt="Alexa featured Img"
-                  />
-                  <img
-                    className="md:hidden block"
-                    src="https://i.ibb.co/zHjXqg4/Rectangle-118.png"
-                    alt="Alexa featured Img"
-                  />
-                  <p className="font-medium text-xl leading-5 text-gray-800 mt-4">
-                    Alexa
-                  </p>
-                </div>
-                <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                  <img
-                    className="md:block hidden"
-                    src="https://i.ibb.co/fGmxhVy/Rectangle-119.png"
-                    alt="Olivia featured Img"
-                  />
-                  <img
-                    className="md:hidden block"
-                    src="https://i.ibb.co/NrWKJ1M/Rectangle-119.png"
-                    alt="Olivia featured Img"
-                  />
-                  <p className="font-medium text-xl leading-5 text-gray-800 mt-4">
-                    Olivia
-                  </p>
-                </div>
-                <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                  <img
-                    className="md:block hidden"
-                    src="https://i.ibb.co/Pc6XVVC/Rectangle-120.png"
-                    alt="Liam featued Img"
-                  />
-                  <img
-                    className="md:hidden block"
-                    src="https://i.ibb.co/C5MMBcs/Rectangle-120.png"
-                    alt="Liam featued Img"
-                  />
-                  <p className="font-medium text-xl leading-5 text-gray-800 mt-4">
-                    Liam
-                  </p>
-                </div>
-                <div className="p-4 pb-6 flex justify-center flex-col items-center">
-                  <img
-                    className="md:block hidden"
-                    src="https://i.ibb.co/7nSJPXQ/Rectangle-121.png"
-                    alt="Elijah featured img"
-                  />
-                  <img
-                    className="md:hidden block"
-                    src="https://i.ibb.co/ThZBWxH/Rectangle-121.png"
-                    alt="Elijah featured img"
-                  />
-                  <p className="font-medium text-xl leading-5 text-gray-800 mt-4">
-                    Elijah
-                  </p>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

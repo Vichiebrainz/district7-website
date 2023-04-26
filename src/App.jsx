@@ -32,6 +32,7 @@ import Contact from "./pages/landingPages/contact";
 import Search from "./pages/landingPages/search";
 import Services from "./pages/landingPages/services";
 import About from "./pages/landingPages/About";
+import ViewApartmentDetails from "./pages/user/explore/viewApartmentDetails";
 
 const TRACKING_ID = "UA-192954122-2"; // YOUR_OWN_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
@@ -93,6 +94,10 @@ function App() {
             <Route path="user/*" element={<UserDashboardLayout />}>
               <Route path="dashboard" element={<UserDashboard />} />
               <Route path="explore" element={<Explore />} />
+              <Route
+                path="property/:propId"
+                element={<ViewApartmentDetails />}
+              />
               <Route path="connect" element={<Connect />} />
               <Route path="settings" element={<Settings />} />
               <Route path="profile" element={<Profile />} />

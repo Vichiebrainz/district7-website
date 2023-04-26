@@ -14,6 +14,7 @@ import MobileNav from "../../components/MobileNav";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, userSelector } from "../../store/slices/authSlice";
 import withAuth from "../../middleware/isAuthenticated";
+import ViewApartmentDetails from "./explore/viewApartmentDetails";
 
 const UserDashboardLayout = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const UserDashboardLayout = () => {
         <Routes>
           <Route path="dashboard" element={<UserDashboard />} />
           <Route path="explore" element={<Explore userId={user?.id} />} />
+          <Route path="property/:propId" element={<ViewApartmentDetails />} />
           <Route path="connect" element={<Connect />} />
           <Route path="settings" element={<Settings />} />
           <Route path="notifications" element={<MdNotifications />} />

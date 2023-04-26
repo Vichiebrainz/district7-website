@@ -25,8 +25,10 @@ import { DotLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
 import { BsFillHeartFill, BsHeart } from "react-icons/bs";
 import withAuth from "../../../middleware/isAuthenticated";
+import { useNavigate } from "react-router-dom";
 
 const Explore = ({ userId }) => {
+  const navigate = useNavigate();
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
@@ -209,10 +211,19 @@ const Explore = ({ userId }) => {
                       className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
                       href={`https://wa.me/234${property?.owner?.phone_number?.substr(
                         1
-                      )}?text=${encodeURIComponent(`is ${property.description} at ${property.location} still available? i found this listing on district 7`)}`}
+                      )}?text=${encodeURIComponent(
+                        `is ${property.description} at ${property.location} still available? i found this listing on district 7`
+                      )}`}
                       target="_blank">
                       Contact Agent
                     </a>
+                    {/* <div
+                      className="border-[1.5px] border-solid  border-[#05C002] md:border-[#068903] bg-[#05C002] md:bg-[#068903]  rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] text-white cursor-pointer"
+                      onClick={() =>
+                        navigate(`/user/property/${property?.id}`)
+                      }>
+                      View Details
+                    </div> */}
                     {/* <div
                       className="border-[1.5px] border-black/60 rounded-[5px] px-10 py-2 font-header font-semibold text-[18px] leading-[22px] cursor-pointer"
                       onClick={() => likeProps(property?.id)}
