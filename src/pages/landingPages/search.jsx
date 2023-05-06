@@ -17,7 +17,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { EffectFade, Navigation } from "swiper";
-import logo from "../../assets/logo.svg";
+import Navbar from "../../components/landingPages/navbar/nav2";
 import { useParams } from "react-router-dom";
 
 const Search = () => {
@@ -37,13 +37,13 @@ const Search = () => {
   console.log(matchedProperties);
 
   return (
-    <div className="p-6">
-      <div className="w-full h-[600px] my-20 md:my-10">
-        <div className="flex items-center gap-40">
-          <a href="/"><img src={logo} alt="district 7 logo" className="w-56" /></a>
-          <form className="flex gap-3 w-full ml-auto" onSubmit={e => {e.preventDefault(); location.href = `/search/${inputRef.current.value}`}}>
+    <div>
+      <div className="w-full h-[600px]">
+        <Navbar />
+        <div className="w-full px-4 md:px-16 pt-40">
+          <form className="flex gap-3 w-full" onSubmit={e => {e.preventDefault(); location.href = `/search/${inputRef.current.value}`}}>
             <input ref={inputRef} defaultValue={query}
-              type="text"
+              type="text" required
               placeholder="Search Houses With Locations"
               className="border w-full h-[45px] py-[10px] px-[20px] transition-all duration-500 ease-linear focus:outline-[#05c002] border-black"
             />
@@ -51,9 +51,7 @@ const Search = () => {
               <BiSearch />
             </button>
           </form>
-        </div>
-        <div className="w-full my-4 px-0 md:px-12 md:pt-10 pb-20 md:pb-0">
-          {matchedProperties?.map((property, index) => (
+          {matchedProperties ? matchedProperties.length ? matchedProperties.map((property, index) => (
             <div
               className="grid xl:grid-cols-[320px_auto] grid-cols-1 xl:grid-rows-1 grid-rows-[300px_auto] w-full rounded-[20px] bg-[#D4EFD7] shadow-card  my-8"
               key={index}>
@@ -111,7 +109,7 @@ const Search = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )) : <p className="text-3xl text-center my-20">No apartments at '{query}'</p> : <></>}
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ function Home() {
       {/* // Showcase Section  */}
       <div className="h-screen w-full bg-header bg-cover bg-no-repeat bg-center flex flex-col items-center justify-center text-center">
         <form className="w-[80%] md:w-[70%] flex justify-between my-12 md:my-0" onSubmit={e => {e.preventDefault(); location.href = `/search/${inputRef.current.value}`}}>
-          <input ref={inputRef}
+          <input ref={inputRef} required
             type="text"
             placeholder="Search Houses With Locations"
             className="w-[90%] h-[45px] py-[10px] px-[20px] transition-all duration-500 ease-linear focus:outline-[#05c002]"
