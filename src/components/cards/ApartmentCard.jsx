@@ -29,7 +29,7 @@ function ApartmentCard({ imageUrl, description, price, location }) {
         {imageUrl?.map((image, i) => (
           <SwiperSlide className="h-full w-full" key={i}>
             <img
-              src={image.media}
+              src={image.image}
               className="w-full h-full object-cover rounded-[20px]"
             />
           </SwiperSlide>

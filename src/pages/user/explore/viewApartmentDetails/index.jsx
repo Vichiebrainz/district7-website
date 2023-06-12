@@ -37,13 +37,16 @@ const ViewApartmentDetails = () => {
 
   const returnVideo = () => {
     if (singleProperty) {
-      return _.find(singleProperty.images, { media_type: "video" })?.media;
+      if (singleProperty.videos){
+        return singleProperty.videos[0].video;
+
+      }
     }
   };
 
   const returnImages = () => {
     if (singleProperty) {
-      return _.filter(singleProperty.images, { media_type: "image" });
+      return singleProperty.images;
     }
   };
 
@@ -92,9 +95,9 @@ const ViewApartmentDetails = () => {
               )}
 
               {returnImages()?.map((image, i) => (
-                <SwiperSlide>
+                <SwiperSlide key={i}>
                   <img
-                    src={image.media}
+                    src={image.image}
                     className="w-full h-full md:h-full rounded-[18px] object-cover"
                     alt=""
                   />

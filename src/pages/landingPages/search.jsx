@@ -68,7 +68,7 @@ const Search = () => {
                   {property.images?.map((image, i) => (
                     <SwiperSlide className="h-full w-full" key={i}>
                       <img
-                        src={image.media}
+                        src={image}
                         className="w-full h-full object-center object-cover rounded-[20px]"
                       />
                     </SwiperSlide>

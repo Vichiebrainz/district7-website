@@ -70,7 +70,7 @@ const LandlordDashboard = () => {
                     <div className="h-[300px] w-[200px] rounded-[15px] bg-[#068903] cursor-pointer shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]">
                       <div className="w-full h-3/4">
                         <img
-                          src={apartment?.images[0].media}
+                          src={apartment?.images[0].image}
                           alt=""
                           className="w-full rounded-t-[15px] h-full object-cover"
                         />
