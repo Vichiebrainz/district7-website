@@ -22,7 +22,7 @@ const schema = yup
     location: yup.string().required("Location is required"),
     description: yup.string().required("Description is required"),
     uploaded_images: yup.mixed().required("Images are required"),
-    uploaded_media: yup.mixed().required("A video upload is required"),
+    uploaded_videos: yup.mixed().required("A video upload is required"),
   })
   .required();
 
@@ -115,7 +115,9 @@ export default function Form() {
     Array.from(selectedFiles).forEach((file) => {
       formData.append("uploaded_images", file);
     });
-    formData.append("uploaded_images", videoFile);
+    if (videoFile){
+      formData.append("uploaded_videos", videoFile)
+    }
     formData.append("is_public", is_public);
 
     dispatch(addProperty(formData));
@@ -205,12 +207,11 @@ export default function Form() {
             <div className="w-full flex gap-2 h-[50px]">
               {imagePreviews.map((img, i) => {
                 return (
-                  <div className="relative">
+                  <div className="relative" key={i}>
                     <img
                       // className="preview"
                       src={img}
                       alt={"image-" + i}
-                      key={i}
                       className="w-[48px] md:w-[72px] object-cover h-full mx-4"
                     />
                     {/* <div
@@ -262,7 +263,7 @@ export default function Form() {
             className="hidden"
             multiple
             accept="video/mp4, video/x-msvideo, video/x-ms-wmv, video/quicktime, video/webm, video/x-flv, video/mpeg, video/mkv"
-            {...register("uploaded_media")}
+            {...register("uploaded_videos")}
             onChange={selectVideo}
           />
         )}

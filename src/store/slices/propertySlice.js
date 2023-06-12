@@ -123,7 +123,7 @@ export const addProperty = createAsyncThunk(
       const message =
         (error.response &&
           error.response.data &&
-          error.response.data.message &&
+          // error.response.data.message &&
           error.response.data.detail) ||
         error.message ||
         error.toString();
